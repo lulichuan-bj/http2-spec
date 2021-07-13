@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-07-08T00:56:25.386666+00:00",
+  "timestamp": "2021-07-13T00:59:03.415792+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19457,7 +19457,7 @@
       "id": "MDU6SXNzdWU4NjQ3MDc2NzM=",
       "title": "HTTP2-Settings Header Field Registration needs update",
       "url": "https://github.com/httpwg/http2-spec/issues/843",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "reschke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -19468,8 +19468,8 @@
       ],
       "body": "new registry for fields; see <https://httpwg.org/http-core/draft-ietf-httpbis-semantics-latest.html#field.name.registration>",
       "createdAt": "2021-04-22T08:52:29Z",
-      "updatedAt": "2021-05-25T07:18:16Z",
-      "closedAt": null,
+      "updatedAt": "2021-07-12T06:13:15Z",
+      "closedAt": "2021-07-12T06:13:15Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -19553,7 +19553,7 @@
       "id": "MDU6SXNzdWU4OTk0MDE2NTE=",
       "title": "Make sure the change log is correct",
       "url": "https://github.com/httpwg/http2-spec/issues/852",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -19562,8 +19562,8 @@
       ],
       "body": "Before we ship.",
       "createdAt": "2021-05-24T07:55:27Z",
-      "updatedAt": "2021-06-03T06:30:40Z",
-      "closedAt": null,
+      "updatedAt": "2021-07-12T06:12:55Z",
+      "closedAt": "2021-07-12T06:12:55Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -19586,7 +19586,7 @@
       "id": "MDU6SXNzdWU5MTAwMjAzNjM=",
       "title": "Revise acknowledgments",
       "url": "https://github.com/httpwg/http2-spec/issues/862",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -19595,8 +19595,8 @@
       ],
       "body": "I don't know what the convention is here, but the acknowledgments seem a little off.  For instance, we acknowledge people for mechanisms that were removed in this revision.\r\n\r\nWe might be able to remove these entirely; we could simplify (which would avoid problems like the above); or we might just mark these as applying to RFC 7540.  Ideas sought.",
       "createdAt": "2021-06-03T01:56:51Z",
-      "updatedAt": "2021-06-03T02:53:28Z",
-      "closedAt": null,
+      "updatedAt": "2021-07-12T06:13:19Z",
+      "closedAt": "2021-07-12T06:13:19Z",
       "comments": [
         {
           "author": "wtarreau",
@@ -19677,7 +19677,7 @@
       "id": "MDU6SXNzdWU5MjM1MTAxOTY=",
       "title": "Target URIs",
       "url": "https://github.com/httpwg/http2-spec/issues/867",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mnot",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -19686,8 +19686,8 @@
       "labels": [],
       "body": "The `Request Pseudo-Header Fields` section talks about how to generate the various pseudo-header fields from a message, but not not how to create a message from the abstract constructs in HTTP semantics, such as the target URI.\r\n\r\nThis includes security considerations around trusting the contents of `:scheme`.\r\n\r\nI'm happy to do a PR for this.\r\n\r\nAlso, this is a weird paragraph:\r\n\r\n> HTTP/2 uses the \"http\" and \"https\" URI schemes defined in <xref target=\"HTTP\" section=\"4.2\"/>. HTTP/2 shares the same default port numbers: 80 for \"http\" URIs and 443 for \"https\" URIs.  As a result, implementations processing requests for target resource URIs like <tt>http://example.org/foo</tt> or <tt>https://example.com/bar</tt> are required to first discover whether the upstream server (the immediate peer to which the client wishes to establish a connection) supports HTTP/2.\r\n\r\n\"HTTP/2 shares the same default port numbers\" implies that it could choose to do otherwise; while that might have been an open question pre-core, I think this needs to be re-worded. Likewise, \"requests for target resource URIs\" is odd; is this meant to be \"requests with target URIs\"?",
       "createdAt": "2021-06-17T06:26:33Z",
-      "updatedAt": "2021-06-17T07:03:12Z",
-      "closedAt": null,
+      "updatedAt": "2021-07-12T23:52:12Z",
+      "closedAt": "2021-07-12T23:52:12Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -34503,7 +34503,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NjYwNDgzMDU4",
       "title": "Use QUIC-style frame format illustrations",
       "url": "https://github.com/httpwg/http2-spec/pull/860",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mnot",
       "authorAssociation": "MEMBER",
       "assignees": [],
@@ -34512,17 +34512,19 @@
       ],
       "body": "I haven't adjusted for `artwork` vs. `sourcecode` until that war is over.\r\n\r\nNote that I've explicitly added a format for the SETTINGS frame itself, which was missing.",
       "createdAt": "2021-06-03T00:47:17Z",
-      "updatedAt": "2021-07-07T11:20:34Z",
+      "updatedAt": "2021-07-12T06:54:06Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "b24293090c7b833f8818f8167fc2383b0077b64a",
       "headRepository": "mnot/http2-spec",
       "headRefName": "mnot-binary-format",
-      "headRefOid": "a14c7c796e3e7a9fad9e450e077ab8614ee94570",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "7b488adee3d20602b14fc8dbedc243004a3d28b7",
+      "closedAt": "2021-07-12T06:30:24Z",
+      "mergedAt": "2021-07-12T06:30:24Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "7b488adee3d20602b14fc8dbedc243004a3d28b7"
+      },
       "comments": [
         {
           "author": "LPardue",
@@ -34530,6 +34532,20 @@
           "body": "+1 . This would make it easier to write extensions for both h2 and h3. Priorities draft suffers from the mixed presentation format right now.",
           "createdAt": "2021-06-03T00:56:19Z",
           "updatedAt": "2021-06-03T00:56:19Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "OK, thanks for doing this @mnot.  I merged this manually after fixing a few things up.  From my commit:\r\n\r\n*    Use all caps for frame names\r\n*    Add a value for Type in frame definitions\r\n*    Change order of flag descriptions to match order in layout\r\n*    Make Exclusive field of PRIORITY optional\r\n*    Move PING ACK Flag to the right place\r\n*    Add SETTINGS ACK Flag\r\n\r\nDouble-checking FTW.\r\n\r\nOf course, there's a good chance I also messed something up here.  So feel free to check my work also.",
+          "createdAt": "2021-07-12T06:31:50Z",
+          "updatedAt": "2021-07-12T06:31:50Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think the language about ordering is a bit weird, but it is clarified somewhat by the hex representations shortly after. I think those hex representations are doing the heavy lifting, as I\u2019m not aware of any issue with interoperability caused by getting the flag indices wrong in practice.\r\n\r\nNonetheless, if we\u2019re really worried about it we could just delete \u201cbit n\u201d and replace it with \u201cthe x bit\u201d, e.g. delete \u201cbit 0\u201d and replace it with \u201cthe `END_STREAM` bit\u201d.",
+          "createdAt": "2021-07-12T06:54:06Z",
+          "updatedAt": "2021-07-12T06:54:06Z"
         }
       ],
       "reviews": [
@@ -34788,6 +34804,46 @@
               "body": "I believe these flags (and all the other flags) are defined in the wrong bit order.\r\n\r\nThis is...not entirely well specified in RFC 9000, but the example given in \u00a7 1.3 is:\r\n\r\n```\r\nExample Structure {\r\n  One-bit Field (1),\r\n  7-bit Field with Fixed Value (7) = 61,\r\n  Field with Variable-Length Integer (i),\r\n  Arbitrary-Length Field (..),\r\n  Variable-Length Field (8..24),\r\n  Field With Minimum Length (16..),\r\n  Field With Maximum Length (..128),\r\n  [Optional Field (64)],\r\n  Repeated Field (8) ...,\r\n}\r\n```\r\n\r\nWith the following prose after it:\r\n\r\n> When a single-bit field is referenced in prose, the position of that field can be clarified by using the value of the byte that carries the field with the field's value set. For example, the value 0x80 could be used to refer to the single-bit field in the most significant bit of the byte, such as One-bit Field in Figure 1.\r\n\r\nThis implies that `0x80` refers to the first bit of a byte. `END_STREAM` is not 0x80, it's 0x1. All of the flags sections need to be inverted.",
               "createdAt": "2021-07-07T11:19:10Z",
               "updatedAt": "2021-07-07T11:20:34Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzAzNzI3MDc1",
+          "commit": {
+            "abbreviatedOid": "a14c7c7"
+          },
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-07-12T05:29:51Z",
+          "updatedAt": "2021-07-12T05:29:51Z",
+          "comments": [
+            {
+              "originalPosition": 73,
+              "body": "The prose uses indexed bits - e.g., for `END_STREAM` it says 'When set, bit 0...'. I had assumed that it was indexing from left, this being network byte order and all, but you could also argue it's indexing from least significant bit (although that's pretty odd IMO).\r\n\r\nNevertheless, this protocol interoperates somehow. \r\n\r\nIf I read wireshark correctly, your interpretation is correct:\r\n\r\n<img width=\"415\" alt=\"Screen Shot 2021-07-12 at 3 28 58 pm\" src=\"https://user-images.githubusercontent.com/74384/125235537-f80f9d00-e325-11eb-8e98-d356a2d00e0b.png\">\r\n\r\nHowever did we get this far?",
+              "createdAt": "2021-07-12T05:29:51Z",
+              "updatedAt": "2021-07-12T05:29:51Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzAzNzMxMjYz",
+          "commit": {
+            "abbreviatedOid": "a14c7c7"
+          },
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-07-12T05:40:25Z",
+          "updatedAt": "2021-07-12T05:40:26Z",
+          "comments": [
+            {
+              "originalPosition": 73,
+              "body": "I'm about to push a commit that should correct that. Please review carefully.\r\n\r\nWe also might want to reconsider the language we use about ordering...",
+              "createdAt": "2021-07-12T05:40:25Z",
+              "updatedAt": "2021-07-12T05:40:26Z"
             }
           ]
         }
@@ -35577,7 +35633,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0Njg0OTE2NTM5",
       "title": "Mark HTTP2-Settings obsolete properly",
       "url": "https://github.com/httpwg/http2-spec/pull/869",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -35586,17 +35642,19 @@
       ],
       "body": "Closes #843.",
       "createdAt": "2021-07-07T06:53:01Z",
-      "updatedAt": "2021-07-07T09:21:02Z",
+      "updatedAt": "2021-07-12T06:13:26Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "0d552116b4a939c5c75f2756318d2387448c2f50",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "header-rego",
       "headRefOid": "97b9b7a8dbe757df06690303faf5969f174bbd40",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-07-12T06:13:16Z",
+      "mergedAt": "2021-07-12T06:13:15Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "c70b3d67f43b2f0cc96795fd238f6b46c117d290"
+      },
       "comments": [],
       "reviews": [
         {
@@ -35619,7 +35677,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0Njg0OTIwNDU4",
       "title": "A leaner acknowledgments section",
       "url": "https://github.com/httpwg/http2-spec/pull/870",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -35628,17 +35686,19 @@
       ],
       "body": "Now without the \"e\" too.\r\n\r\nFor this revision I would consider Mark Nottingham, Willy Tarreau, and\r\nGreg Wilkins for direct acknowledgment, but as they are all listed in\r\nRFC 7540 it seems safer to avoid specific mentions here.\r\n\r\nCloses #862.",
       "createdAt": "2021-07-07T07:00:32Z",
-      "updatedAt": "2021-07-07T09:23:03Z",
+      "updatedAt": "2021-07-12T06:13:23Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "0d552116b4a939c5c75f2756318d2387448c2f50",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "acks",
       "headRefOid": "f4380d21acf443db833437775ab6dffa36f2e33f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-07-12T06:13:19Z",
+      "mergedAt": "2021-07-12T06:13:19Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "f888ecdc847aa567a32a820fbb0aea442558efde"
+      },
       "comments": [],
       "reviews": [
         {
@@ -35695,24 +35755,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0Njg0OTI3MTE0",
       "title": "Change log for character validation",
       "url": "https://github.com/httpwg/http2-spec/pull/872",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The only change we have planned for the draft that isn't in the change\r\nlog yet.\r\n\r\nCaptures #865 changes, whether that is via #866 or other changes, the\r\nsubstance of the change is roughly the same.\r\n\r\nCloses #852.",
       "createdAt": "2021-07-07T07:10:26Z",
-      "updatedAt": "2021-07-07T09:24:48Z",
+      "updatedAt": "2021-07-12T06:12:56Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "0d552116b4a939c5c75f2756318d2387448c2f50",
       "headRepository": "httpwg/http2-spec",
       "headRefName": "cl-815",
       "headRefOid": "531a8b6174c9d9866ec06cdb1f7931e893d92a16",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-07-12T06:12:55Z",
+      "mergedAt": "2021-07-12T06:12:55Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "40b5c412996046392258a1452ff602746365e968"
+      },
       "comments": [],
       "reviews": [
         {
@@ -35749,6 +35811,84 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 873,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njg3NTk3NjYx",
+      "title": "A simple, but manual, s/bit \\d/the XXX Flag/",
+      "url": "https://github.com/httpwg/http2-spec/pull/873",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Though I had to be careful with text on TCP, which has FIN and RST bits\r\nwe don't want to touch.",
+      "createdAt": "2021-07-12T07:50:29Z",
+      "updatedAt": "2021-07-12T21:23:47Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "12c902f12abe583783bc5f1c0233c7a82c0d5a1b",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "the-flag",
+      "headRefOid": "94732fc4041359fe1c42b52e6b8680ef5e8cd916",
+      "closedAt": "2021-07-12T21:23:44Z",
+      "mergedAt": "2021-07-12T21:23:44Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "5320bd1f08e64f9bcbcd45f811daa2bdd8e018bb"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzAzODY5NzMw",
+          "commit": {
+            "abbreviatedOid": "94732fc"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM.",
+          "createdAt": "2021-07-12T08:51:15Z",
+          "updatedAt": "2021-07-12T08:51:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 874,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njg3NjI2MDg0",
+      "title": "HTTP work",
+      "url": "https://github.com/httpwg/http2-spec/pull/874",
+      "state": "MERGED",
+      "author": "mnot",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This is a rearrangement of the HTTP-related sections, in preparation for actually addressing 867. ",
+      "createdAt": "2021-07-12T08:30:24Z",
+      "updatedAt": "2021-07-12T23:59:30Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "12c902f12abe583783bc5f1c0233c7a82c0d5a1b",
+      "headRepository": "mnot/http2-spec",
+      "headRefName": "mnot-867",
+      "headRefOid": "80414af2e51406f4411dc760b4ed01ed7c7c7d32",
+      "closedAt": "2021-07-12T23:52:12Z",
+      "mergedAt": "2021-07-12T23:52:12Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "80414af2e51406f4411dc760b4ed01ed7c7c7d32"
+      },
+      "comments": [
+        {
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "body": "This doesn't actually address the issue -- I came to a point where I realised this would add a bunch of new requirements and prose that would need heavy scrutiny, and if we want to finish soon, that may not be advisable (although maybe we can figure it out during WGLC). \r\n\r\nIn the meantime, I think this rearrangement is *much* clearer than the original ordering -- see what you think.",
+          "createdAt": "2021-07-12T09:32:26Z",
+          "updatedAt": "2021-07-12T09:32:26Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
