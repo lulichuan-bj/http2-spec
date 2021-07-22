@@ -3674,9 +3674,9 @@ Table of Contents
 
    [CACHE]    Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "HTTP Caching", Work in Progress, Internet-Draft,
-              draft-ietf-httpbis-cache-15, 30 March 2021,
+              draft-ietf-httpbis-cache-16, 27 May 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              cache-15>.
+              cache-16>.
 
    [COMPRESSION]
               Peon, R. and H. Ruellan, "HPACK: Header Compression for
@@ -3692,9 +3692,9 @@ Table of Contents
 
    [HTTP]     Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "HTTP Semantics", Work in Progress, Internet-Draft,
-              draft-ietf-httpbis-semantics-15, 30 March 2021,
+              draft-ietf-httpbis-semantics-16, 27 May 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              semantics-15>.
+              semantics-16>.
 
    [QUIC]     Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
@@ -3765,9 +3765,9 @@ Table of Contents
 
    [HTTP11]   Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "HTTP/1.1", Work in Progress, Internet-Draft, draft-
-              ietf-httpbis-messaging-15, 30 March 2021,
+              ietf-httpbis-messaging-16, 27 May 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              messaging-15>.
+              messaging-16>.
 
    [I-D.ietf-httpbis-priority]
               Oku, K. and L. Pardue, "Extensible Prioritization Scheme
