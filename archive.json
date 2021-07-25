@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-07-13T00:59:03.415792+00:00",
+  "timestamp": "2021-07-25T00:59:42.966896+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -35889,6 +35889,179 @@
         }
       ],
       "reviews": []
+    },
+    {
+      "number": 875,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njk0ODg4NDY5",
+      "title": "Update ECC reference",
+      "url": "https://github.com/httpwg/http2-spec/pull/875",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "RFC 4492 is obsolete.\r\n\r\nThis is a TLS 1.2 section, so it is OK to refer to the TLS 1.2 document here.",
+      "createdAt": "2021-07-22T05:52:19Z",
+      "updatedAt": "2021-07-22T06:53:10Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "82935dbb1d028ed0a93f47c0d774287c5c814449",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "ecc-ref",
+      "headRefOid": "fcd771b1a4633a8649fd8a7e2195b12a8c0878a6",
+      "closedAt": "2021-07-22T06:53:10Z",
+      "mergedAt": "2021-07-22T06:53:10Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "2d0d75b4918f9b9fe582e073bf245eee82c54d88"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzEyNDEyMDY5",
+          "commit": {
+            "abbreviatedOid": "fcd771b"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-07-22T06:52:42Z",
+          "updatedAt": "2021-07-22T06:52:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 876,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njk0ODkyNTQz",
+      "title": "Update core drafts references",
+      "url": "https://github.com/httpwg/http2-spec/pull/876",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "These will be good for about 2 days based on what I'm seeing now, but I\r\ncan just update to -17 then.",
+      "createdAt": "2021-07-22T06:02:53Z",
+      "updatedAt": "2021-07-22T06:53:46Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "82935dbb1d028ed0a93f47c0d774287c5c814449",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "core-refs",
+      "headRefOid": "9a88c4650c76773cac24e4f97a1047ede6ab5ecd",
+      "closedAt": "2021-07-22T06:53:46Z",
+      "mergedAt": "2021-07-22T06:53:46Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "e8d6580a1e362fdb8f31f7e7a68319a311c9c0ef"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzEyNDEyNjEy",
+          "commit": {
+            "abbreviatedOid": "9a88c46"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-07-22T06:53:41Z",
+          "updatedAt": "2021-07-22T06:53:41Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 877,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njk1NzIwNTMy",
+      "title": "Add some structure to the undifferentiated mess",
+      "url": "https://github.com/httpwg/http2-spec/pull/877",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "...that is frame formats.\r\n\r\nI've chosen to put blank lines before and after both frames and the\r\nstream identifier part of the stream header.  That should make this a\r\nlot clearer.\r\n\r\n@wtarreau was right that this was a little hard to process without that.\r\nHopefully this is a tiny bit better.",
+      "createdAt": "2021-07-23T07:08:59Z",
+      "updatedAt": "2021-07-23T14:52:57Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "e8d6580a1e362fdb8f31f7e7a68319a311c9c0ef",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "vspace",
+      "headRefOid": "0c0396cf7d02217dd6f5880f431b29b621481cad",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "body": "I think this helps. The only other clarification I can think of is to pull the flags out into a separate illustration, but let's see if this is sufficient first.",
+          "createdAt": "2021-07-23T07:13:56Z",
+          "updatedAt": "2021-07-23T07:13:56Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "Bah I didn't respond at the right place. One day I'll understand github's interface. Or not :-)\r\n\r\nBoth changes look good and possibly sufficient to me. Let's just wait a bit to see if anyone in the WG has any better proposal. Thanks for your quick reaction!\r\n",
+          "createdAt": "2021-07-23T07:18:28Z",
+          "updatedAt": "2021-07-23T07:18:28Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "For the flags (and only the flags), what about trying this:\r\n```\r\nDATA Frame {\r\n  Length (24),\r\n  Type (8) = 0,\r\n\r\n  Unused Flags (4),    // 0xF0\r\n  PADDED Flag (1),     // 0x08\r\n  Unused Flags (2),    // 0x06\r\n  END_STREAM Flag (1), // 0x01\r\n\r\n  Reserved (1),\r\n  Stream Identifier (31),\r\n  [Pad Length (8)],\r\n  Data (..),\r\n  Padding (..),\r\n```\r\n",
+          "createdAt": "2021-07-23T07:20:30Z",
+          "updatedAt": "2021-07-23T07:20:30Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Should I add the octet values of flags?  I would only do that for non-unused flags though.",
+          "createdAt": "2021-07-23T10:59:56Z",
+          "updatedAt": "2021-07-23T10:59:56Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I believe the prose text contains them, so there's at least a defensible reason for leaving them off.",
+          "createdAt": "2021-07-23T12:57:53Z",
+          "updatedAt": "2021-07-23T12:57:53Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "They're indeed present but not trivially spottable. I have a dead-tree copy of 7540 here with them overlined in pink to spot them faster :-/  We could save a tree by noting them there :-). I agree with Martin that we can avoid the unused ones though, because what matters in tests is not to know the unused ones but rather to figure them as the complement of all known ones. I won't roll over the floor crying if that's rejected, but as an implementer I find that it significantly helps during debugging.\r\n",
+          "createdAt": "2021-07-23T14:52:57Z",
+          "updatedAt": "2021-07-23T14:52:57Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzEzNjEzNDk2",
+          "commit": {
+            "abbreviatedOid": "0c0396c"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-07-23T10:53:37Z",
+          "updatedAt": "2021-07-23T10:53:37Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
