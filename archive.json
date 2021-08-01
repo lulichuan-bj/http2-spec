@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-07-25T00:59:42.966896+00:00",
+  "timestamp": "2021-08-01T01:05:29.735106+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19695,6 +19695,37 @@
           "body": "Yeah, most of this is just OLD.  For instance, the \"discovery\" aspect really only relates to the need to use ALPN, but we have a better nomenclature now.\r\n\r\nIf you are happy to do a PR, I'm more than happy to review rather than write.\r\n\r\n",
           "createdAt": "2021-06-17T07:03:05Z",
           "updatedAt": "2021-06-17T07:03:05Z"
+        }
+      ]
+    },
+    {
+      "number": 878,
+      "id": "MDU6SXNzdWU5NTYzMDg1Nzk=",
+      "title": "Unpromised Push",
+      "url": "https://github.com/httpwg/http2-spec/issues/878",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As a corollary to https://github.com/quicwg/base-drafts/issues/4930, I cannot find anything in RFC 7540 that explicitly prohibits the server sending a response on a stream that hasn't been promised.  The closest is the state machine, where a push stream is supposed to go from idle to reserved to half-closed.  The statement that it can go from idle to open upon sending a HEADERS frame is clearly oriented at the client, but is endpoint-agnostic:  `Sending or receiving a HEADERS frame causes the stream to become \"open\".`",
+      "createdAt": "2021-07-30T00:51:44Z",
+      "updatedAt": "2021-07-30T18:25:06Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hmm, I haven't found much explicit either. \u00a7 5.1.1 of the editors draft says:\r\n\r\n> A HEADERS frame will transition the client-initiated stream identified by the stream identifier in the frame header from \"idle\" to \"open\". A PUSH_PROMISE frame will transition the server-initiated stream identified by the \"Promised Stream ID\" field in the frame payload from \"idle\" to \"reserved\".\r\n\r\nThis _implies_ that only clients can use HEADERS frames, but isn't exactly emphatic.\r\n\r\nHowever, I think the actual prohibition comes from the fact that we import the HTTP semantics nearly wholesale in \u00a7 8, with several bits of text in \u00a7 8.1 implying that servers can't do this:\r\n\r\n> A client sends an HTTP request on a new stream, using a previously unused stream identifier (Section 5.1.1). A server sends an HTTP response on the same stream as the request.\r\n\r\n> An HTTP request/response exchange fully consumes a single stream. A request starts with the HEADERS frame that puts the stream into an \"open\" state.\r\n\r\nWith all of that said, I don't think it would be a bad idea to add text that explicitly prohibits servers from sending unsolicited responses.",
+          "createdAt": "2021-07-30T06:30:09Z",
+          "updatedAt": "2021-07-30T06:30:09Z"
+        },
+        {
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Yes, I think this is solved simply by saying that if the client receives any frame on an idle server-initiated stream (i.e. one that hasn't yet been reserved), it's an error.  In the process, the statement about HEADERS in the stream state machine should be made client-specific.",
+          "createdAt": "2021-07-30T18:25:06Z",
+          "updatedAt": "2021-07-30T18:25:06Z"
         }
       ]
     }
