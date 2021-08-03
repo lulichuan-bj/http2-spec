@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-01T01:05:29.735106+00:00",
+  "timestamp": "2021-08-03T01:02:10.202481+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -36014,7 +36014,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0Njk1NzIwNTMy",
       "title": "Add some structure to the undifferentiated mess",
       "url": "https://github.com/httpwg/http2-spec/pull/877",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -36023,17 +36023,19 @@
       ],
       "body": "...that is frame formats.\r\n\r\nI've chosen to put blank lines before and after both frames and the\r\nstream identifier part of the stream header.  That should make this a\r\nlot clearer.\r\n\r\n@wtarreau was right that this was a little hard to process without that.\r\nHopefully this is a tiny bit better.",
       "createdAt": "2021-07-23T07:08:59Z",
-      "updatedAt": "2021-07-23T14:52:57Z",
+      "updatedAt": "2021-08-02T07:55:37Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "e8d6580a1e362fdb8f31f7e7a68319a311c9c0ef",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "vspace",
       "headRefOid": "0c0396cf7d02217dd6f5880f431b29b621481cad",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-02T06:58:09Z",
+      "mergedAt": "2021-08-02T06:58:09Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "8f4c07a2e135234c87546408297913476963d9f9"
+      },
       "comments": [
         {
           "author": "mnot",
@@ -36076,6 +36078,20 @@
           "body": "They're indeed present but not trivially spottable. I have a dead-tree copy of 7540 here with them overlined in pink to spot them faster :-/  We could save a tree by noting them there :-). I agree with Martin that we can avoid the unused ones though, because what matters in tests is not to know the unused ones but rather to figure them as the complement of all known ones. I won't roll over the floor crying if that's rejected, but as an implementer I find that it significantly helps during debugging.\r\n",
           "createdAt": "2021-07-23T14:52:57Z",
           "updatedAt": "2021-07-23T14:52:57Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As I don't know *how* to comment in this format and I don't want to start inventing something (else), I think I'm going to take the coward's option.",
+          "createdAt": "2021-08-02T06:58:05Z",
+          "updatedAt": "2021-08-02T06:58:05Z"
+        },
+        {
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "body": "What are the semantics of a blank line in this format?\r\n\r\n/me ducks",
+          "createdAt": "2021-08-02T07:55:37Z",
+          "updatedAt": "2021-08-02T07:55:37Z"
         }
       ],
       "reviews": [
@@ -36093,6 +36109,61 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 879,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzAxMjUyNzM0",
+      "title": "Clarify the rules on server-sent HEADERS",
+      "url": "https://github.com/httpwg/http2-spec/pull/879",
+      "state": "OPEN",
+      "author": "Lukasa",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolves #878.",
+      "createdAt": "2021-08-02T08:28:06Z",
+      "updatedAt": "2021-08-03T00:29:42Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
+      "headRepository": "Lukasa/http2-spec",
+      "headRefName": "cb-server-initiated-streams",
+      "headRefOid": "a2fb3ef4bef0693c8c95a2e7ecb4bb1b03f3139a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "body": "Probably needs to be listed in \"Changes from RFC7540\".",
+          "createdAt": "2021-08-02T08:44:43Z",
+          "updatedAt": "2021-08-02T08:44:43Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Does it? I think this change is editorial: this is already _effectively_ the rule, we're just calling it out more explicitly.",
+          "createdAt": "2021-08-02T10:01:21Z",
+          "updatedAt": "2021-08-02T10:01:29Z"
+        },
+        {
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "body": "If by \"effectively\" you mean \"it's what implementations do\", we still need to document a change in the *rfc*.",
+          "createdAt": "2021-08-03T00:27:58Z",
+          "updatedAt": "2021-08-03T00:27:58Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I read that as \"it's what the document originally said, just not very clearly\".",
+          "createdAt": "2021-08-03T00:29:42Z",
+          "updatedAt": "2021-08-03T00:29:42Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
