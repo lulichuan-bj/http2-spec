@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-03T01:02:10.202481+00:00",
+  "timestamp": "2021-08-05T00:58:09.862290+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -36122,13 +36122,13 @@
       "labels": [],
       "body": "Resolves #878.",
       "createdAt": "2021-08-02T08:28:06Z",
-      "updatedAt": "2021-08-03T00:29:42Z",
+      "updatedAt": "2021-08-04T08:10:54Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
       "headRepository": "Lukasa/http2-spec",
       "headRefName": "cb-server-initiated-streams",
-      "headRefOid": "a2fb3ef4bef0693c8c95a2e7ecb4bb1b03f3139a",
+      "headRefOid": "06f45a113b0aaa5765e34b4508cf25ab63265a98",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -36161,9 +36161,57 @@
           "body": "I read that as \"it's what the document originally said, just not very clearly\".",
           "createdAt": "2021-08-03T00:29:42Z",
           "updatedAt": "2021-08-03T00:29:42Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yup, that's my assertion, see the discussion in #878.",
+          "createdAt": "2021-08-03T05:59:04Z",
+          "updatedAt": "2021-08-03T05:59:04Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIxMzgzNzM4",
+          "commit": {
+            "abbreviatedOid": "a2fb3ef"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Yes, I think this is correct.",
+          "createdAt": "2021-08-03T16:02:04Z",
+          "updatedAt": "2021-08-03T16:02:16Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Feels like it could use at least one comma in all that.",
+              "createdAt": "2021-08-03T16:02:04Z",
+              "updatedAt": "2021-08-03T16:02:16Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIxNzQwMDU1",
+          "commit": {
+            "abbreviatedOid": "a2fb3ef"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-04T00:10:41Z",
+          "updatedAt": "2021-08-04T00:10:42Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\n                <xref target=\"PROTOCOL_ERROR\" format=\"none\">PROTOCOL_ERROR</xref>. If this stream is server-initiated, as described in\r\n                <xref target=\"StreamIdentifiers\"/>, then receiving a <xref target=\"HEADERS\" format=\"none\">HEADERS</xref> frame MUST also\r\n                be treated as a <xref target=\"ConnectionErrorHandler\">connection error</xref> of type\r\n```\r\n?",
+              "createdAt": "2021-08-04T00:10:41Z",
+              "updatedAt": "2021-08-04T00:10:42Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
