@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-05T00:58:09.862290+00:00",
+  "timestamp": "2021-08-08T00:58:05.328348+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19728,6 +19728,62 @@
           "updatedAt": "2021-07-30T18:25:06Z"
         }
       ]
+    },
+    {
+      "number": 880,
+      "id": "MDU6SXNzdWU5NjIxNjAxMzE=",
+      "title": "Priorities in the Introduction",
+      "url": "https://github.com/httpwg/http2-spec/issues/880",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The Priorities section itself has been replaced with a discussion of why priorities aren't there, which is all well and good (#795).  So I found this still being in the introduction a bit odd:\r\n\r\n> Flow control and prioritization ensure that it is possible to efficiently use multiplexed streams. Flow control (Section 5.2) helps to ensure that only data that can be used by a receiver is transmitted. Prioritization (Section 5.3) ensures that limited resources can be directed to the most important streams first.\r\n\r\nIf we're talking about the structure of the protocol, I'd think either we don't talk about a feature that's no longer in the protocol, or we explicitly mention it's been cut out.",
+      "createdAt": "2021-08-05T20:11:15Z",
+      "updatedAt": "2021-08-05T20:11:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 881,
+      "id": "MDU6SXNzdWU5NjIxNjU5NTk=",
+      "title": "http-scheme without out-of-band",
+      "url": "https://github.com/httpwg/http2-spec/issues/881",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Should there be a reference to RFC 8164 in the discussion about using HTTP/2 with \"http://\" URLs?  We have defined a way to do that which doesn't rely on out-of-band knowledge, after all.",
+      "createdAt": "2021-08-05T20:19:26Z",
+      "updatedAt": "2021-08-06T00:29:11Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think that the experiment has concluded in the negative, so I don't really want to reference that.  We already mention (in general) that HTTP is able to carry URLs for other schemes; so that spec can join all the other non-https schemes.",
+          "createdAt": "2021-08-06T00:29:11Z",
+          "updatedAt": "2021-08-06T00:29:11Z"
+        }
+      ]
+    },
+    {
+      "number": 883,
+      "id": "MDU6SXNzdWU5NjMwNjg1Nzg=",
+      "title": "Prohibit multiple :authority pseudo-headers",
+      "url": "https://github.com/httpwg/http2-spec/issues/883",
+      "state": "OPEN",
+      "author": "nharper",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "In the context of https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0149.html, I noticed that there's no prohibition on a request having multiple `:authority` pseudo-headers. Such a request should be treated as malformed.",
+      "createdAt": "2021-08-06T21:55:41Z",
+      "updatedAt": "2021-08-06T21:55:41Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -36210,6 +36266,99 @@
               "updatedAt": "2021-08-04T00:10:42Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 882,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzA1MTE2MDE5",
+      "title": "Revise overview text on priority",
+      "url": "https://github.com/httpwg/http2-spec/pull/882",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #880.",
+      "createdAt": "2021-08-06T00:58:33Z",
+      "updatedAt": "2021-08-06T09:57:26Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "priority-intro",
+      "headRefOid": "9758653a56e2491e43fa2f2d641fdd6bb75e3acd",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIzOTA4MTgx",
+          "commit": {
+            "abbreviatedOid": "9758653"
+          },
+          "author": "LPardue",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-06T01:19:37Z",
+          "updatedAt": "2021-08-06T01:19:37Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI0MTk0OTAw",
+          "commit": {
+            "abbreviatedOid": "9758653"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-06T09:57:26Z",
+          "updatedAt": "2021-08-06T09:57:26Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 884,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzA1NzY2MjE2",
+      "title": "Prohibit duplicate pseudo-headers in requests.",
+      "url": "https://github.com/httpwg/http2-spec/pull/884",
+      "state": "OPEN",
+      "author": "nharper",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "This fixes issue #883.",
+      "createdAt": "2021-08-06T21:56:24Z",
+      "updatedAt": "2021-08-07T11:41:56Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
+      "headRepository": "nharper/http2-spec",
+      "headRefName": "no-duplicate-pseudo-headers",
+      "headRefOid": "1bb9529c2704ed0b8dedfd369e1bc683f7465904",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI0ODE0Mzgw",
+          "commit": {
+            "abbreviatedOid": "1bb9529"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "This seems like a reasonable addition, but I think it\u2019s in the wrong place, for two reasons:\r\n\r\n1. There\u2019s no particular reason to exclude response pseudo-headers from this prohibition: multiple `:status` fields is just as meaningless.\r\n2. We probably don\u2019t want to prohibit this _generally_, but instead only for the pseudo-headers we define in this document.\r\n\r\nTo that end I think I recommend moving this up to the parent section, and noting something like \u201cAll pseudo-header fields defined in this document MUST NOT appear more than once in a header header section.\u201d",
+          "createdAt": "2021-08-07T11:41:56Z",
+          "updatedAt": "2021-08-07T11:41:56Z",
+          "comments": []
         }
       ]
     }
