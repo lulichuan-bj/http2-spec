@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-08T00:58:05.328348+00:00",
+  "timestamp": "2021-08-10T00:59:53.984149+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -36334,7 +36334,7 @@
       "labels": [],
       "body": "This fixes issue #883.",
       "createdAt": "2021-08-06T21:56:24Z",
-      "updatedAt": "2021-08-07T11:41:56Z",
+      "updatedAt": "2021-08-10T00:56:47Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
@@ -36345,7 +36345,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "nharper",
+          "authorAssociation": "NONE",
+          "body": "I agree on 1 that there's no reason to exclude response pseudo-headers from this requirement. (I was worried about contradicting something regarding multiple interim responses, each of which needs a `:status` field, but each of those are in a separate field section, so a rule of no duplicates within a field section should work for pseudo-headers, both request and response.)\r\n\r\nHowever, I think that a general prohibition is a good thing. If a future (negotiated) extension wants to introduce a new pseudo-header that can be duplicated, it could override an otherwise general prohibition in this draft. If a future extension doesn't do that, it gets the more sane/safe default for free.",
+          "createdAt": "2021-08-10T00:56:47Z",
+          "updatedAt": "2021-08-10T00:56:47Z"
+        }
+      ],
       "reviews": [
         {
           "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI0ODE0Mzgw",
