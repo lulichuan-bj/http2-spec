@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-10T00:59:53.984149+00:00",
+  "timestamp": "2021-08-12T00:56:54.132477+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19784,6 +19784,58 @@
       "updatedAt": "2021-08-06T21:55:41Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 885,
+      "id": "MDU6SXNzdWU5NjcwMTkzMTE=",
+      "title": "Introduction should ref HTTP spec",
+      "url": "https://github.com/httpwg/http2-spec/issues/885",
+      "state": "OPEN",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "First sentence in introduction should actually reference the HTTP (== Semantics) spec.",
+      "createdAt": "2021-08-11T16:19:36Z",
+      "updatedAt": "2021-08-11T16:56:13Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 886,
+      "id": "MDU6SXNzdWU5NjcwMjE5NjA=",
+      "title": "introduction: \"fields\" instead of \"header fields\"",
+      "url": "https://github.com/httpwg/http2-spec/issues/886",
+      "state": "OPEN",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "> HTTP/2 addresses these issues by defining an optimized mapping of HTTP's semantics to an underlying connection. Specifically, it allows interleaving of request and response messages on the same connection and uses an efficient coding for HTTP header fields. It also allows prioritization of requests, letting more important requests complete more quickly, further improving performance.\r\n\r\ns/header fields/fields/",
+      "createdAt": "2021-08-11T16:21:18Z",
+      "updatedAt": "2021-08-11T16:56:55Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 887,
+      "id": "MDU6SXNzdWU5NjcwNTA2ODc=",
+      "title": "conventions: cite [RFC8174]",
+      "url": "https://github.com/httpwg/http2-spec/issues/887",
+      "state": "CLOSED",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "...I believe this is de facto mandatory nowadays...",
+      "createdAt": "2021-08-11T16:39:32Z",
+      "updatedAt": "2021-08-11T22:20:07Z",
+      "closedAt": "2021-08-11T22:20:07Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -36325,7 +36377,7 @@
     {
       "number": 884,
       "id": "MDExOlB1bGxSZXF1ZXN0NzA1NzY2MjE2",
-      "title": "Prohibit duplicate pseudo-headers in requests.",
+      "title": "Prohibit duplicate pseudo-headers.",
       "url": "https://github.com/httpwg/http2-spec/pull/884",
       "state": "OPEN",
       "author": "nharper",
@@ -36334,13 +36386,13 @@
       "labels": [],
       "body": "This fixes issue #883.",
       "createdAt": "2021-08-06T21:56:24Z",
-      "updatedAt": "2021-08-10T00:56:47Z",
+      "updatedAt": "2021-08-11T08:36:50Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
       "headRepository": "nharper/http2-spec",
       "headRefName": "no-duplicate-pseudo-headers",
-      "headRefOid": "1bb9529c2704ed0b8dedfd369e1bc683f7465904",
+      "headRefOid": "c1130a1859f0a506b38e3c47e21d7253a264b5d7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -36352,6 +36404,48 @@
           "body": "I agree on 1 that there's no reason to exclude response pseudo-headers from this requirement. (I was worried about contradicting something regarding multiple interim responses, each of which needs a `:status` field, but each of those are in a separate field section, so a rule of no duplicates within a field section should work for pseudo-headers, both request and response.)\r\n\r\nHowever, I think that a general prohibition is a good thing. If a future (negotiated) extension wants to introduce a new pseudo-header that can be duplicated, it could override an otherwise general prohibition in this draft. If a future extension doesn't do that, it gets the more sane/safe default for free.",
           "createdAt": "2021-08-10T00:56:47Z",
           "updatedAt": "2021-08-10T00:56:47Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hmm, yeah, I think I can see a justification for that argument. Given that adding new pseudo-headers needs to be negotiated _anyway_, I don't think that's a big deal. So I'm happy to go ahead with the change for (1) and skip (2).",
+          "createdAt": "2021-08-10T07:35:06Z",
+          "updatedAt": "2021-08-10T07:35:06Z"
+        },
+        {
+          "author": "nharper",
+          "authorAssociation": "NONE",
+          "body": "@martinthomson is \"this\" the current text, or revised text to address Cory's comment?",
+          "createdAt": "2021-08-10T07:40:04Z",
+          "updatedAt": "2021-08-10T07:40:04Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This pull request.  I think that a blanket \"at most once\" is fine and what you have is enough.  Future extensions can deal with the consequences of that if they want >1.",
+          "createdAt": "2021-08-10T07:44:24Z",
+          "updatedAt": "2021-08-10T07:44:24Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@martinthomson Do you want the change to cover responses as well?",
+          "createdAt": "2021-08-10T07:54:50Z",
+          "updatedAt": "2021-08-10T07:54:50Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "That would mean moving it up to the \"HTTP Control Data\" section.  That is a good idea.  I missed that this was under requests only.",
+          "createdAt": "2021-08-10T07:56:59Z",
+          "updatedAt": "2021-08-10T07:56:59Z"
+        },
+        {
+          "author": "nharper",
+          "authorAssociation": "NONE",
+          "body": "I moved the language up to the HTTP Control Data section and slightly tweaked it.",
+          "createdAt": "2021-08-10T19:44:43Z",
+          "updatedAt": "2021-08-10T19:44:43Z"
         }
       ],
       "reviews": [
@@ -36367,8 +36461,80 @@
           "createdAt": "2021-08-07T11:41:56Z",
           "updatedAt": "2021-08-07T11:41:56Z",
           "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI2MTA0MDcx",
+          "commit": {
+            "abbreviatedOid": "1bb9529"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I had something else.  This is better.",
+          "createdAt": "2021-08-10T07:37:47Z",
+          "updatedAt": "2021-08-10T07:37:47Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI2OTE4NzE2",
+          "commit": {
+            "abbreviatedOid": "a496d06"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-10T23:16:37Z",
+          "updatedAt": "2021-08-10T23:16:40Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n        </t>\r\n        <t>\r\n          The same pseudo-header field name MUST NOT appear more than once in a field block. A\r\n```\r\n\r\nLet's use paragraphs.",
+              "createdAt": "2021-08-10T23:16:37Z",
+              "updatedAt": "2021-08-10T23:16:40Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI3MjA3ODAx",
+          "commit": {
+            "abbreviatedOid": "c1130a1"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-11T08:36:50Z",
+          "updatedAt": "2021-08-11T08:36:50Z",
+          "comments": []
         }
       ]
+    },
+    {
+      "number": 888,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzA5NzE3NzU4",
+      "title": "Mostly just fields",
+      "url": "https://github.com/httpwg/http2-spec/pull/888",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Julian identified one.  I found a few more.\r\n\r\nCloses #886.",
+      "createdAt": "2021-08-11T22:10:24Z",
+      "updatedAt": "2021-08-11T22:10:24Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "just-fields",
+      "headRefOid": "a312cc1a7f780f729cf4c21fa477385b6415aa11",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
