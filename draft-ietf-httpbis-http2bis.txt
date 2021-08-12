@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 12 February 2022                                 11 August 2021
+Expires: 13 February 2022                                 12 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -17,9 +17,9 @@ Abstract
    This specification describes an optimized expression of the semantics
    of the Hypertext Transfer Protocol (HTTP), referred to as HTTP
    version 2 (HTTP/2).  HTTP/2 enables a more efficient use of network
-   resources and a reduced perception of latency by introducing header
-   field compression and allowing multiple concurrent exchanges on the
-   same connection.
+   resources and a reduced perception of latency by introducing field
+   compression and allowing multiple concurrent exchanges on the same
+   connection.
 
    This specification is an alternative to, but does not obsolete, the
    HTTP/1.1 message syntax.  HTTP's existing semantics remain unchanged.
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 February 2022.
+   This Internet-Draft will expire on 13 February 2022.
 
 Copyright Notice
 
@@ -183,18 +183,17 @@ Table of Contents
    clients that need to make many requests use multiple connections to a
    server in order to achieve concurrency and thereby reduce latency.
 
-   Furthermore, HTTP header fields are often repetitive and verbose,
-   causing unnecessary network traffic as well as causing the initial
-   TCP [TCP] congestion window to quickly fill.  This can result in
-   excessive latency when multiple requests are made on a new TCP
-   connection.
+   Furthermore, HTTP fields are often repetitive and verbose, causing
+   unnecessary network traffic as well as causing the initial TCP [TCP]
+   congestion window to quickly fill.  This can result in excessive
+   latency when multiple requests are made on a new TCP connection.
 
    HTTP/2 addresses these issues by defining an optimized mapping of
    HTTP's semantics to an underlying connection.  Specifically, it
    allows interleaving of request and response messages on the same
-   connection and uses an efficient coding for HTTP header fields.  It
-   also allows prioritization of requests, letting more important
-   requests complete more quickly, further improving performance.
+   connection and uses an efficient coding for HTTP fields.  It also
+   allows prioritization of requests, letting more important requests
+   complete more quickly, further improving performance.
 
    The resulting protocol is more friendly to the network because fewer
    TCP connections can be used in comparison to HTTP/1.x.  This means
@@ -230,8 +229,8 @@ Table of Contents
    transmitted.  Prioritization (Section 5.3) ensures that limited
    resources can be directed to the most important streams first.
 
-   Because HTTP header fields used in a connection can contain large
-   amounts of redundant data, frames that contain them are compressed
+   Because HTTP fields used in a connection can contain large amounts of
+   redundant data, frames that contain them are compressed
    (Section 4.3).  This has especially advantageous impact upon request
    sizes in the common case, allowing many requests to be compressed
    into one packet.
