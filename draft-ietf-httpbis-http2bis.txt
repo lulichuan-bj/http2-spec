@@ -21,8 +21,6 @@ Abstract
    compression and allowing multiple concurrent exchanges on the same
    connection.
 
-   This specification is an alternative to, but does not obsolete, the
-   HTTP/1.1 message syntax.  HTTP's existing semantics remain unchanged.
    This document obsoletes RFC 7540 and RFC 8740.
 
 Discussion Venues
