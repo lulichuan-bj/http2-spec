@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 13 February 2022                                 12 August 2021
+Expires: 14 February 2022                                 13 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 February 2022.
+   This Internet-Draft will expire on 14 February 2022.
 
 Copyright Notice
 
@@ -560,8 +560,8 @@ Table of Contents
    Field blocks carry control data and header sections for requests,
    responses, promised requests, and pushed responses (see Section 8.4).
    All these messages, except for interim responses and requests
-   contained in PUSH_PROMISE (Section 6.6) frames can optionally include
-   a field block that carries a trailer section.
+   contained in PUSH_PROMISE (Section 6.6) frames, can optionally
+   include a field block that carries a trailer section.
 
    A field section is a collection of zero or more field lines.  Each of
    the field lines in a field block carry a single value.  The
