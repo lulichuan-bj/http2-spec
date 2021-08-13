@@ -1274,9 +1274,8 @@ Table of Contents
    following additional fields:
 
    Pad Length:  An 8-bit field containing the length of the frame
-      padding in units of octets.  This field is conditional (as
-      signified by a "?" in the diagram) and is only present if the
-      PADDED flag is set.
+      padding in units of octets.  This field is conditional and is only
+      present if the PADDED flag is set.
 
    Data:  Application data.  The amount of data is the remainder of the
       frame payload after subtracting the length of the other fields
