@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-12T00:56:54.132477+00:00",
+  "timestamp": "2021-08-15T00:57:03.284458+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19808,7 +19808,7 @@
       "id": "MDU6SXNzdWU5NjcwMjE5NjA=",
       "title": "introduction: \"fields\" instead of \"header fields\"",
       "url": "https://github.com/httpwg/http2-spec/issues/886",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "reschke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -19817,8 +19817,8 @@
       ],
       "body": "> HTTP/2 addresses these issues by defining an optimized mapping of HTTP's semantics to an underlying connection. Specifically, it allows interleaving of request and response messages on the same connection and uses an efficient coding for HTTP header fields. It also allows prioritization of requests, letting more important requests complete more quickly, further improving performance.\r\n\r\ns/header fields/fields/",
       "createdAt": "2021-08-11T16:21:18Z",
-      "updatedAt": "2021-08-11T16:56:55Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-12T12:25:16Z",
+      "closedAt": "2021-08-12T12:25:16Z",
       "comments": []
     },
     {
@@ -19836,6 +19836,154 @@
       "updatedAt": "2021-08-11T22:20:07Z",
       "closedAt": "2021-08-11T22:20:07Z",
       "comments": []
+    },
+    {
+      "number": 889,
+      "id": "MDU6SXNzdWU5Njk4NDk2NDg=",
+      "title": "Do you still need to state HTTP semantics remain unchanged?",
+      "url": "https://github.com/httpwg/http2-spec/issues/889",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The abstract says\r\n\r\n> This specification is an alternative to, but does not obsolete, the HTTP/1.1 message syntax. HTTP's existing semantics remain unchanged.\r\n\r\nThis is taken directly from RFC 7540, and seems a bit old hat given where we are at now.",
+      "createdAt": "2021-08-13T00:55:03Z",
+      "updatedAt": "2021-08-13T07:17:17Z",
+      "closedAt": "2021-08-13T07:17:17Z",
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yeah, probably not needed any more.  Propose text?",
+          "createdAt": "2021-08-13T01:07:28Z",
+          "updatedAt": "2021-08-13T01:07:28Z"
+        }
+      ]
+    },
+    {
+      "number": 890,
+      "id": "MDU6SXNzdWU5Njk4Njk2ODY=",
+      "title": "The reports of HTTP/1.1's negative performance are possibly exaggerated",
+      "url": "https://github.com/httpwg/http2-spec/issues/890",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "...  and HTTP/2's positives too!\r\n\r\n>    The Hypertext Transfer Protocol (HTTP) is a wildly successful\r\n   protocol.  However, the way HTTP/1.1 uses the underlying transport\r\n   ([RFC7230], Section 6) has several characteristics that have a\r\n   negative overall effect on application performance today.\r\n\r\n >  In particular, HTTP/1.0 allowed only one request to be outstanding at\r\n   a time on a given TCP connection.  HTTP/1.1 added request pipelining,\r\n   but this only partially addressed request concurrency and still\r\n   suffers from head-of-line blocking.  Therefore, HTTP/1.0 and HTTP/1.1\r\n   clients that need to make many requests use multiple connections to a\r\n   server in order to achieve concurrency and thereby reduce latency.\r\n\r\nI think time has shown these claims to not be great. How about cutting cruft and saying\r\n\r\n```\r\nThe performance of application using the Hypertext Transfer Protocol (HTTP) is\r\nlinked to how each version of HTTP uses the underlying transport, and the\r\nconditions under which the transport operates.\r\n\r\nIn particular, HTTP message concurrency can reduce latency and improve\r\napplication performance. HTTP/1.0 allowed only one request to be outstanding at\r\na time on a given TCP connection. HTTP/1.1 added request pipelining, but this\r\nonly partially addressed request concurrency and still suffers from\r\napplication-layer head-of-line blocking. Therefore, HTTP/1.0 and HTTP/1.1\r\nclients that need to make many requests use multiple connections to a server in\r\norder to achieve concurrency.\r\n```\r\n\r\nand then a tweak to a later paragraph in the intro to state that no one is perfect\r\n\r\n```\r\nThe resulting protocol is more friendly to the network because fewer TCP\r\nconnections can be used in comparison to HTTP/1.x. This means less competition\r\nwith other flows and longer-lived connections, which in turn lead to better\r\nutilization of available network capacity. Note, however, that TCP head-of-line\r\nblocking cannot be addressed by this protocol.\r\n```\r\n",
+      "createdAt": "2021-08-13T01:12:42Z",
+      "updatedAt": "2021-08-13T01:29:02Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "It looks like you have a pull request that is dressed up as an issue :)",
+          "createdAt": "2021-08-13T01:23:07Z",
+          "updatedAt": "2021-08-13T01:23:07Z"
+        },
+        {
+          "author": "LPardue",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "If you're receptive to change, I am willing to try and edit horrible XML",
+          "createdAt": "2021-08-13T01:29:02Z",
+          "updatedAt": "2021-08-13T01:29:02Z"
+        }
+      ]
+    },
+    {
+      "number": 892,
+      "id": "MDU6SXNzdWU5Njk4ODU5Nzg=",
+      "title": "nit: is h2c spec'd or not",
+      "url": "https://github.com/httpwg/http2-spec/issues/892",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Maybe a hangover from trying to tear up the photos of the \"http\" URI and upgrade dance. But this seems to read oddly. \r\n\r\nOn one hand:\r\n\r\n> This usage was never widely deployed, and is no longer specified in this document.\r\n\r\non the other:\r\n\r\n> Negotiating \"h2\" or \"h2c\" implies the use of the transport, security, framing, and message semantics described in this document.\r\n\r\nI don't have a solid suggestion to improve things.",
+      "createdAt": "2021-08-13T01:27:33Z",
+      "updatedAt": "2021-08-13T01:36:54Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "How about we just remove \"h2c\" from the latter statement.",
+          "createdAt": "2021-08-13T01:31:28Z",
+          "updatedAt": "2021-08-13T01:31:28Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "OK, that isn't going to fly.  I just tried it.  Pulling that string is unwise.\r\n\r\nWe agreed to keep \"prior knowledge\" in the document, and the \"h2c\" ALPN token is part of that.  The \"h2c\" upgrade token has been removed already.  (Too subtle?  Probably.)",
+          "createdAt": "2021-08-13T01:36:54Z",
+          "updatedAt": "2021-08-13T01:36:54Z"
+        }
+      ]
+    },
+    {
+      "number": 896,
+      "id": "MDU6SXNzdWU5Njk5NjA3MTc=",
+      "title": "Does the HEADERS Padding field have the same requirements as DATA?",
+      "url": "https://github.com/httpwg/http2-spec/issues/896",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I just realised RFC 7540 was always this way, but it doesn't seem right to me.\r\n\r\nThe DATA frame definition includes normative requirements on sender and receiver using the `Padding` field. I presume the HEADERS frame `padding` is supposed the treat padding the same but it isn't written down.\r\n\r\nedit: plus PUSH_PROMISE",
+      "createdAt": "2021-08-13T02:32:41Z",
+      "updatedAt": "2021-08-13T10:45:13Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "LPardue",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Ah, it's stated in a separate paragraph at the end of each frame definition section. That's annoying but I guess its fine.",
+          "createdAt": "2021-08-13T02:35:47Z",
+          "updatedAt": "2021-08-13T02:35:47Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yeah, so the short answer there is that they behave differently in some ways (at least with respect to flow control). If you think there\u2019s a better way to structure the section I think you\u2019re welcome to take a crack at it.",
+          "createdAt": "2021-08-13T07:14:51Z",
+          "updatedAt": "2021-08-13T07:14:51Z"
+        },
+        {
+          "author": "LPardue",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I didn't actually make the leap to flow control, that makes me more inclined to avoid the cross reference to DATA frames. I made #898 to just make everything explicit at the cost of a few more lines of text.",
+          "createdAt": "2021-08-13T10:44:59Z",
+          "updatedAt": "2021-08-13T10:45:13Z"
+        }
+      ]
+    },
+    {
+      "number": 897,
+      "id": "MDU6SXNzdWU5Njk5OTA0MTU=",
+      "title": "Was the cipher suite list re-assembled?",
+      "url": "https://github.com/httpwg/http2-spec/issues/897",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There's a note that says \r\n\r\n> Note: This list was assembled from the set of registered TLS cipher suites at the time of writing.\r\n\r\nWould be be more accurate to say this was assembled for RFC 7540, or is it fresh?",
+      "createdAt": "2021-08-13T02:58:10Z",
+      "updatedAt": "2021-08-13T04:01:26Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "s/of writing// ?",
+          "createdAt": "2021-08-13T04:01:26Z",
+          "updatedAt": "2021-08-13T04:01:26Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -36515,20 +36663,270 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzA5NzE3NzU4",
       "title": "Mostly just fields",
       "url": "https://github.com/httpwg/http2-spec/pull/888",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Julian identified one.  I found a few more.\r\n\r\nCloses #886.",
       "createdAt": "2021-08-11T22:10:24Z",
-      "updatedAt": "2021-08-11T22:10:24Z",
+      "updatedAt": "2021-08-12T12:25:16Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "just-fields",
       "headRefOid": "a312cc1a7f780f729cf4c21fa477385b6415aa11",
+      "closedAt": "2021-08-12T12:25:16Z",
+      "mergedAt": "2021-08-12T12:25:16Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "083912f85056c86f6c3b0013748144b7dd361f88"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI4NTMyMDky",
+          "commit": {
+            "abbreviatedOid": "a312cc1"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-12T12:25:11Z",
+          "updatedAt": "2021-08-12T12:25:11Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 891,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzExODk0NTQy",
+      "title": "fix #889",
+      "url": "https://github.com/httpwg/http2-spec/pull/891",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #889",
+      "createdAt": "2021-08-13T01:18:05Z",
+      "updatedAt": "2021-08-13T07:17:17Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "083912f85056c86f6c3b0013748144b7dd361f88",
+      "headRepository": "LPardue/http2-spec",
+      "headRefName": "patch-1",
+      "headRefOid": "12736520ee42c44a843bae52ff0e2874ba422f6b",
+      "closedAt": "2021-08-13T07:17:17Z",
+      "mergedAt": "2021-08-13T07:17:17Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "a8e08db2f2ae334e9ca560f078367b1219757f20"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI5MTkxNzU2",
+          "commit": {
+            "abbreviatedOid": "1273652"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-13T01:19:41Z",
+          "updatedAt": "2021-08-13T01:19:41Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI5MzI5MzQw",
+          "commit": {
+            "abbreviatedOid": "1273652"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-13T07:17:10Z",
+          "updatedAt": "2021-08-13T07:17:10Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 893,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzExOTIzNzk5",
+      "title": "missing comma",
+      "url": "https://github.com/httpwg/http2-spec/pull/893",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-13T01:45:33Z",
+      "updatedAt": "2021-08-13T03:58:38Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "083912f85056c86f6c3b0013748144b7dd361f88",
+      "headRepository": "LPardue/http2-spec",
+      "headRefName": "patch-2",
+      "headRefOid": "f6c54eb85b7e8f86417fd62de632a49f9912a3d0",
+      "closedAt": "2021-08-13T03:58:38Z",
+      "mergedAt": "2021-08-13T03:58:38Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "34e3c49c06254b5447b458a22ba867593ba7a49b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 894,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzExOTM0MjQ0",
+      "title": "Avoid h2c awkwardness",
+      "url": "https://github.com/httpwg/http2-spec/pull/894",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #892\ufeff\n",
+      "createdAt": "2021-08-13T01:55:16Z",
+      "updatedAt": "2021-08-13T04:00:25Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "083912f85056c86f6c3b0013748144b7dd361f88",
+      "headRepository": "LPardue/http2-spec",
+      "headRefName": "issue-892",
+      "headRefOid": "1b780ac801e61be1190de6bd089788bc7aeac375",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "LPardue",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "By removing the word negotiating and avoiding the actual identifiers, we can get the important point across",
+          "createdAt": "2021-08-13T01:57:46Z",
+          "updatedAt": "2021-08-13T01:57:46Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI5MjQzNjE4",
+          "commit": {
+            "abbreviatedOid": "1b780ac"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-13T04:00:25Z",
+          "updatedAt": "2021-08-13T04:00:25Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I realize now that \"security\" does not hold for both.  We might need to explicitly say that \"h2c\" does not provide the security properties of \"h2\".",
+              "createdAt": "2021-08-13T04:00:25Z",
+              "updatedAt": "2021-08-13T04:00:25Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 895,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzExOTYyMzc2",
+      "title": "Remove stale reference to \"?\" in diagram",
+      "url": "https://github.com/httpwg/http2-spec/pull/895",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "",
+      "createdAt": "2021-08-13T02:21:43Z",
+      "updatedAt": "2021-08-13T04:00:43Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "083912f85056c86f6c3b0013748144b7dd361f88",
+      "headRepository": "LPardue/http2-spec",
+      "headRefName": "theres-no-question",
+      "headRefOid": "1ebec3bcac53d4331630c8000e70530bdf64f64d",
+      "closedAt": "2021-08-13T04:00:43Z",
+      "mergedAt": "2021-08-13T04:00:43Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "c19b15e6fe4f5a4f38a2500870d27f933a2e09e4"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 898,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzEyMjU3Mzcz",
+      "title": "Explicitly state HEADERS and PUSH_PROMISE padding reqs",
+      "url": "https://github.com/httpwg/http2-spec/pull/898",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #896\n\nThe old text stated padding things were identical to DATA frames. That might not be\nentirely true. \ufeffSo just spell out the requirements expicitly.\n",
+      "createdAt": "2021-08-13T10:42:40Z",
+      "updatedAt": "2021-08-13T11:12:06Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "a8e08db2f2ae334e9ca560f078367b1219757f20",
+      "headRepository": "LPardue/http2-spec",
+      "headRefName": "main",
+      "headRefOid": "9fc33f95fd34059d8ddde4d8991d1130ea651e2f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI5NTEwMzU4",
+          "commit": {
+            "abbreviatedOid": "9fc33f9"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-13T11:12:06Z",
+          "updatedAt": "2021-08-13T11:12:06Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 899,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzEyMzMwNTQ1",
+      "title": "Make introduction more objective",
+      "url": "https://github.com/httpwg/http2-spec/pull/899",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #890\ufeff\r\n",
+      "createdAt": "2021-08-13T12:46:23Z",
+      "updatedAt": "2021-08-13T12:46:23Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "a8e08db2f2ae334e9ca560f078367b1219757f20",
+      "headRepository": "LPardue/http2-spec",
+      "headRefName": "fix-890",
+      "headRefOid": "fc3cb6dfcd42d9c0333ff1692d342cfb9b33ba8b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
