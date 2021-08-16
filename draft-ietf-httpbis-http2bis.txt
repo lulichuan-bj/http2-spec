@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 14 February 2022                                 13 August 2021
+Expires: 17 February 2022                                 16 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 February 2022.
+   This Internet-Draft will expire on 17 February 2022.
 
 Copyright Notice
 
@@ -1367,7 +1367,10 @@ Table of Contents
 
    Field Block Fragment:  A field block fragment (Section 4.3).
 
-   Padding:  Padding octets.
+   Padding:  Padding octets that contain no application semantic value.
+      Padding octets MUST be set to zero when sending.  A receiver is
+      not obligated to verify padding but MAY treat non-zero padding as
+      a connection error (Section 5.4.1) of type PROTOCOL_ERROR.
 
    The HEADERS frame defines the following flags:
 
@@ -1408,10 +1411,9 @@ Table of Contents
    The HEADERS frame changes the connection state as described in
    Section 4.3.
 
-   The HEADERS frame can include padding.  Padding fields and flags are
-   identical to those defined for DATA frames (Section 6.1).  Padding
-   that exceeds the size remaining for the field block fragment MUST be
-   treated as a PROTOCOL_ERROR.
+   The total number of padding octets is determined by the value of the
+   Pad Length field.  Padding that exceeds the size remaining for the
+   field block fragment MUST be treated as a PROTOCOL_ERROR.
 
 6.3.  PRIORITY
 
@@ -1731,7 +1733,10 @@ Table of Contents
    Field Block Fragment:  A field block fragment (Section 4.3)
       containing request control data and header section.
 
-   Padding:  Padding octets.
+   Padding:  Padding octets that contain no application semantic value.
+      Padding octets MUST be set to zero when sending.  A receiver is
+      not obligated to verify padding but MAY treat non-zero padding as
+      a connection error (Section 5.4.1) of type PROTOCOL_ERROR.
 
    The PUSH_PROMISE frame defines the following flags:
 
@@ -1794,8 +1799,9 @@ Table of Contents
    identifier is an identifier for a stream that is not currently in the
    "idle" state.
 
-   The PUSH_PROMISE frame can include padding.  Padding fields and flags
-   are identical to those defined for DATA frames (Section 6.1).
+   The total number of padding octets is determined by the value of the
+   Pad Length field.  Padding that exceeds the size remaining for the
+   field block fragment MUST be treated as a PROTOCOL_ERROR.
 
 6.7.  PING
 
