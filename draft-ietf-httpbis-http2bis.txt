@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 17 February 2022                                 16 August 2021
+Expires: 18 February 2022                                 17 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 February 2022.
+   This Internet-Draft will expire on 18 February 2022.
 
 Copyright Notice
 
@@ -2305,9 +2305,9 @@ Table of Contents
    2.  zero or more DATA frames containing the message content (see
        Section 6.4 of [HTTP]), and
 
-   3.  optionally, one HEADERS frame, followed by zero or more
-       CONTINUATION frames containing the trailer-part, if present (see
-       Section 6.5 of [HTTP]).
+   3.  optionally, one HEADERS frame (followed by zero or more
+       CONTINUATION frames) containing the trailer section, if present
+       (see Section 6.5 of [HTTP]).
 
    For a response only, a server MAY send any number of interim
    responses before the HEADERS frame containing a final response.  An
