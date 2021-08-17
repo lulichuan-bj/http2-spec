@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-15T00:57:03.284458+00:00",
+  "timestamp": "2021-08-17T00:56:18.997649+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19866,15 +19866,15 @@
       "id": "MDU6SXNzdWU5Njk4Njk2ODY=",
       "title": "The reports of HTTP/1.1's negative performance are possibly exaggerated",
       "url": "https://github.com/httpwg/http2-spec/issues/890",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "...  and HTTP/2's positives too!\r\n\r\n>    The Hypertext Transfer Protocol (HTTP) is a wildly successful\r\n   protocol.  However, the way HTTP/1.1 uses the underlying transport\r\n   ([RFC7230], Section 6) has several characteristics that have a\r\n   negative overall effect on application performance today.\r\n\r\n >  In particular, HTTP/1.0 allowed only one request to be outstanding at\r\n   a time on a given TCP connection.  HTTP/1.1 added request pipelining,\r\n   but this only partially addressed request concurrency and still\r\n   suffers from head-of-line blocking.  Therefore, HTTP/1.0 and HTTP/1.1\r\n   clients that need to make many requests use multiple connections to a\r\n   server in order to achieve concurrency and thereby reduce latency.\r\n\r\nI think time has shown these claims to not be great. How about cutting cruft and saying\r\n\r\n```\r\nThe performance of application using the Hypertext Transfer Protocol (HTTP) is\r\nlinked to how each version of HTTP uses the underlying transport, and the\r\nconditions under which the transport operates.\r\n\r\nIn particular, HTTP message concurrency can reduce latency and improve\r\napplication performance. HTTP/1.0 allowed only one request to be outstanding at\r\na time on a given TCP connection. HTTP/1.1 added request pipelining, but this\r\nonly partially addressed request concurrency and still suffers from\r\napplication-layer head-of-line blocking. Therefore, HTTP/1.0 and HTTP/1.1\r\nclients that need to make many requests use multiple connections to a server in\r\norder to achieve concurrency.\r\n```\r\n\r\nand then a tweak to a later paragraph in the intro to state that no one is perfect\r\n\r\n```\r\nThe resulting protocol is more friendly to the network because fewer TCP\r\nconnections can be used in comparison to HTTP/1.x. This means less competition\r\nwith other flows and longer-lived connections, which in turn lead to better\r\nutilization of available network capacity. Note, however, that TCP head-of-line\r\nblocking cannot be addressed by this protocol.\r\n```\r\n",
       "createdAt": "2021-08-13T01:12:42Z",
-      "updatedAt": "2021-08-13T01:29:02Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-16T15:08:53Z",
+      "closedAt": "2021-08-16T15:08:53Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -19928,15 +19928,15 @@
       "id": "MDU6SXNzdWU5Njk5NjA3MTc=",
       "title": "Does the HEADERS Padding field have the same requirements as DATA?",
       "url": "https://github.com/httpwg/http2-spec/issues/896",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "I just realised RFC 7540 was always this way, but it doesn't seem right to me.\r\n\r\nThe DATA frame definition includes normative requirements on sender and receiver using the `Padding` field. I presume the HEADERS frame `padding` is supposed the treat padding the same but it isn't written down.\r\n\r\nedit: plus PUSH_PROMISE",
       "createdAt": "2021-08-13T02:32:41Z",
-      "updatedAt": "2021-08-13T10:45:13Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-16T01:18:52Z",
+      "closedAt": "2021-08-16T01:18:52Z",
       "comments": [
         {
           "author": "LPardue",
@@ -19982,6 +19982,30 @@
           "body": "s/of writing// ?",
           "createdAt": "2021-08-13T04:01:26Z",
           "updatedAt": "2021-08-13T04:01:26Z"
+        }
+      ]
+    },
+    {
+      "number": 900,
+      "id": "MDU6SXNzdWU5NzIxNTc2MTY=",
+      "title": "Consistency in HTTP Message Framing",
+      "url": "https://github.com/httpwg/http2-spec/issues/900",
+      "state": "OPEN",
+      "author": "royfielding",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This text is a bit ambiguous about what is containing the trailer part:\r\n\r\n> An HTTP message (request or response) consists of:\r\n>   1. one HEADERS frame (followed by zero or more CONTINUATION frames) containing the header section (see Section 6.3 of [HTTP]),\r\n>   2. zero or more DATA frames containing the message content (see Section 6.4 of [HTTP]), and\r\n>   3. optionally, one HEADERS frame, followed by zero or more CONTINUATION frames containing the trailer-part, if present (see Section 6.5 of [HTTP]).\r\n\r\nI think it would be better to format 3 in the same way as 1:\r\n\r\n>   3. optionally, one HEADERS frame (followed by zero or more CONTINUATION frames) containing the trailer section, if present (see Section 6.5 of [HTTP]).",
+      "createdAt": "2021-08-16T22:55:29Z",
+      "updatedAt": "2021-08-16T22:59:00Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "royfielding",
+          "authorAssociation": "MEMBER",
+          "body": "Oh, and it isn't called trailer-part now -- we changed it to trailer section.",
+          "createdAt": "2021-08-16T22:58:47Z",
+          "updatedAt": "2021-08-16T22:58:47Z"
         }
       ]
     }
@@ -36873,24 +36897,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzEyMjU3Mzcz",
       "title": "Explicitly state HEADERS and PUSH_PROMISE padding reqs",
       "url": "https://github.com/httpwg/http2-spec/pull/898",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "fixes #896\n\nThe old text stated padding things were identical to DATA frames. That might not be\nentirely true. \ufeffSo just spell out the requirements expicitly.\n",
       "createdAt": "2021-08-13T10:42:40Z",
-      "updatedAt": "2021-08-13T11:12:06Z",
+      "updatedAt": "2021-08-16T01:18:53Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "a8e08db2f2ae334e9ca560f078367b1219757f20",
       "headRepository": "LPardue/http2-spec",
       "headRefName": "main",
       "headRefOid": "9fc33f95fd34059d8ddde4d8991d1130ea651e2f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-16T01:18:52Z",
+      "mergedAt": "2021-08-16T01:18:52Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "45879375ec50188295b6c6364b1487ffda6dc003"
+      },
       "comments": [],
       "reviews": [
         {
@@ -36913,26 +36939,102 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzEyMzMwNTQ1",
       "title": "Make introduction more objective",
       "url": "https://github.com/httpwg/http2-spec/pull/899",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "fixes #890\ufeff\r\n",
       "createdAt": "2021-08-13T12:46:23Z",
-      "updatedAt": "2021-08-13T12:46:23Z",
+      "updatedAt": "2021-08-16T15:08:53Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "a8e08db2f2ae334e9ca560f078367b1219757f20",
       "headRepository": "LPardue/http2-spec",
       "headRefName": "fix-890",
-      "headRefOid": "fc3cb6dfcd42d9c0333ff1692d342cfb9b33ba8b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "headRefOid": "ad10935a297338592c0a8b1ecc1e3d2754a6abe4",
+      "closedAt": "2021-08-16T15:08:53Z",
+      "mergedAt": "2021-08-16T15:08:53Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "6a191f42fd61645ba7ca9080e704ac7236e9c14e"
+      },
+      "comments": [
+        {
+          "author": "LPardue",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "thanks both, good suggestions",
+          "createdAt": "2021-08-16T15:04:27Z",
+          "updatedAt": "2021-08-16T15:04:27Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzMwMjY0Mjg2",
+          "commit": {
+            "abbreviatedOid": "fc3cb6d"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks Lucas.  Some small suggestions only.",
+          "createdAt": "2021-08-16T01:20:10Z",
+          "updatedAt": "2021-08-16T01:23:09Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\n        capacity. Note, however, that TCP head-of-line blocking is not addressed by this protocol.\r\n```",
+              "createdAt": "2021-08-16T01:20:10Z",
+              "updatedAt": "2021-08-16T01:23:09Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\n        Making multiple concurrent requests can reduce latency and improve\r\n```",
+              "createdAt": "2021-08-16T01:21:18Z",
+              "updatedAt": "2021-08-16T01:23:09Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n        blocking. Therefore, HTTP/1.0 and HTTP/1.1 clients use multiple connections\r\n        to a server to make concurrent requests.\r\n```",
+              "createdAt": "2021-08-16T01:22:24Z",
+              "updatedAt": "2021-08-16T01:23:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzMwMjk3MDc4",
+          "commit": {
+            "abbreviatedOid": "04553d6"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-16T03:15:10Z",
+          "updatedAt": "2021-08-16T03:15:10Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzMwODE3MTE1",
+          "commit": {
+            "abbreviatedOid": "04553d6"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "One change and I'm happy",
+          "createdAt": "2021-08-16T14:57:50Z",
+          "updatedAt": "2021-08-16T14:58:30Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n        The performance of applications using the Hypertext Transfer Protocol\r\n```",
+              "createdAt": "2021-08-16T14:57:50Z",
+              "updatedAt": "2021-08-16T14:58:30Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
