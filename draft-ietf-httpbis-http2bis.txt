@@ -1188,7 +1188,7 @@ Table of Contents
    [HTTP]).
 
    Extensions are permitted to use new frame types (Section 4.1), new
-   settings (Section 6.5.2), or new error codes (Section 7).  Registries
+   settings (Section 6.5), or new error codes (Section 7).  Registries
    are established for managing these extension points: frame types
    (Section 11.2), settings (Section 11.3), and error codes
    (Section 11.4).
