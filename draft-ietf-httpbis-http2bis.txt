@@ -170,8 +170,9 @@ Table of Contents
 1.  Introduction
 
    The performance of applications using the Hypertext Transfer Protocol
-   (HTTP) is linked to how each version of HTTP uses the underlying
-   transport, and the conditions under which the transport operates.
+   (HTTP, [HTTP]) is linked to how each version of HTTP uses the
+   underlying transport, and the conditions under which the transport
+   operates.
 
    Making multiple concurrent requests can reduce latency and improve
    application performance.  HTTP/1.0 allowed only one request to be
