@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 18 February 2022                                 17 August 2021
+Expires: 20 February 2022                                 19 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 February 2022.
+   This Internet-Draft will expire on 20 February 2022.
 
 Copyright Notice
 
@@ -2587,9 +2587,9 @@ Table of Contents
       field is present).
 
    *  The ":path" pseudo-header field includes the path and query parts
-      of the target URI (the "path-absolute" production and optionally a
-      '?' character followed by the "query" production (see Sections 3.3
-      and 3.4 of [RFC3986]).  A request in asterisk form includes the
+      of the target URI (the "absolute-path" production and optionally a
+      '?' character followed by the "query" production; see Section 4.1
+      of [HTTP]).  A request in asterisk form (for OPTIONS) includes the
       value '*' for the ":path" pseudo-header field.
 
       This pseudo-header field MUST NOT be empty for "http" or "https"
