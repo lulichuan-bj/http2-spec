@@ -543,11 +543,12 @@ Table of Contents
 4.3.  Field Section Compression and Decompression
 
    Field section compression is the process of compressing a set of
-   field lines to form a field block.  Field section decompression is
-   the process of decoding a field block into a set of field lines.
-   Details of HTTP/2 field section compression and decompression is
-   defined in [COMPRESSION], which, for historical reasons, refers to
-   these processes as header compression and decompression.
+   field lines (Section 5.2 of [HTTP]) to form a field block.  Field
+   section decompression is the process of decoding a field block into a
+   set of field lines.  Details of HTTP/2 field section compression and
+   decompression is defined in [COMPRESSION], which, for historical
+   reasons, refers to these processes as header compression and
+   decompression.
 
    Field blocks carry the compressed bytes of a field section, with
    header sections also carrying control data associated with the
