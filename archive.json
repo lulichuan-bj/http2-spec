@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-17T00:56:18.997649+00:00",
+  "timestamp": "2021-08-19T00:50:38.526533+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19990,15 +19990,15 @@
       "id": "MDU6SXNzdWU5NzIxNTc2MTY=",
       "title": "Consistency in HTTP Message Framing",
       "url": "https://github.com/httpwg/http2-spec/issues/900",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "royfielding",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "This text is a bit ambiguous about what is containing the trailer part:\r\n\r\n> An HTTP message (request or response) consists of:\r\n>   1. one HEADERS frame (followed by zero or more CONTINUATION frames) containing the header section (see Section 6.3 of [HTTP]),\r\n>   2. zero or more DATA frames containing the message content (see Section 6.4 of [HTTP]), and\r\n>   3. optionally, one HEADERS frame, followed by zero or more CONTINUATION frames containing the trailer-part, if present (see Section 6.5 of [HTTP]).\r\n\r\nI think it would be better to format 3 in the same way as 1:\r\n\r\n>   3. optionally, one HEADERS frame (followed by zero or more CONTINUATION frames) containing the trailer section, if present (see Section 6.5 of [HTTP]).",
       "createdAt": "2021-08-16T22:55:29Z",
-      "updatedAt": "2021-08-16T22:59:00Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-17T12:45:43Z",
+      "closedAt": "2021-08-17T12:45:43Z",
       "comments": [
         {
           "author": "royfielding",
@@ -20008,6 +20008,54 @@
           "updatedAt": "2021-08-16T22:58:47Z"
         }
       ]
+    },
+    {
+      "number": 902,
+      "id": "MDU6SXNzdWU5NzI4NzE3OTY=",
+      "title": "Field validity and field names containing token delimiters",
+      "url": "https://github.com/httpwg/http2-spec/issues/902",
+      "state": "OPEN",
+      "author": "royfielding",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "HTTP has always forbidden token delimiters in field names. It seems very odd that they are not forbidden in HTTP/2, aside from the specific restriction on colon. The token delimiters are DQUOTE and \"(),/:;<=>?@[\\]{}\". We really don't want those allowed in a field name because back-end gateways like CGI assume they have been blocked, and it would mean adding an impossible conversion step when forwarding h2 to h1.\r\n\r\nAlso, it would be easier to read the Field Validity section if it first referenced what is valid for an HTTP field-name, then exclude uppercase because of lowercasing and permit the special-purpose colon for pseudo-fields, and finally list specific requirements on handling invalid characters because the length-delimited protocol elements might be used to carry invalid characters.\r\n\r\nLikewise, separating the error handling for field-name from that of field-value is useful because they are two different algorithms that are usually implemented separately.",
+      "createdAt": "2021-08-17T16:35:23Z",
+      "updatedAt": "2021-08-17T16:35:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 903,
+      "id": "MDU6SXNzdWU5NzMwMTQ4Mzc=",
+      "title": "Alt-Svc reference for Prior Knowledge",
+      "url": "https://github.com/httpwg/http2-spec/issues/903",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Section 3.3 says the following about cleartext HTTP/2:\r\n\r\n> A client can learn that a particular server supports HTTP/2 by other means. For example, [ALT-SVC] describes a mechanism for advertising this capability.\r\n\r\nI had previously conceived of Alt-Svc as requiring a certificate and TLS, but that's not strictly true.  RFC 7838 says that a client MUST have reasonable assurances, and a TLS cert is one way to do that.  It also says that the connection must have equal or better security properties, which implies you can't go from TLS to non-TLS.\r\n\r\nThis statement suggests that it's valid to offer `Alt-Svc: h2c=:80` on an http:// URI if your server can accept direct-to-H2 connections, but doesn't explicitly say so.  Is that the intended reading here?\r\n\r\nBut RFC 7838 says:\r\n\r\n> However, if either is offered with the \"h2c\" protocol, the client cannot use it, because there is no mechanism (at the time of the publication of this specification) in that protocol to establish the relationship between the origin and the alternative.\r\n\r\nPerhaps that doesn't apply, because the alternative is the same server on the same TCP port.  Still, I feel like this waves at Alt-Svc for a use which is, at best, under-specified; at worst, not actually possible.",
+      "createdAt": "2021-08-17T19:52:19Z",
+      "updatedAt": "2021-08-17T19:52:19Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 904,
+      "id": "MDU6SXNzdWU5NzQwMjMxOTQ=",
+      "title": "Previous version*s*",
+      "url": "https://github.com/httpwg/http2-spec/issues/904",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "At two points in the document, it refers to \"previous version**s** of this document,\" which I take to mean RFC 7540, since we don't discuss differences from previous drafts when we publish the RFC.  Is there a reason not to simply say \"RFC 7540\" in these places, similar to the discussion in 5.3?",
+      "createdAt": "2021-08-18T20:17:04Z",
+      "updatedAt": "2021-08-18T20:17:04Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -36505,7 +36553,7 @@
       "labels": [],
       "body": "Closes #880.",
       "createdAt": "2021-08-06T00:58:33Z",
-      "updatedAt": "2021-08-06T09:57:26Z",
+      "updatedAt": "2021-08-17T19:23:33Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
@@ -36542,6 +36590,19 @@
           "body": "",
           "createdAt": "2021-08-06T09:57:26Z",
           "updatedAt": "2021-08-06T09:57:26Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzMyMTQxMjYw",
+          "commit": {
+            "abbreviatedOid": "9758653"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-17T19:23:33Z",
+          "updatedAt": "2021-08-17T19:23:33Z",
           "comments": []
         }
       ]
@@ -37033,6 +37094,50 @@
               "updatedAt": "2021-08-16T14:58:30Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 901,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzEzODM5NjY5",
+      "title": "Improve list construction",
+      "url": "https://github.com/httpwg/http2-spec/pull/901",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "And correctly refer to the trailer section.\r\n\r\nCloses #900.",
+      "createdAt": "2021-08-17T01:06:26Z",
+      "updatedAt": "2021-08-17T12:45:43Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "6a191f42fd61645ba7ca9080e704ac7236e9c14e",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "trailer-section",
+      "headRefOid": "e9e3f9a90a844c94cddfceacea2bbdae8f2c28dc",
+      "closedAt": "2021-08-17T12:45:43Z",
+      "mergedAt": "2021-08-17T12:45:43Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "609609e332ecd562e156010ef0a0987eb6cb3874"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzMxNzE2ODky",
+          "commit": {
+            "abbreviatedOid": "e9e3f9a"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-17T12:45:37Z",
+          "updatedAt": "2021-08-17T12:45:37Z",
+          "comments": []
         }
       ]
     }
