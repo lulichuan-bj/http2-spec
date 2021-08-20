@@ -494,7 +494,7 @@ Table of Contents
       frame type.
 
       Flags are assigned semantics specific to the indicated frame type.
-      Unused Flags are those that have no defined semantics for a
+      Unused flags are those that have no defined semantics for a
       particular frame type, and MUST be ignored and MUST be left unset
       (0x0) when sending.
 
@@ -582,7 +582,7 @@ Table of Contents
 
    A complete field section consists of either:
 
-   *  a single HEADERS or PUSH_PROMISE frame, with the END_HEADERS flag
+   *  a single HEADERS or PUSH_PROMISE frame, with the END_HEADERS Flag
       set, or
 
    *  a HEADERS or PUSH_PROMISE frame with the END_HEADERS flag cleared
@@ -1290,10 +1290,10 @@ Table of Contents
 
    The DATA frame defines the following flags:
 
-   PADDED (0x8):  When set, the PADDED Flag indicates that the Pad
+   PADDED (0x8):  When set, the PADDED flag indicates that the Pad
       Length field and any padding that it describes are present.
 
-   END_STREAM (0x1):  When set, the END_STREAM Flag indicates that this
+   END_STREAM (0x1):  When set, the END_STREAM flag indicates that this
       frame is the last that the endpoint will send for the identified
       stream.  Setting this flag causes the stream to enter one of the
       "half-closed" states or the "closed" state (Section 5.1).
@@ -1378,13 +1378,13 @@ Table of Contents
 
    The HEADERS frame defines the following flags:
 
-   PRIORITY (0x20):  When set, the PRIORITY Flag indicates that the
+   PRIORITY (0x20):  When set, the PRIORITY flag indicates that the
       Exclusive, Stream Dependency, and Weight fields are present.
 
-   PADDED (0x8):  When set, the PADDED Flag indicates that the Pad
+   PADDED (0x8):  When set, the PADDED flag indicates that the Pad
       Length field and any padding that it describes are present.
 
-   END_HEADERS (0x4):  When set, the END_HEADERS Flag indicates that
+   END_HEADERS (0x4):  When set, the END_HEADERS flag indicates that
       this frame contains an entire field block (Section 4.3) and is not
       followed by any CONTINUATION frames.
 
@@ -1394,7 +1394,7 @@ Table of Contents
       different stream as a connection error (Section 5.4.1) of type
       PROTOCOL_ERROR.
 
-   END_STREAM (0x1):  When set, the END_STREAM Flag indicates that the
+   END_STREAM (0x1):  When set, the END_STREAM flag indicates that the
       field block (Section 4.3) is the last that the endpoint will send
       for the identified stream.
 
@@ -1744,10 +1744,10 @@ Table of Contents
 
    The PUSH_PROMISE frame defines the following flags:
 
-   PADDED (0x8):  When set, the PADDED Flag indicates that the Pad
+   PADDED (0x8):  When set, the PADDED flag indicates that the Pad
       Length field and any padding that it describes are present.
 
-   END_HEADERS (0x4):  When set, the END_HEADERS Flag indicates that
+   END_HEADERS (0x4):  When set, the END_HEADERS flag indicates that
       this frame contains an entire field block (Section 4.3) and is not
       followed by any CONTINUATION frames.
 
