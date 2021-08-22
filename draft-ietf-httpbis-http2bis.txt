@@ -2568,8 +2568,8 @@ Table of Contents
       intermediary MUST include a ":authority" pseudo-header field.  If
       control data does not contain authority, an intermediary MUST NOT
       add an ":authority" pseudo-header field.  For reference, an
-      HTTP/1.1 Section 3.2 of request target [HTTP11] in authority-form
-      always includes authority, a request target in absolute-form
+      HTTP/1.1 request target (Section 3.2 of [HTTP11]) in authority-
+      form always includes authority, a request target in absolute-form
       includes authority if the target URI includes authority, and
       request targets in origin- or asterisk-form do not include
       authority.
