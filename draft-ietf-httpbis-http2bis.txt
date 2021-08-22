@@ -2451,7 +2451,7 @@ Table of Contents
 
    When a request message violates one of the requirements above, it
    SHOULD be responded to using the 400 (Bad Request) status code
-   Section 15.5.1 of [HTTP] before the stream is reset, unless a more
+   (Section 15.5.1 of [HTTP]) before the stream is reset, unless a more
    suitable status code is defined, or the status code cannot be sent
    (e.g., because the error occurs in a trailer field).
 
