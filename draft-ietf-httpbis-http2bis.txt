@@ -2661,7 +2661,7 @@ Table of Contents
    stored by the client, if it implements an HTTP cache.  Pushed
    responses are considered successfully validated on the origin server
    (e.g., if the "no-cache" cache response directive is present; see
-   Section 5.2.2.3 of [CACHE]) while the stream identified by the
+   Section 5.2.2.4 of [CACHE]) while the stream identified by the
    promised stream ID is still open.
 
    Pushed responses that are not cacheable MUST NOT be stored by any
