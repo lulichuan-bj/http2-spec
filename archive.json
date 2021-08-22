@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-19T00:50:38.526533+00:00",
+  "timestamp": "2021-08-22T00:55:40.227760+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19710,7 +19710,7 @@
       "labels": [],
       "body": "As a corollary to https://github.com/quicwg/base-drafts/issues/4930, I cannot find anything in RFC 7540 that explicitly prohibits the server sending a response on a stream that hasn't been promised.  The closest is the state machine, where a push stream is supposed to go from idle to reserved to half-closed.  The statement that it can go from idle to open upon sending a HEADERS frame is clearly oriented at the client, but is endpoint-agnostic:  `Sending or receiving a HEADERS frame causes the stream to become \"open\".`",
       "createdAt": "2021-07-30T00:51:44Z",
-      "updatedAt": "2021-07-30T18:25:06Z",
+      "updatedAt": "2021-08-19T20:04:16Z",
       "closedAt": null,
       "comments": [
         {
@@ -19726,6 +19726,13 @@
           "body": "Yes, I think this is solved simply by saying that if the client receives any frame on an idle server-initiated stream (i.e. one that hasn't yet been reserved), it's an error.  In the process, the statement about HEADERS in the stream state machine should be made client-specific.",
           "createdAt": "2021-07-30T18:25:06Z",
           "updatedAt": "2021-07-30T18:25:06Z"
+        },
+        {
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "In reading the doc, I note that 5.1 is similarly vague about clients sending / servers receiving PUSH_PROMISE.  That's addressed elsewhere more explicitly, since PUSH_PROMISE is only sent by servers, but I wonder if we should use the same language around them in this section that we are for HEADERS in #879.",
+          "createdAt": "2021-08-19T20:04:16Z",
+          "updatedAt": "2021-08-19T20:04:16Z"
         }
       ]
     },
@@ -19790,7 +19797,7 @@
       "id": "MDU6SXNzdWU5NjcwMTkzMTE=",
       "title": "Introduction should ref HTTP spec",
       "url": "https://github.com/httpwg/http2-spec/issues/885",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "reschke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -19799,8 +19806,8 @@
       ],
       "body": "First sentence in introduction should actually reference the HTTP (== Semantics) spec.",
       "createdAt": "2021-08-11T16:19:36Z",
-      "updatedAt": "2021-08-11T16:56:13Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-19T14:25:09Z",
+      "closedAt": "2021-08-19T14:25:09Z",
       "comments": []
     },
     {
@@ -20046,16 +20053,234 @@
       "id": "MDU6SXNzdWU5NzQwMjMxOTQ=",
       "title": "Previous version*s*",
       "url": "https://github.com/httpwg/http2-spec/issues/904",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "At two points in the document, it refers to \"previous version**s** of this document,\" which I take to mean RFC 7540, since we don't discuss differences from previous drafts when we publish the RFC.  Is there a reason not to simply say \"RFC 7540\" in these places, similar to the discussion in 5.3?",
       "createdAt": "2021-08-18T20:17:04Z",
-      "updatedAt": "2021-08-18T20:17:04Z",
+      "updatedAt": "2021-08-20T06:59:03Z",
+      "closedAt": "2021-08-20T06:59:03Z",
+      "comments": [
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Probably not.",
+          "createdAt": "2021-08-19T10:12:53Z",
+          "updatedAt": "2021-08-19T10:12:53Z"
+        }
+      ]
+    },
+    {
+      "number": 905,
+      "id": "MDU6SXNzdWU5NzQzMTIzMjU=",
+      "title": "Remaining corner cases between Host and :authority",
+      "url": "https://github.com/httpwg/http2-spec/issues/905",
+      "state": "OPEN",
+      "author": "wtarreau",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Adding here the link to my yesterdays report to help with tracking:\r\n\r\nhttps://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0237.html\r\n\r\nI can also paste the contents and/or open one or more issues if needed, though I don't think it is needed for now.",
+      "createdAt": "2021-08-19T06:17:10Z",
+      "updatedAt": "2021-08-19T06:20:54Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "daurnimator",
+          "authorAssociation": "NONE",
+          "body": "I think #768 is related.",
+          "createdAt": "2021-08-19T06:20:54Z",
+          "updatedAt": "2021-08-19T06:20:54Z"
+        }
+      ]
+    },
+    {
+      "number": 906,
+      "id": "MDU6SXNzdWU5NzQzMTU0OTY=",
+      "title": ":path ought to be HTTP's absolute-path, not RFC3986's path-absolute",
+      "url": "https://github.com/httpwg/http2-spec/issues/906",
+      "state": "CLOSED",
+      "author": "wtarreau",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "There is currently an incompatibility between HTTP/1 and HTTP semantics definition of absolute-path and H2's use of RFC3986's path-absolute, which prevents paths from starting with `//`. I described it there but can paste it here if required for ease ofreading:\r\n\r\nhttps://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0245.html\r\n\r\nMy feeling is that it was an unintentional mistake introduced between http2 drafts 4 and 5 given that it breaks sites and doesn't even look respected by H2 agents (i.e. curl, apache, varnish, firefox happily process // in h2).\r\n",
+      "createdAt": "2021-08-19T06:22:50Z",
+      "updatedAt": "2021-08-19T14:20:59Z",
+      "closedAt": "2021-08-19T14:20:59Z",
+      "comments": []
+    },
+    {
+      "number": 912,
+      "id": "MDU6SXNzdWU5NzQ2NjI4NzM=",
+      "title": "Redundancy in :authority translation text",
+      "url": "https://github.com/httpwg/http2-spec/issues/912",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "@wtarreau says\r\n\r\nThere's also some redundancy here which looks a bit confusing:\r\n\r\n> An intermediary that translates a request to HTTP/2 from another\r\n> HTTP version MUST translate any authority information from the\r\n> request into an :authority pseudo-header field.\r\n\r\nand:\r\n\r\n> If the control data in the original request contains authority\r\n> information, an intermediary MUST include a :authority pseudo-header\r\n> field.",
+      "createdAt": "2021-08-19T13:26:09Z",
+      "updatedAt": "2021-08-19T13:26:09Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 913,
+      "id": "MDU6SXNzdWU5NzQ2NjQ5NjE=",
+      "title": "\"from another HTTP version\"",
+      "url": "https://github.com/httpwg/http2-spec/issues/913",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "@wtarreau points to some stuff from RFC 7540 that might be cleaned up in terms of \"control data\" and so forth.\r\n\r\nIn addition in this paragraph at several places it's mentioned \"from\r\nanother HTTP version\", but as soon as you have to deal with multiple\r\nversions on each side of an intermediary, you don't deal with versions,\r\nin fact you're using an \"HTTP\" internal representation which relies on\r\nsemantics and in this case it becomes strange to make an exception for\r\nthe case where the other side is using exactly the same version. Given\r\nthat we're now having a version-agnostic spec for the semantics, I\r\nwould suggest that we avoid speaking about versions in the H2 spec and\r\ninstead strictly rely on semantics. This is even more important when\r\nthe text mentions what to do to convert towards other versions, as this\r\njob usually is in fact to be done on the other side (from the semantic\r\nlayer to the other version), and is highly likely to be missed.\r\n\r\nFor example, it's mentioned:\r\n\r\n> For reference, an HTTP/1.1 Section 3.2 of request target [HTTP11] in\r\n> authority-form always includes authority, a request target in absolute-form\r\n> includes authority if the target URI includes authority, and request\r\n> targets in origin- or asterisk-form do not include authority.\r\n\r\nJust having this starts to preclude rules on how to parse an HTTP/1\r\nrequest that dangerously overlap with [messaging].",
+      "createdAt": "2021-08-19T13:28:33Z",
+      "updatedAt": "2021-08-19T21:01:49Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "... @wtarreau continues\r\n\r\nI could suggest to simplify this part like this (don't take it word\r\nfor word, I'm trying to illustrate):\r\n\r\n> An intermediary that forwards a request to HTTP/2 MUST translate\r\n> any authority information from the request into an :authority\r\n> pseudo-header field. If the original request does not contain\r\n> authority information, the intermediary MUST NOT add an :authority\r\n> pseudo-header field. Please note that the presence of a Host header\r\n> field does not necessarily imply presence of an authority; refer\r\n> to [semantics] for details.",
+          "createdAt": "2021-08-19T13:29:25Z",
+          "updatedAt": "2021-08-19T13:29:25Z"
+        },
+        {
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@martinthomson, I don't believe #907 attempts to address this issue.",
+          "createdAt": "2021-08-19T21:01:48Z",
+          "updatedAt": "2021-08-19T21:01:48Z"
+        }
+      ]
+    },
+    {
+      "number": 915,
+      "id": "MDU6SXNzdWU5NzUwMDc2NTU=",
+      "title": "Stream State Machine and Extension Frames",
+      "url": "https://github.com/httpwg/http2-spec/issues/915",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As discussed in [Erratum 6309](https://www.rfc-editor.org/errata/eid6309), the current language of 5.1 prohibits *all* frames on closed streams other than the ones indicated.  It is not clear whether the requirement in Section 5.5 constitutes \"more specific guidance.\"  My suggestion in the erratum was to scope \"any frame\" to \"any frame defined in this document\" where we might allow an extension frame to appear, since that was the minimal change to the RFC 7540 text, but the editors might choose a broader rewording.",
+      "createdAt": "2021-08-19T20:09:26Z",
+      "updatedAt": "2021-08-20T10:09:17Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "So the text already says: \"Frames of unknown types are ignored.\" right next to the guidance you refer to.  Maybe we just need to be more direct about this.",
+          "createdAt": "2021-08-20T00:30:09Z",
+          "updatedAt": "2021-08-20T00:30:09Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "Be careful Martin, you removed the sentence \"Frames of unknown types are ignored\" so I think we're losing one piece of information when looking at the patch. I should re-read it withiin its context to make sure we don't miss anything, but I preferred to warn.",
+          "createdAt": "2021-08-20T10:09:17Z",
+          "updatedAt": "2021-08-20T10:09:17Z"
+        }
+      ]
+    },
+    {
+      "number": 916,
+      "id": "MDU6SXNzdWU5NzUwMjA5NzU=",
+      "title": "Frame \"contains\" an END_STREAM flag",
+      "url": "https://github.com/httpwg/http2-spec/issues/916",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "MikeBishop"
+      ],
+      "labels": [],
+      "body": "(Warning, I may have reached peak pedantry.)\r\n\r\nIn Section 5.1, there are two references to frames which \"contain\" an END_STREAM flag. All HEADERS, CONTINUATION, and DATA frames contain this flag, which might be set or not.  Most other references in the document are to the flag being set, which is more precise.\r\n\r\nThere are also two references to frames \"bearing\" END_STREAM, which could be taken either way.",
+      "createdAt": "2021-08-19T20:25:02Z",
+      "updatedAt": "2021-08-20T02:00:19Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If you care enough to write the issue, maybe you also care enough to offer a pull request.",
+          "createdAt": "2021-08-20T00:31:10Z",
+          "updatedAt": "2021-08-20T00:31:10Z"
+        }
+      ]
+    },
+    {
+      "number": 917,
+      "id": "MDU6SXNzdWU5NzUwMzAxNzM=",
+      "title": "Inconsistent capitalization of \"Flag(s)\"",
+      "url": "https://github.com/httpwg/http2-spec/issues/917",
+      "state": "CLOSED",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "In various cases, the term \"Flag\" is capitalized, e.g.:\r\n\r\n>When set, the PRIORITY Flag indicates that the Exclusive, Stream Dependency, and Weight fields are present.\r\n\r\nIn others, it's not:\r\n\r\n>A HEADERS frame without the END_HEADERS flag set....\r\n\r\nI can't identify a consistent rationale for when it is capitalized and when not.",
+      "createdAt": "2021-08-19T20:38:20Z",
+      "updatedAt": "2021-08-20T10:17:41Z",
+      "closedAt": "2021-08-20T10:17:41Z",
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I don't know if it is just the limitations of my search, but I just searched for `/[A-Z]+ flag/` and `/[A-Z]+ Flag/` and I found just one of the former.  That is the one case you found.\r\n\r\nAs in QUIC, I think we can refer to the fields in the frame layouts in the Title Case form in which they are presented.  That is also the minimal change.",
+          "createdAt": "2021-08-20T00:19:41Z",
+          "updatedAt": "2021-08-20T00:19:41Z"
+        }
+      ]
+    },
+    {
+      "number": 927,
+      "id": "MDU6SXNzdWU5NzU4NDc1MzE=",
+      "title": "Padding constraint on HEADERS",
+      "url": "https://github.com/httpwg/http2-spec/issues/927",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "[Section 6.2](https://httpwg.org/http2-spec/draft-ietf-httpbis-http2bis.html#name-headers) says:\r\n\r\n> The total number of padding octets is determined by the value of the Pad Length field. Padding that exceeds the size remaining for the field block fragment MUST be treated as a PROTOCOL_ERROR.\r\n\r\nI think the intended reading is that when the parser reaches the point that only the FBF and the Padding remain, the length of Padding is given by Pad Length and the fragment is the balance.  If Pad Length exceeds the remaining length of the frame, it's an error.\r\n\r\nThere is a less-likely reading also allowed by the current phrasing, that Pad Length can't be more than half the remaining bytes (else Padding would exceed the size of the field block fragment).  That's very unlikely to be the intended reading, but we should be clear here.\r\n\r\nI'd suggest simply taking the note from the end of DATA and putting it here verbatim.",
+      "createdAt": "2021-08-20T18:57:09Z",
+      "updatedAt": "2021-08-20T18:57:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 929,
+      "id": "MDU6SXNzdWU5NzU4OTgwNzY=",
+      "title": "Request control data and header section?",
+      "url": "https://github.com/httpwg/http2-spec/issues/929",
+      "state": "CLOSED",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In PUSH_PROMISE, it says:\r\n\r\n> Field Block Fragment:\r\n> A field block fragment (Section 4.3) containing request control data and header section.\r\n\r\nIt contains the request header section, but what is request control data?",
+      "createdAt": "2021-08-20T20:22:42Z",
+      "updatedAt": "2021-08-20T20:24:11Z",
+      "closedAt": "2021-08-20T20:24:11Z",
+      "comments": [
+        {
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Ah, I see -- this is a reference to Section 8.3, which uses that term to encompass the pseudo-header fields.",
+          "createdAt": "2021-08-20T20:24:11Z",
+          "updatedAt": "2021-08-20T20:24:11Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -37138,6 +37363,660 @@
           "createdAt": "2021-08-17T12:45:37Z",
           "updatedAt": "2021-08-17T12:45:37Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 907,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE1ODAyOTk0",
+      "title": "Avoid previous versions, use RFC7540",
+      "url": "https://github.com/httpwg/http2-spec/pull/907",
+      "state": "MERGED",
+      "author": "Lukasa",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "Resolves #904.",
+      "createdAt": "2021-08-19T10:21:35Z",
+      "updatedAt": "2021-08-20T06:59:03Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "609609e332ecd562e156010ef0a0987eb6cb3874",
+      "headRepository": "Lukasa/http2-spec",
+      "headRefName": "cb-versions",
+      "headRefOid": "15107f6665a43f274d2383c63062011c38e7e9cd",
+      "closedAt": "2021-08-20T06:59:03Z",
+      "mergedAt": "2021-08-20T06:59:03Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "27b3252dc5e3d2725235411b676b95bb01bea182"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0MDU2MDcz",
+          "commit": {
+            "abbreviatedOid": "03cf2c6"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-19T14:23:44Z",
+          "updatedAt": "2021-08-19T14:24:44Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n            Note: <xref target=\"RFC7540\">RFC 7540</xref> used the term \"header block\" in place of\r\n```\r\nIn prose, the name has a space (it should be non-breaking, but I don't tolerate `&#xa0;` very well.",
+              "createdAt": "2021-08-19T14:23:44Z",
+              "updatedAt": "2021-08-19T14:24:44Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\n         <xref target=\"RFC7540\" section=\"11.8\"/> registered an upgrade\r\n```\r\nI don't know what your version would have rendered as.  If you want to try it out and share, then maybe try that.  With a space, of course.",
+              "createdAt": "2021-08-19T14:24:00Z",
+              "updatedAt": "2021-08-19T14:24:44Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0MTQyMjg2",
+          "commit": {
+            "abbreviatedOid": "03cf2c6"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-19T15:13:14Z",
+          "updatedAt": "2021-08-19T15:13:14Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0MTUwMDYy",
+          "commit": {
+            "abbreviatedOid": "03cf2c6"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-19T15:19:53Z",
+          "updatedAt": "2021-08-19T15:19:53Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "I don\u2019t have a proper computer on me and I\u2019m too lazy to spin up a cloud VM so I\u2019m just gonna do it your way.",
+              "createdAt": "2021-08-19T15:19:53Z",
+              "updatedAt": "2021-08-19T15:19:53Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 908,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE1ODMyMTI2",
+      "title": "ref HTTP early (closes #885)",
+      "url": "https://github.com/httpwg/http2-spec/pull/908",
+      "state": "MERGED",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "",
+      "createdAt": "2021-08-19T11:03:52Z",
+      "updatedAt": "2021-08-19T14:25:13Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "609609e332ecd562e156010ef0a0987eb6cb3874",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-4",
+      "headRefOid": "145fc1263a0964a7d64fe18fb10fcf957cc08b84",
+      "closedAt": "2021-08-19T14:25:08Z",
+      "mergedAt": "2021-08-19T14:25:08Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "58106c1415ef25095aabb027bb3446ed1af929a9"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 909,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE1ODQ0MTU4",
+      "title": "Update core references",
+      "url": "https://github.com/httpwg/http2-spec/pull/909",
+      "state": "MERGED",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-19T11:20:36Z",
+      "updatedAt": "2021-08-19T14:25:38Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "609609e332ecd562e156010ef0a0987eb6cb3874",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-5",
+      "headRefOid": "91dd2bf31fbdd15c0b49044f1f665b4156663599",
+      "closedAt": "2021-08-19T14:25:33Z",
+      "mergedAt": "2021-08-19T14:25:32Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "41c93a51692456589f08107742de96e3ace22d6e"
+      },
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Rapidly moving target.",
+          "createdAt": "2021-08-19T14:25:38Z",
+          "updatedAt": "2021-08-19T14:25:38Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 910,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE1OTExNDU1",
+      "title": "Use absolute-path",
+      "url": "https://github.com/httpwg/http2-spec/pull/910",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Thanks @wtarreau for find this little discrepancy.",
+      "createdAt": "2021-08-19T12:58:26Z",
+      "updatedAt": "2021-08-19T14:03:54Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "609609e332ecd562e156010ef0a0987eb6cb3874",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "absolute-path",
+      "headRefOid": "01e816038951b803e7e33121adc8d2f23de98cf3",
+      "closedAt": "2021-08-19T14:03:54Z",
+      "mergedAt": "2021-08-19T14:03:54Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "c668acf59521a6590202a2d51a575cef21f120f6"
+      },
+      "comments": [
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "It looks so simple each time you do it for me, Martin :-)\r\nYes that completely solves the problem, thank you! Then I'm going to change my code to relax this now.",
+          "createdAt": "2021-08-19T13:46:58Z",
+          "updatedAt": "2021-08-19T13:46:58Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0MDMxMzIx",
+          "commit": {
+            "abbreviatedOid": "01e8160"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-19T14:03:46Z",
+          "updatedAt": "2021-08-19T14:03:46Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 911,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE1OTIzNDIw",
+      "title": "ref HTTP \"field lines\"",
+      "url": "https://github.com/httpwg/http2-spec/pull/911",
+      "state": "MERGED",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-19T13:12:42Z",
+      "updatedAt": "2021-08-19T14:07:22Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "609609e332ecd562e156010ef0a0987eb6cb3874",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-6",
+      "headRefOid": "0af7b97de1675bf727a43e359730360744eee472",
+      "closedAt": "2021-08-19T14:07:22Z",
+      "mergedAt": "2021-08-19T14:07:22Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "e0f4a5658d561512f4bed47057d126499e6725ea"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0MDM1NjA4",
+          "commit": {
+            "abbreviatedOid": "0af7b97"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-19T14:07:17Z",
+          "updatedAt": "2021-08-19T14:07:17Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 914,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE1OTQ5ODg4",
+      "title": "extending H2: make ref to settings more generic",
+      "url": "https://github.com/httpwg/http2-spec/pull/914",
+      "state": "MERGED",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Which changes\r\n\r\n> Extensions are permitted to use new frame types (Section 4.1), new settings (Section 6.5.2), or new error codes (Section 7).\r\n\r\nto\r\n\r\n> Extensions are permitted to use new frame types (Section 4.1), new settings (Section 6.5), or new error codes (Section 7).",
+      "createdAt": "2021-08-19T13:44:51Z",
+      "updatedAt": "2021-08-19T14:19:54Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "609609e332ecd562e156010ef0a0987eb6cb3874",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-7",
+      "headRefOid": "c92b68d78f3f19d72c68091b1ffed0197e322be9",
+      "closedAt": "2021-08-19T14:19:10Z",
+      "mergedAt": "2021-08-19T14:19:10Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "9206ea03af55c551b50f47f5eae15b828f22fec1"
+      },
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The new reference is to the frame type (not the settings themselves), so I might have preferred the original, but I don't mind.  The section is about more than the frame anyway.",
+          "createdAt": "2021-08-19T14:19:38Z",
+          "updatedAt": "2021-08-19T14:19:54Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0MDMzMDI0",
+          "commit": {
+            "abbreviatedOid": "c92b68d"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-19T14:05:09Z",
+          "updatedAt": "2021-08-19T14:05:09Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 918,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2MzQ1ODA0",
+      "title": "Just one missing title case flag name",
+      "url": "https://github.com/httpwg/http2-spec/pull/918",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "Closes #917.",
+      "createdAt": "2021-08-20T00:20:13Z",
+      "updatedAt": "2021-08-20T14:21:03Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "41c93a51692456589f08107742de96e3ace22d6e",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "flag",
+      "headRefOid": "129fc70f0cfeae14da1d462c1d440514c676dfad",
+      "closedAt": "2021-08-20T10:17:41Z",
+      "mergedAt": "2021-08-20T10:17:41Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "5e0cca4f4bff4cd88393726e54b3647647aee584"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0ODg1Njk4",
+          "commit": {
+            "abbreviatedOid": "129fc70"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-20T10:17:37Z",
+          "updatedAt": "2021-08-20T10:17:37Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 919,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2MzQ5Mjcz",
+      "title": "More regarding erratum 6309",
+      "url": "https://github.com/httpwg/http2-spec/pull/919",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "We could try to make every statement precise.  We could add \"of the\r\nframes defined in this document\" to a bunch of places.  Or we could make\r\na (better) blanket statement.  That is what this does.\r\n\r\nCloses #915.",
+      "createdAt": "2021-08-20T00:30:18Z",
+      "updatedAt": "2021-08-20T14:18:06Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "41c93a51692456589f08107742de96e3ace22d6e",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "just-these",
+      "headRefOid": "2a72a3a9b2bc60c0ac9689fc3f4a4f9056c03225",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM0ODg1Mzc2",
+          "commit": {
+            "abbreviatedOid": "2a72a3a"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I think this is fine.",
+          "createdAt": "2021-08-20T10:17:10Z",
+          "updatedAt": "2021-08-20T10:17:10Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1MDc4NjU1",
+          "commit": {
+            "abbreviatedOid": "2a72a3a"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-20T14:18:06Z",
+          "updatedAt": "2021-08-20T14:18:06Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 920,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjI2MTEw",
+      "title": "Clarify who may send PUSH_PROMISE frames",
+      "url": "https://github.com/httpwg/http2-spec/pull/920",
+      "state": "OPEN",
+      "author": "Lukasa",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "Covers #878 in tandem with #879.",
+      "createdAt": "2021-08-20T10:29:47Z",
+      "updatedAt": "2021-08-20T10:29:47Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "Lukasa/http2-spec",
+      "headRefName": "cb-push-promise-from-client",
+      "headRefOid": "93711fdf0ee50c856b210c327e04af78a043a9d8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 921,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjUyMDk0",
+      "title": "add missing parentheses",
+      "url": "https://github.com/httpwg/http2-spec/pull/921",
+      "state": "OPEN",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-20T11:12:23Z",
+      "updatedAt": "2021-08-20T11:12:23Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-8",
+      "headRefOid": "a5381f9e73611601114aae3ae4adb91505c3d5ba",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 922,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjY4MDA2",
+      "title": "fix punctuation",
+      "url": "https://github.com/httpwg/http2-spec/pull/922",
+      "state": "OPEN",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-20T11:38:53Z",
+      "updatedAt": "2021-08-20T11:38:53Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-9",
+      "headRefOid": "93962257f883915028ca49f87ec987ea3cb33169",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 923,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjczNTk4",
+      "title": "fix xref",
+      "url": "https://github.com/httpwg/http2-spec/pull/923",
+      "state": "OPEN",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "currently comes out as:\r\n\r\n >  For reference, an HTTP/1.1 Section 3.2 of request target [HTTP11] in ...",
+      "createdAt": "2021-08-20T11:48:51Z",
+      "updatedAt": "2021-08-20T11:48:51Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-10",
+      "headRefOid": "5928ae60b361922e7592c7d868f5ff29782c85b3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 924,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjgzNzgz",
+      "title": "fix broken link",
+      "url": "https://github.com/httpwg/http2-spec/pull/924",
+      "state": "OPEN",
+      "author": "reschke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-20T12:06:03Z",
+      "updatedAt": "2021-08-20T12:06:03Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "reschke/http2-spec",
+      "headRefName": "patch-11",
+      "headRefOid": "5de1feba66fb63dac06351a10dfb003b5c433253",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 925,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2NzgzMDkw",
+      "title": "Lowercase \"flag\" when not in frame artwork",
+      "url": "https://github.com/httpwg/http2-spec/pull/925",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I believe the rule in #918 is supposed to be that the layout diagrams use \"FOO Flag\", while the prose uses \"the FOO flag.\"  If so, this lowercases some other instances.",
+      "createdAt": "2021-08-20T14:30:18Z",
+      "updatedAt": "2021-08-20T14:30:18Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "fun_with_flags",
+      "headRefOid": "caf877ec2c32b0bfe41160ac224128909efe0fe8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 926,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2Nzg2NzM4",
+      "title": "Contains is not set",
+      "url": "https://github.com/httpwg/http2-spec/pull/926",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #916.",
+      "createdAt": "2021-08-20T14:35:21Z",
+      "updatedAt": "2021-08-20T18:44:35Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "contains",
+      "headRefOid": "26a5431d4a48dddec9382887f0ebcb2b93d52525",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 928,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE2OTM3MTIx",
+      "title": "Padding text on HEADERS",
+      "url": "https://github.com/httpwg/http2-spec/pull/928",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #927 by copying the text from DATA",
+      "createdAt": "2021-08-20T18:57:57Z",
+      "updatedAt": "2021-08-20T18:59:01Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "headers_padding",
+      "headRefOid": "469ea7b2b9b620417454998701a92f46263c2e58",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 930,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3MDA0MTE5",
+      "title": "Nits through S7",
+      "url": "https://github.com/httpwg/http2-spec/pull/930",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Nits through Section 7; more to follow.",
+      "createdAt": "2021-08-20T21:19:04Z",
+      "updatedAt": "2021-08-20T21:21:15Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "nits",
+      "headRefOid": "7f887c93c134e25cf43520980076870300c75efa",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1Mzk0Mjcy",
+          "commit": {
+            "abbreviatedOid": "7f887c9"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-20T21:21:15Z",
+          "updatedAt": "2021-08-20T21:21:15Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "I'm also ambivalent about quoting \"closed\" here, since we usually only quote when talking about 'caused the stream to enter the \"closed\" state'",
+              "createdAt": "2021-08-20T21:21:15Z",
+              "updatedAt": "2021-08-20T21:21:15Z"
+            }
+          ]
         }
       ]
     }
