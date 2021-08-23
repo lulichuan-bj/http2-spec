@@ -131,6 +131,11 @@ Table of Contents
      8.6.  The Upgrade Header Field
      8.7.  Request Reliability
      8.8.  Examples
+       8.8.1.  Simple Request
+       8.8.2.  Simple Response
+       8.8.3.  Complex Request
+       8.8.4.  Response with Body
+       8.8.5.  Informational Responses
    9.  HTTP/2 Connections
      9.1.  Connection Management
        9.1.1.  Connection Reuse
@@ -189,10 +194,10 @@ Table of Contents
 
    HTTP/2 addresses these issues by defining an optimized mapping of
    HTTP's semantics to an underlying connection.  Specifically, it
-   allows interleaving of request and response messages on the same
-   connection and uses an efficient coding for HTTP fields.  It also
-   allows prioritization of requests, letting more important requests
-   complete more quickly, further improving performance.
+   allows interleaving of messages on the same connection and uses an
+   efficient coding for HTTP fields.  It also allows prioritization of
+   requests, letting more important requests complete more quickly,
+   further improving performance.
 
    The resulting protocol is more friendly to the network because fewer
    TCP connections can be used in comparison to HTTP/1.x.  This means
@@ -569,13 +574,12 @@ Table of Contents
    contained in PUSH_PROMISE (Section 6.6) frames, can optionally
    include a field block that carries a trailer section.
 
-   A field section is a collection of zero or more field lines.  Each of
-   the field lines in a field block carry a single value.  The
-   serialized field block is then divided into one or more octet
-   sequences, called field block fragments, and transmitted within the
-   frame payload of HEADERS (Section 6.2) or PUSH_PROMISE (Section 6.6),
-   each of which could be followed by CONTINUATION (Section 6.10)
-   frames.
+   A field section is a collection of field lines.  Each of the field
+   lines in a field block carry a single value.  The serialized field
+   block is then divided into one or more octet sequences, called field
+   block fragments, and transmitted within the frame payload of HEADERS
+   (Section 6.2) or PUSH_PROMISE (Section 6.6), each of which could be
+   followed by CONTINUATION (Section 6.10) frames.
 
    The Cookie header field [COOKIE] is treated specially by the HTTP
    mapping (see Section 8.2.3).
@@ -2914,6 +2918,8 @@ Table of Contents
    This section shows HTTP/1.1 requests and responses, with
    illustrations of equivalent HTTP/2 requests and responses.
 
+8.8.1.  Simple Request
+
    An HTTP GET request includes control data and a request header with
    no message content and is therefore transmitted as a single HEADERS
    frame, followed by zero or more CONTINUATION frames containing the
@@ -2926,9 +2932,12 @@ Table of Contents
      Accept: image/jpeg                 + END_HEADERS
                                           :method = GET
                                           :scheme = https
+                                          :authority = example.org
                                           :path = /resource
                                           host = example.org
                                           accept = image/jpeg
+
+8.8.2.  Simple Response
 
    Similarly, a response that includes only control data and a response
    header is transmitted as a HEADERS frame (again, followed by zero or
@@ -2942,6 +2951,8 @@ Table of Contents
                                           etag = "xyzzy"
                                           expires = Thu, 23 Jan ...
 
+8.8.3.  Complex Request
+
    An HTTP POST request that includes control data and a request header
    and message content is transmitted as one HEADERS frame, followed by
    zero or more CONTINUATION frames containing the request header,
@@ -2953,6 +2964,7 @@ Table of Contents
      Host: example.org          ==>     - END_STREAM
      Content-Type: image/jpeg           - END_HEADERS
      Content-Length: 123                  :method = POST
+                                          :authority = example.org
                                           :path = /resource
      {binary data}                        :scheme = https
 
@@ -2970,6 +2982,8 @@ Table of Contents
    between field block fragments.  The allocation of field lines to
    frames in this example is illustrative only.
 
+8.8.4.  Response with Body
+
    A response that includes control data and a response header and
    message content is transmitted as a HEADERS frame, followed by zero
    or more CONTINUATION frames, followed by one or more DATA frames,
@@ -2986,6 +3000,8 @@ Table of Contents
                                       DATA
                                         + END_STREAM
                                       {binary data}
+
+8.8.5.  Informational Responses
 
    An informational response using a 1xx status code other than 101 is
    transmitted as a HEADERS frame, followed by zero or more CONTINUATION
