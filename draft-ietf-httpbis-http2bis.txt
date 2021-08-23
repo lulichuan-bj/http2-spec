@@ -701,10 +701,11 @@ Table of Contents
 
       The following transitions are valid from this state:
 
-      *  Sending or receiving a HEADERS frame causes the stream to
-         become "open".  The stream identifier is selected as described
-         in Section 5.1.1.  The same HEADERS frame can also cause a
-         stream to immediately become "half-closed".
+      *  Sending a HEADERS frame as a client, or receiving a HEADERS
+         frame as a server, causes the stream to become "open".  The
+         stream identifier is selected as described in Section 5.1.1.
+         The same HEADERS frame can also cause a stream to immediately
+         become "half-closed".
 
       *  Sending a PUSH_PROMISE frame on another stream reserves the
          idle stream that is identified for later use.  The stream state
@@ -720,7 +721,10 @@ Table of Contents
 
       Receiving any frame other than HEADERS or PRIORITY on a stream in
       this state MUST be treated as a connection error (Section 5.4.1)
-      of type PROTOCOL_ERROR.
+      of type PROTOCOL_ERROR.  If this stream is server-initiated, as
+      described in Section 5.1.1, then receiving a HEADERS frame MUST
+      also be treated as a connection error (Section 5.4.1) of type
+      PROTOCOL_ERROR.
 
    reserved (local):  A stream in the "reserved (local)" state is one
       that has been promised by sending a PUSH_PROMISE frame.  A
