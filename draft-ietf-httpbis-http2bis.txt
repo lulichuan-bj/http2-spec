@@ -2553,6 +2553,11 @@ Table of Contents
    header field that appears in a field block after a regular field line
    MUST be treated as malformed (Section 8.1.1).
 
+   The same pseudo-header field name MUST NOT appear more than once in a
+   field block.  A field block for an HTTP request or response that
+   contains a repeated pseudo-header field name MUST be treated as
+   malformed (Section 8.1.1).
+
 8.3.1.  Request Pseudo-Header Fields
 
    The following pseudo-header fields are defined for HTTP/2 requests:
