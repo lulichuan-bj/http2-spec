@@ -390,14 +390,15 @@ Table of Contents
 3.3.  Starting HTTP/2 with Prior Knowledge
 
    A client can learn that a particular server supports HTTP/2 by other
-   means.  For example, [ALT-SVC] describes a mechanism for advertising
-   this capability.
+   means.  For example, a client could be configured with knowledge that
+   a server supports HTTP/2.
 
-   A client MUST send the connection preface (Section 3.4) and then MAY
-   immediately send HTTP/2 frames to such a server; servers can identify
-   these connections by the presence of the connection preface.  This
-   only affects the establishment of HTTP/2 connections over cleartext
-   TCP; implementations that support HTTP/2 over TLS MUST use protocol
+   A client that knows that a server supports HTTP/2 can establish a TCP
+   connection and send the connection preface (Section 3.4) followed by
+   HTTP/2 frames.  Servers can identify these connections by the
+   presence of the connection preface.  This only affects the
+   establishment of HTTP/2 connections over cleartext TCP;
+   implementations that support HTTP/2 over TLS MUST use protocol
    negotiation in TLS [TLS-ALPN].
 
    Likewise, the server MUST send a connection preface (Section 3.4).
