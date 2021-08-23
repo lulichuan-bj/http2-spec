@@ -778,16 +778,16 @@ Table of Contents
       state cannot be used for sending frames other than WINDOW_UPDATE,
       PRIORITY, and RST_STREAM.
 
-      A stream transitions from this state to "closed" when a frame that
-      contains an END_STREAM flag is received or when either peer sends
-      a RST_STREAM frame.
+      A stream transitions from this state to "closed" when a frame is
+      received with the END_STREAM flag set or when either peer sends a
+      RST_STREAM frame.
 
       An endpoint can receive any type of frame in this state.
       Providing flow-control credit using WINDOW_UPDATE frames is
       necessary to continue receiving flow-controlled frames.  In this
       state, a receiver can ignore WINDOW_UPDATE frames, which might
-      arrive for a short period after a frame bearing the END_STREAM
-      flag is sent.
+      arrive for a short period after a frame with the END_STREAM flag
+      set is sent.
 
       PRIORITY frames can be received in this state.
 
@@ -807,7 +807,7 @@ Table of Contents
       (Section 5.2).
 
       A stream can transition from this state to "closed" by sending a
-      frame that contains an END_STREAM flag or when either peer sends a
+      frame with the END_STREAM flag set or when either peer sends a
       RST_STREAM frame.
 
    closed:  The "closed" state is the terminal state.
@@ -1398,10 +1398,10 @@ Table of Contents
       field block (Section 4.3) is the last that the endpoint will send
       for the identified stream.
 
-      A HEADERS frame carries the END_STREAM flag that signals the end
-      of a stream.  However, a HEADERS frame with the END_STREAM flag
-      set can be followed by CONTINUATION frames on the same stream.
-      Logically, the CONTINUATION frames are part of the HEADERS frame.
+      A HEADERS frame with the END_STREAM flag set signals the end of a
+      stream.  However, a HEADERS frame with the END_STREAM flag set can
+      be followed by CONTINUATION frames on the same stream.  Logically,
+      the CONTINUATION frames are part of the HEADERS frame.
 
    The frame payload of a HEADERS frame contains a field block fragment
    (Section 4.3).  A field block that does not fit within a HEADERS
@@ -2064,8 +2064,8 @@ Table of Contents
    of type PROTOCOL_ERROR; errors on the connection flow-control window
    MUST be treated as a connection error (Section 5.4.1).
 
-   WINDOW_UPDATE can be sent by a peer that has sent a frame bearing the
-   END_STREAM flag.  This means that a receiver could receive a
+   WINDOW_UPDATE can be sent by a peer that has sent a frame with the
+   END_STREAM flag set.  This means that a receiver could receive a
    WINDOW_UPDATE frame on a "half-closed (remote)" or "closed" stream.
    A receiver MUST NOT treat this as an error (see Section 5.1).
 
@@ -2324,11 +2324,12 @@ Table of Contents
    interim response consists of a HEADERS frames (which might be
    followed by zero or more CONTINUATION frames) containing the control
    data and header section of an interim (1xx) HTTP response (see
-   Section 15 of [HTTP]).  A HEADERS frame with an END_STREAM flag that
-   carries an informational status code is malformed (Section 8.1.1).
+   Section 15 of [HTTP]).  A HEADERS frame with the END_STREAM flag set
+   that carries an informational status code is malformed
+   (Section 8.1.1).
 
    The last frame in the sequence bears an END_STREAM flag, noting that
-   a HEADERS frame bearing the END_STREAM flag can be followed by
+   a HEADERS frame with the END_STREAM flag set can be followed by
    CONTINUATION frames that carry any remaining fragments of the field
    block.
 
@@ -2354,8 +2355,8 @@ Table of Contents
 
    An HTTP request/response exchange fully consumes a single stream.  A
    request starts with the HEADERS frame that puts the stream into an
-   "open" state.  The request ends with a frame bearing END_STREAM,
-   which causes the stream to become "half-closed (local)" for the
+   "open" state.  The request ends with a frame with the END_STREAM flag
+   set, which causes the stream to become "half-closed (local)" for the
    client and "half-closed (remote)" for the server.  A response stream
    starts with zero or more interim responses in HEADERS frames or a
    HEADERS frame containing a final status code.
@@ -2368,7 +2369,7 @@ Table of Contents
    that has not been sent and received.  When this is true, a server MAY
    request that the client abort transmission of a request without error
    by sending a RST_STREAM with an error code of NO_ERROR after sending
-   a complete response (i.e., a frame with the END_STREAM flag).
+   a complete response (i.e., a frame with the END_STREAM flag set).
    Clients MUST NOT discard responses as a result of receiving such a
    RST_STREAM, though clients can always discard responses at their
    discretion for other reasons.
@@ -2785,11 +2786,11 @@ Table of Contents
    The response for a PUSH_PROMISE stream begins with a HEADERS frame,
    which immediately puts the stream into the "half-closed (remote)"
    state for the server and "half-closed (local)" state for the client,
-   and ends with a frame bearing END_STREAM, which places the stream in
-   the "closed" state.
+   and ends with a frame with the END_STREAM flag set, which places the
+   stream in the "closed" state.
 
       |  Note: The client never sends a frame with the END_STREAM flag
-      |  for a server push.
+      |  set for a server push.
 
 8.5.  The CONNECT Method
 
@@ -2833,7 +2834,7 @@ Table of Contents
    The TCP connection can be closed by either peer.  The END_STREAM flag
    on a DATA frame is treated as being equivalent to the TCP FIN bit.  A
    client is expected to send a DATA frame with the END_STREAM flag set
-   after receiving a frame bearing the END_STREAM flag.  A proxy that
+   after receiving a frame with the END_STREAM flag set.  A proxy that
    receives a DATA frame with the END_STREAM flag set sends the attached
    data with the FIN bit set on the last TCP segment.  A proxy that
    receives a TCP segment with the FIN bit set sends a DATA frame with
