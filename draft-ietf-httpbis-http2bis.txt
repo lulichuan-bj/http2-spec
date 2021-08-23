@@ -224,11 +224,13 @@ Table of Contents
    stalled request or response does not prevent progress on other
    streams.
 
-   Flow control and prioritization ensure that it is possible to
-   efficiently use multiplexed streams.  Flow control (Section 5.2)
-   helps to ensure that only data that can be used by a receiver is
-   transmitted.  Prioritization (Section 5.3) ensures that limited
-   resources can be directed to the most important streams first.
+   Effective use of multiplexing depends on flow control and
+   prioritization.  Flow control (Section 5.2) ensures that it is
+   possible to efficiently use multiplexed streams by restricting data
+   that is transmitted to what the receiver is able to handle.
+   Prioritization (Section 5.3) ensures that limited resources are used
+   most effectively.  This revision of HTTP/2 deprecates the priority
+   signaling scheme from [RFC7540].
 
    Because HTTP fields used in a connection can contain large amounts of
    redundant data, frames that contain them are compressed
