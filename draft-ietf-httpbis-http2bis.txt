@@ -812,14 +812,14 @@ Table of Contents
 
    closed:  The "closed" state is the terminal state.
 
-      An stream enters the "closed" state after an endpoint both sends
+      A stream enters the "closed" state after an endpoint both sends
       and receives a frame with an END_STREAM flag set.  A stream also
       enters the "closed" state after an endpoint either sends or
       receives a RST_STREAM frame.
 
       An endpoint MUST NOT send frames other than PRIORITY on a closed
       stream.  An endpoint MAY treat receipt of any other type of frame
-      on a "closed" stream as a connection error (Section 5.4.1) of type
+      on a closed stream as a connection error (Section 5.4.1) of type
       STREAM_CLOSED, except as noted below.
 
       An endpoint that sends a frame with the END_STREAM flag set or a
@@ -840,9 +840,9 @@ Table of Contents
 
       An endpoint can perform this minimal processing for all streams
       that are in the "closed" state.  Endpoints MAY use other signals
-      to detect that a peer has received the frames that caused stream
-      to become "closed" and treat receipt of any frame other than
-      PRIORITY as a connection error (Section 5.4.1) of type
+      to detect that a peer has received the frames that caused the
+      stream to enter the "closed" state and treat receipt of any frame
+      other than PRIORITY as a connection error (Section 5.4.1) of type
       PROTOCOL_ERROR.  Endpoints can use frames that indicate that the
       peer has received the closing signal to drive this.  Endpoints
       SHOULD NOT use timers for this purpose.  For example, an endpoint
@@ -921,7 +921,7 @@ Table of Contents
    stream limit to be exceeded MUST treat this as a stream error
    (Section 5.4.2) of type PROTOCOL_ERROR or REFUSED_STREAM.  The choice
    of error code determines whether the endpoint wishes to enable
-   automatic retry (see Section 8.7) for details).
+   automatic retry (see Section 8.7 for details).
 
    An endpoint that wishes to reduce the value of
    SETTINGS_MAX_CONCURRENT_STREAMS to a value that is below the current
@@ -1172,8 +1172,8 @@ Table of Contents
 
 5.4.3.  Connection Termination
 
-   If the TCP connection is closed or reset while streams remain in
-   "open" or "half-closed" state, then the affected streams cannot be
+   If the TCP connection is closed or reset while streams remain in the
+   "open" or "half-closed" states, then the affected streams cannot be
    automatically retried (see Section 8.7 for details).
 
 5.5.  Extending HTTP/2
@@ -1203,7 +1203,7 @@ Table of Contents
    MUST be treated as a connection error (Section 5.4.1) of type
    PROTOCOL_ERROR.
 
-   Extensions SHOULD avoiding changing protocol elements defined in this
+   Extensions SHOULD avoid changing protocol elements defined in this
    document or elements for which no extension mechanism is defined.
    This includes changes to the layout of frames, additions or changes
    to the way that frames are composed into HTTP messages (Section 8.1),
@@ -1240,7 +1240,7 @@ Table of Contents
    connection state, successful communication within the connection will
    no longer be possible.  Therefore, it is important that endpoints
    have a shared comprehension of how the state is affected by the use
-   any given frame.
+   of any given frame.
 
 6.1.  DATA
 
@@ -1587,7 +1587,7 @@ Table of Contents
      Reserved (1),
      Stream Identifier (31),
 
-     Setting (..) ...,
+     Setting (48) ...,
    }
 
    Setting {
@@ -1731,7 +1731,7 @@ Table of Contents
       padding in units of octets.  This field is only present if the
       PADDED flag is set.
 
-   R:  A single reserved bit.
+   Reserved:  A single reserved bit.
 
    Promised Stream ID:  An unsigned 31-bit integer that identifies the
       stream that is reserved by the PUSH_PROMISE.  The promised stream
