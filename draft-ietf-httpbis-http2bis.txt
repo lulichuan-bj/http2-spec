@@ -582,7 +582,7 @@ Table of Contents
 
    A complete field section consists of either:
 
-   *  a single HEADERS or PUSH_PROMISE frame, with the END_HEADERS Flag
+   *  a single HEADERS or PUSH_PROMISE frame, with the END_HEADERS flag
       set, or
 
    *  a HEADERS or PUSH_PROMISE frame with the END_HEADERS flag cleared
@@ -1549,7 +1549,7 @@ Table of Contents
    SETTINGS frames are acknowledged by the receiving peer.  To enable
    this, the SETTINGS frame defines the ACK flag:
 
-   ACK (0x1):  When set, the ACK Flag indicates that this frame
+   ACK (0x1):  When set, the ACK flag indicates that this frame
       acknowledges receipt and application of the peer's SETTINGS frame.
       When this bit is set, the frame payload of the SETTINGS frame MUST
       be empty.  Receipt of a SETTINGS frame with the ACK flag set and a
@@ -1851,7 +1851,7 @@ Table of Contents
 
    The PING frame defines the following flags:
 
-   ACK (0x1):  When set, the ACK Flag indicates that this PING frame is
+   ACK (0x1):  When set, the ACK flag indicates that this PING frame is
       a PING response.  An endpoint MUST set this flag in PING
       responses.  An endpoint MUST NOT respond to PING frames containing
       this flag.
@@ -2214,10 +2214,10 @@ Table of Contents
 
    The CONTINUATION frame defines the following flag:
 
-   END_HEADERS (0x4):  When set, the END_HEADERS Flag indicates that
+   END_HEADERS (0x4):  When set, the END_HEADERS flag indicates that
       this frame ends a field block (Section 4.3).
 
-      If the END_HEADERS Flag is not set, this frame MUST be followed by
+      If the END_HEADERS flag is not set, this frame MUST be followed by
       another CONTINUATION frame.  A receiver MUST treat the receipt of
       any other type of frame or a frame on a different stream as a
       connection error (Section 5.4.1) of type PROTOCOL_ERROR.
