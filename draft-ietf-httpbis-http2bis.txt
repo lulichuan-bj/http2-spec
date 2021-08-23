@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 23 February 2022                                 22 August 2021
+Expires: 24 February 2022                                 23 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 February 2022.
+   This Internet-Draft will expire on 24 February 2022.
 
 Copyright Notice
 
@@ -1416,8 +1416,12 @@ Table of Contents
    Section 4.3.
 
    The total number of padding octets is determined by the value of the
-   Pad Length field.  Padding that exceeds the size remaining for the
-   field block fragment MUST be treated as a PROTOCOL_ERROR.
+   Pad Length field.  If the length of the padding is the length of the
+   frame payload or greater, the recipient MUST treat this as a
+   connection error (Section 5.4.1) of type PROTOCOL_ERROR.
+
+      |  Note: A frame can be increased in size by one octet by
+      |  including a Pad Length field with a value of zero.
 
 6.3.  PRIORITY
 
@@ -1804,8 +1808,12 @@ Table of Contents
    "idle" state.
 
    The total number of padding octets is determined by the value of the
-   Pad Length field.  Padding that exceeds the size remaining for the
-   field block fragment MUST be treated as a PROTOCOL_ERROR.
+   Pad Length field.  If the length of the padding is the length of the
+   frame payload or greater, the recipient MUST treat this as a
+   connection error (Section 5.4.1) of type PROTOCOL_ERROR.
+
+      |  Note: A frame can be increased in size by one octet by
+      |  including a Pad Length field with a value of zero.
 
 6.7.  PING
 
