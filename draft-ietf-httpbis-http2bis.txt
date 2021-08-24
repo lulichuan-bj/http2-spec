@@ -4201,12 +4201,12 @@ Appendix A.  Prohibited TLS 1.2 Cipher Suites
    *  TLS_PSK_WITH_AES_256_CCM_8
 
       |  Note: This list was assembled from the set of registered TLS
-      |  cipher suites at the time of writing.  This list includes those
-      |  cipher suites that do not offer an ephemeral key exchange and
-      |  those that are based on the TLS null, stream, or block cipher
-      |  type (as defined in Section 6.2.3 of [TLS12]).  Additional
-      |  cipher suites with these properties could be defined; these
-      |  would not be explicitly prohibited.
+      |  cipher suites when [RFC7540] was developed.  This list includes
+      |  those cipher suites that do not offer an ephemeral key exchange
+      |  and those that are based on the TLS null, stream, or block
+      |  cipher type (as defined in Section 6.2.3 of [TLS12]).
+      |  Additional cipher suites with these properties could be
+      |  defined; these would not be explicitly prohibited.
 
 Appendix B.  Changes from RFC 7540
 
