@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-22T00:55:40.227760+00:00",
+  "timestamp": "2021-08-24T00:55:44.202846+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19703,15 +19703,15 @@
       "id": "MDU6SXNzdWU5NTYzMDg1Nzk=",
       "title": "Unpromised Push",
       "url": "https://github.com/httpwg/http2-spec/issues/878",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "As a corollary to https://github.com/quicwg/base-drafts/issues/4930, I cannot find anything in RFC 7540 that explicitly prohibits the server sending a response on a stream that hasn't been promised.  The closest is the state machine, where a push stream is supposed to go from idle to reserved to half-closed.  The statement that it can go from idle to open upon sending a HEADERS frame is clearly oriented at the client, but is endpoint-agnostic:  `Sending or receiving a HEADERS frame causes the stream to become \"open\".`",
       "createdAt": "2021-07-30T00:51:44Z",
-      "updatedAt": "2021-08-19T20:04:16Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T01:41:56Z",
+      "closedAt": "2021-08-23T01:41:56Z",
       "comments": [
         {
           "author": "Lukasa",
@@ -19741,15 +19741,15 @@
       "id": "MDU6SXNzdWU5NjIxNjAxMzE=",
       "title": "Priorities in the Introduction",
       "url": "https://github.com/httpwg/http2-spec/issues/880",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The Priorities section itself has been replaced with a discussion of why priorities aren't there, which is all well and good (#795).  So I found this still being in the introduction a bit odd:\r\n\r\n> Flow control and prioritization ensure that it is possible to efficiently use multiplexed streams. Flow control (Section 5.2) helps to ensure that only data that can be used by a receiver is transmitted. Prioritization (Section 5.3) ensures that limited resources can be directed to the most important streams first.\r\n\r\nIf we're talking about the structure of the protocol, I'd think either we don't talk about a feature that's no longer in the protocol, or we explicitly mention it's been cut out.",
       "createdAt": "2021-08-05T20:11:15Z",
-      "updatedAt": "2021-08-05T20:11:15Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T01:41:10Z",
+      "closedAt": "2021-08-23T01:41:10Z",
       "comments": []
     },
     {
@@ -19757,15 +19757,15 @@
       "id": "MDU6SXNzdWU5NjIxNjU5NTk=",
       "title": "http-scheme without out-of-band",
       "url": "https://github.com/httpwg/http2-spec/issues/881",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Should there be a reference to RFC 8164 in the discussion about using HTTP/2 with \"http://\" URLs?  We have defined a way to do that which doesn't rely on out-of-band knowledge, after all.",
       "createdAt": "2021-08-05T20:19:26Z",
-      "updatedAt": "2021-08-06T00:29:11Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T11:49:40Z",
+      "closedAt": "2021-08-23T11:49:40Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -19773,6 +19773,20 @@
           "body": "I think that the experiment has concluded in the negative, so I don't really want to reference that.  We already mention (in general) that HTTP is able to carry URLs for other schemes; so that spec can join all the other non-https schemes.",
           "createdAt": "2021-08-06T00:29:11Z",
           "updatedAt": "2021-08-06T00:29:11Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I propose that we leave this unaddressed.  @Lukasa, WDYT?",
+          "createdAt": "2021-08-23T04:11:44Z",
+          "updatedAt": "2021-08-23T04:11:44Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Agreed",
+          "createdAt": "2021-08-23T11:49:39Z",
+          "updatedAt": "2021-08-23T11:49:39Z"
         }
       ]
     },
@@ -19781,16 +19795,24 @@
       "id": "MDU6SXNzdWU5NjMwNjg1Nzg=",
       "title": "Prohibit multiple :authority pseudo-headers",
       "url": "https://github.com/httpwg/http2-spec/issues/883",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nharper",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "In the context of https://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0149.html, I noticed that there's no prohibition on a request having multiple `:authority` pseudo-headers. Such a request should be treated as malformed.",
       "createdAt": "2021-08-06T21:55:41Z",
-      "updatedAt": "2021-08-06T21:55:41Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2021-08-23T04:12:04Z",
+      "closedAt": "2021-08-23T04:12:03Z",
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closed by #884.",
+          "createdAt": "2021-08-23T04:12:03Z",
+          "updatedAt": "2021-08-23T04:12:03Z"
+        }
+      ]
     },
     {
       "number": 885,
@@ -19904,15 +19926,15 @@
       "id": "MDU6SXNzdWU5Njk4ODU5Nzg=",
       "title": "nit: is h2c spec'd or not",
       "url": "https://github.com/httpwg/http2-spec/issues/892",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Maybe a hangover from trying to tear up the photos of the \"http\" URI and upgrade dance. But this seems to read oddly. \r\n\r\nOn one hand:\r\n\r\n> This usage was never widely deployed, and is no longer specified in this document.\r\n\r\non the other:\r\n\r\n> Negotiating \"h2\" or \"h2c\" implies the use of the transport, security, framing, and message semantics described in this document.\r\n\r\nI don't have a solid suggestion to improve things.",
       "createdAt": "2021-08-13T01:27:33Z",
-      "updatedAt": "2021-08-13T01:36:54Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T11:53:38Z",
+      "closedAt": "2021-08-23T11:53:38Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -20037,15 +20059,15 @@
       "id": "MDU6SXNzdWU5NzMwMTQ4Mzc=",
       "title": "Alt-Svc reference for Prior Knowledge",
       "url": "https://github.com/httpwg/http2-spec/issues/903",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Section 3.3 says the following about cleartext HTTP/2:\r\n\r\n> A client can learn that a particular server supports HTTP/2 by other means. For example, [ALT-SVC] describes a mechanism for advertising this capability.\r\n\r\nI had previously conceived of Alt-Svc as requiring a certificate and TLS, but that's not strictly true.  RFC 7838 says that a client MUST have reasonable assurances, and a TLS cert is one way to do that.  It also says that the connection must have equal or better security properties, which implies you can't go from TLS to non-TLS.\r\n\r\nThis statement suggests that it's valid to offer `Alt-Svc: h2c=:80` on an http:// URI if your server can accept direct-to-H2 connections, but doesn't explicitly say so.  Is that the intended reading here?\r\n\r\nBut RFC 7838 says:\r\n\r\n> However, if either is offered with the \"h2c\" protocol, the client cannot use it, because there is no mechanism (at the time of the publication of this specification) in that protocol to establish the relationship between the origin and the alternative.\r\n\r\nPerhaps that doesn't apply, because the alternative is the same server on the same TCP port.  Still, I feel like this waves at Alt-Svc for a use which is, at best, under-specified; at worst, not actually possible.",
       "createdAt": "2021-08-17T19:52:19Z",
-      "updatedAt": "2021-08-17T19:52:19Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T11:52:32Z",
+      "closedAt": "2021-08-23T11:52:32Z",
       "comments": []
     },
     {
@@ -20084,7 +20106,7 @@
       "labels": [],
       "body": "Adding here the link to my yesterdays report to help with tracking:\r\n\r\nhttps://lists.w3.org/Archives/Public/ietf-http-wg/2021JulSep/0237.html\r\n\r\nI can also paste the contents and/or open one or more issues if needed, though I don't think it is needed for now.",
       "createdAt": "2021-08-19T06:17:10Z",
-      "updatedAt": "2021-08-19T06:20:54Z",
+      "updatedAt": "2021-08-23T08:02:12Z",
       "closedAt": null,
       "comments": [
         {
@@ -20093,6 +20115,13 @@
           "body": "I think #768 is related.",
           "createdAt": "2021-08-19T06:20:54Z",
           "updatedAt": "2021-08-19T06:20:54Z"
+        },
+        {
+          "author": "icing",
+          "authorAssociation": "NONE",
+          "body": "In hindsight, it is easy to see that we need an \"HTTP info set\", e.g. the pure semantics, and from that derive protocol version serializations. As things went, implementations are now seeking ways to make their own  internal representation of semantics. As @wtarreau describes for haproxy.\r\n\r\nThe same is happening in httpd, where one carefully tries to disect the cases that apply in general from the ones specific to a version. This is tricky for backward compatible releases.\r\n\r\nThe worst, to me, seem to be rules in standards to specify \"from another http version\". That seems to imply an \"older, existing\" version. Will it apply to a future http version? Who knows? \r\n\r\nBut this question needs an answer soon, as implementations will need to cope with QUIC traffic incoming and forwarding it to another  H2 server. I believe implementations will need to \r\n\r\n * define their own internal representation of HTTP semantics\r\n * how to map incoming traffic to it\r\n * sift through the rules in the standard and determine which can be applied safely to the generic semantics and which need to stay at \"if this was originally from version x.y\"\r\n\r\nStandard revisions could help here with clarifying the \"from other httpd versions\" to either apply in general to http semantics or specifically to a range of HTTP versions. It's probably not easy.",
+          "createdAt": "2021-08-23T08:02:11Z",
+          "updatedAt": "2021-08-23T08:02:11Z"
         }
       ]
     },
@@ -20117,15 +20146,15 @@
       "id": "MDU6SXNzdWU5NzQ2NjI4NzM=",
       "title": "Redundancy in :authority translation text",
       "url": "https://github.com/httpwg/http2-spec/issues/912",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "@wtarreau says\r\n\r\nThere's also some redundancy here which looks a bit confusing:\r\n\r\n> An intermediary that translates a request to HTTP/2 from another\r\n> HTTP version MUST translate any authority information from the\r\n> request into an :authority pseudo-header field.\r\n\r\nand:\r\n\r\n> If the control data in the original request contains authority\r\n> information, an intermediary MUST include a :authority pseudo-header\r\n> field.",
       "createdAt": "2021-08-19T13:26:09Z",
-      "updatedAt": "2021-08-19T13:26:09Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T11:49:11Z",
+      "closedAt": "2021-08-23T11:49:11Z",
       "comments": []
     },
     {
@@ -20137,10 +20166,12 @@
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "@wtarreau points to some stuff from RFC 7540 that might be cleaned up in terms of \"control data\" and so forth.\r\n\r\nIn addition in this paragraph at several places it's mentioned \"from\r\nanother HTTP version\", but as soon as you have to deal with multiple\r\nversions on each side of an intermediary, you don't deal with versions,\r\nin fact you're using an \"HTTP\" internal representation which relies on\r\nsemantics and in this case it becomes strange to make an exception for\r\nthe case where the other side is using exactly the same version. Given\r\nthat we're now having a version-agnostic spec for the semantics, I\r\nwould suggest that we avoid speaking about versions in the H2 spec and\r\ninstead strictly rely on semantics. This is even more important when\r\nthe text mentions what to do to convert towards other versions, as this\r\njob usually is in fact to be done on the other side (from the semantic\r\nlayer to the other version), and is highly likely to be missed.\r\n\r\nFor example, it's mentioned:\r\n\r\n> For reference, an HTTP/1.1 Section 3.2 of request target [HTTP11] in\r\n> authority-form always includes authority, a request target in absolute-form\r\n> includes authority if the target URI includes authority, and request\r\n> targets in origin- or asterisk-form do not include authority.\r\n\r\nJust having this starts to preclude rules on how to parse an HTTP/1\r\nrequest that dangerously overlap with [messaging].",
       "createdAt": "2021-08-19T13:28:33Z",
-      "updatedAt": "2021-08-19T21:01:49Z",
+      "updatedAt": "2021-08-23T04:35:27Z",
       "closedAt": null,
       "comments": [
         {
@@ -20164,15 +20195,15 @@
       "id": "MDU6SXNzdWU5NzUwMDc2NTU=",
       "title": "Stream State Machine and Extension Frames",
       "url": "https://github.com/httpwg/http2-spec/issues/915",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "As discussed in [Erratum 6309](https://www.rfc-editor.org/errata/eid6309), the current language of 5.1 prohibits *all* frames on closed streams other than the ones indicated.  It is not clear whether the requirement in Section 5.5 constitutes \"more specific guidance.\"  My suggestion in the erratum was to scope \"any frame\" to \"any frame defined in this document\" where we might allow an extension frame to appear, since that was the minimal change to the RFC 7540 text, but the editors might choose a broader rewording.",
       "createdAt": "2021-08-19T20:09:26Z",
-      "updatedAt": "2021-08-20T10:09:17Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T02:05:06Z",
+      "closedAt": "2021-08-23T01:28:27Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -20187,6 +20218,13 @@
           "body": "Be careful Martin, you removed the sentence \"Frames of unknown types are ignored\" so I think we're losing one piece of information when looking at the patch. I should re-read it withiin its context to make sure we don't miss anything, but I preferred to warn.",
           "createdAt": "2021-08-20T10:09:17Z",
           "updatedAt": "2021-08-20T10:09:17Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@wtarreau, yes, that was a deliberate change.  I replaced that text with a complete paragraph and a reference to the extensibility section, which already covers the rules for unknown frames clearly: \"Implementations MUST discard frames that have unknown or unsupported types.\"",
+          "createdAt": "2021-08-23T02:05:06Z",
+          "updatedAt": "2021-08-23T02:05:06Z"
         }
       ]
     },
@@ -20195,7 +20233,7 @@
       "id": "MDU6SXNzdWU5NzUwMjA5NzU=",
       "title": "Frame \"contains\" an END_STREAM flag",
       "url": "https://github.com/httpwg/http2-spec/issues/916",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -20204,8 +20242,8 @@
       "labels": [],
       "body": "(Warning, I may have reached peak pedantry.)\r\n\r\nIn Section 5.1, there are two references to frames which \"contain\" an END_STREAM flag. All HEADERS, CONTINUATION, and DATA frames contain this flag, which might be set or not.  Most other references in the document are to the flag being set, which is more precise.\r\n\r\nThere are also two references to frames \"bearing\" END_STREAM, which could be taken either way.",
       "createdAt": "2021-08-19T20:25:02Z",
-      "updatedAt": "2021-08-20T02:00:19Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T01:28:11Z",
+      "closedAt": "2021-08-23T01:28:11Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -20247,15 +20285,15 @@
       "id": "MDU6SXNzdWU5NzU4NDc1MzE=",
       "title": "Padding constraint on HEADERS",
       "url": "https://github.com/httpwg/http2-spec/issues/927",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "[Section 6.2](https://httpwg.org/http2-spec/draft-ietf-httpbis-http2bis.html#name-headers) says:\r\n\r\n> The total number of padding octets is determined by the value of the Pad Length field. Padding that exceeds the size remaining for the field block fragment MUST be treated as a PROTOCOL_ERROR.\r\n\r\nI think the intended reading is that when the parser reaches the point that only the FBF and the Padding remain, the length of Padding is given by Pad Length and the fragment is the balance.  If Pad Length exceeds the remaining length of the frame, it's an error.\r\n\r\nThere is a less-likely reading also allowed by the current phrasing, that Pad Length can't be more than half the remaining bytes (else Padding would exceed the size of the field block fragment).  That's very unlikely to be the intended reading, but we should be clear here.\r\n\r\nI'd suggest simply taking the note from the end of DATA and putting it here verbatim.",
       "createdAt": "2021-08-20T18:57:09Z",
-      "updatedAt": "2021-08-20T18:57:09Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-23T01:24:31Z",
+      "closedAt": "2021-08-23T01:24:31Z",
       "comments": []
     },
     {
@@ -20281,6 +20319,70 @@
           "updatedAt": "2021-08-20T20:24:11Z"
         }
       ]
+    },
+    {
+      "number": 938,
+      "id": "MDU6SXNzdWU5NzcyNDgyNDE=",
+      "title": "Are transfer codings allowed for HTTP/2?",
+      "url": "https://github.com/httpwg/http2-spec/issues/938",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "HTTP/2 prohibits `chunked` Transfer-Encoding, but doesn't actually prohibit other values:\r\n\r\n> The chunked transfer encoding defined in Section 7.1 of [HTTP11] cannot be used in HTTP/2.\r\n\r\nHTTP/3 broadened this language to cover all transfer codings:\r\n\r\n> Transfer codings (see Section 6.1 of [HTTP11]) are not defined for HTTP/3; the Transfer-Encoding header field MUST NOT be used.\r\n\r\nShould H2bis follow suit?",
+      "createdAt": "2021-08-23T17:14:39Z",
+      "updatedAt": "2021-08-23T17:14:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 941,
+      "id": "MDU6SXNzdWU5NzcyNzgzNTY=",
+      "title": "Reference to Extended CONNECT?",
+      "url": "https://github.com/httpwg/http2-spec/issues/941",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In the aside about HTTP/2 deliberately not supporting Upgrade, it feels worth mentioning that we later partially reversed ourselves and brought back a moral equivalent of Upgrade with a less obvious name.  Reference to RFC8441 appropriate here?",
+      "createdAt": "2021-08-23T17:54:14Z",
+      "updatedAt": "2021-08-23T17:54:14Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 942,
+      "id": "MDU6SXNzdWU5NzcyOTQzNjI=",
+      "title": "No :path for CONNECT",
+      "url": "https://github.com/httpwg/http2-spec/issues/942",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Section 8.5 says:\r\n\r\n> The :scheme and :path pseudo-header fields MUST be omitted.\r\n\r\nSection 8.3.1 says of :scheme:\r\n\r\n> Scheme is omitted for CONNECT requests (Section 8.5).\r\n\r\nHowever, it doesn't mention anything about CONNECT in the discussion of :path.",
+      "createdAt": "2021-08-23T18:14:01Z",
+      "updatedAt": "2021-08-23T18:14:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 944,
+      "id": "MDU6SXNzdWU5Nzc0MDY4OTU=",
+      "title": "Example 5 mismatch",
+      "url": "https://github.com/httpwg/http2-spec/issues/944",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Both the HTTP/1.1 and HTTP/2 versions of Example 5 are valid in their respective versions, but including a Content-Length header in the HTTP/2 version where the HTTP/1.1 version is chunked isn't necessarily comparable.  I would suggest dropping the C-L header from the HTTP/2 example to reflect that Content-Length can be omitted when translating a chunked message.",
+      "createdAt": "2021-08-23T20:27:11Z",
+      "updatedAt": "2021-08-23T20:27:11Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -36668,24 +36770,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzAxMjUyNzM0",
       "title": "Clarify the rules on server-sent HEADERS",
       "url": "https://github.com/httpwg/http2-spec/pull/879",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Lukasa",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Resolves #878.",
       "createdAt": "2021-08-02T08:28:06Z",
-      "updatedAt": "2021-08-04T08:10:54Z",
+      "updatedAt": "2021-08-23T01:41:57Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
       "headRepository": "Lukasa/http2-spec",
       "headRefName": "cb-server-initiated-streams",
       "headRefOid": "06f45a113b0aaa5765e34b4508cf25ab63265a98",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-23T01:41:57Z",
+      "mergedAt": "2021-08-23T01:41:56Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "d747991f523cfdfa1bae14ce0a2aee5dd781f953"
+      },
       "comments": [
         {
           "author": "mnot",
@@ -36771,24 +36875,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzA1MTE2MDE5",
       "title": "Revise overview text on priority",
       "url": "https://github.com/httpwg/http2-spec/pull/882",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #880.",
       "createdAt": "2021-08-06T00:58:33Z",
-      "updatedAt": "2021-08-17T19:23:33Z",
+      "updatedAt": "2021-08-23T01:42:02Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "priority-intro",
       "headRefOid": "9758653a56e2491e43fa2f2d641fdd6bb75e3acd",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-23T01:41:10Z",
+      "mergedAt": "2021-08-23T01:41:10Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "199e4a7c40d0e95d202cccb365c297ab8140242a"
+      },
       "comments": [],
       "reviews": [
         {
@@ -36837,28 +36943,30 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzA1NzY2MjE2",
       "title": "Prohibit duplicate pseudo-headers.",
       "url": "https://github.com/httpwg/http2-spec/pull/884",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "nharper",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This fixes issue #883.",
       "createdAt": "2021-08-06T21:56:24Z",
-      "updatedAt": "2021-08-11T08:36:50Z",
+      "updatedAt": "2021-08-23T19:55:57Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "8f4c07a2e135234c87546408297913476963d9f9",
       "headRepository": "nharper/http2-spec",
       "headRefName": "no-duplicate-pseudo-headers",
       "headRefOid": "c1130a1859f0a506b38e3c47e21d7253a264b5d7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-23T01:42:16Z",
+      "mergedAt": "2021-08-23T01:42:16Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "0b330a9c145e2e91d6a2c30cda24747612562926"
+      },
       "comments": [
         {
           "author": "nharper",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I agree on 1 that there's no reason to exclude response pseudo-headers from this requirement. (I was worried about contradicting something regarding multiple interim responses, each of which needs a `:status` field, but each of those are in a separate field section, so a rule of no duplicates within a field section should work for pseudo-headers, both request and response.)\r\n\r\nHowever, I think that a general prohibition is a good thing. If a future (negotiated) extension wants to introduce a new pseudo-header that can be duplicated, it could override an otherwise general prohibition in this draft. If a future extension doesn't do that, it gets the more sane/safe default for free.",
           "createdAt": "2021-08-10T00:56:47Z",
           "updatedAt": "2021-08-10T00:56:47Z"
@@ -36872,7 +36980,7 @@
         },
         {
           "author": "nharper",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "@martinthomson is \"this\" the current text, or revised text to address Cory's comment?",
           "createdAt": "2021-08-10T07:40:04Z",
           "updatedAt": "2021-08-10T07:40:04Z"
@@ -36900,7 +37008,7 @@
         },
         {
           "author": "nharper",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I moved the language up to the HTTP Control Data section and slightly tweaked it.",
           "createdAt": "2021-08-10T19:44:43Z",
           "updatedAt": "2021-08-10T19:44:43Z"
@@ -37098,24 +37206,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzExOTM0MjQ0",
       "title": "Avoid h2c awkwardness",
       "url": "https://github.com/httpwg/http2-spec/pull/894",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "fixes #892\ufeff\n",
       "createdAt": "2021-08-13T01:55:16Z",
-      "updatedAt": "2021-08-13T04:00:25Z",
+      "updatedAt": "2021-08-23T11:53:38Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "083912f85056c86f6c3b0013748144b7dd361f88",
       "headRepository": "LPardue/http2-spec",
       "headRefName": "issue-892",
       "headRefOid": "1b780ac801e61be1190de6bd089788bc7aeac375",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-23T11:53:38Z",
+      "mergedAt": "2021-08-23T11:53:38Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "1b780ac801e61be1190de6bd089788bc7aeac375"
+      },
       "comments": [
         {
           "author": "LPardue",
@@ -37713,7 +37823,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2MzQ5Mjcz",
       "title": "More regarding erratum 6309",
       "url": "https://github.com/httpwg/http2-spec/pull/919",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -37722,17 +37832,19 @@
       ],
       "body": "We could try to make every statement precise.  We could add \"of the\r\nframes defined in this document\" to a bunch of places.  Or we could make\r\na (better) blanket statement.  That is what this does.\r\n\r\nCloses #915.",
       "createdAt": "2021-08-20T00:30:18Z",
-      "updatedAt": "2021-08-20T14:18:06Z",
+      "updatedAt": "2021-08-23T01:28:27Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "41c93a51692456589f08107742de96e3ace22d6e",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "just-these",
       "headRefOid": "2a72a3a9b2bc60c0ac9689fc3f4a4f9056c03225",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-23T01:28:27Z",
+      "mergedAt": "2021-08-23T01:28:27Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "6d400b48c087afae1a839c72d3a760bc1158c855"
+      },
       "comments": [],
       "reviews": [
         {
@@ -37796,128 +37908,202 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjUyMDk0",
       "title": "add missing parentheses",
       "url": "https://github.com/httpwg/http2-spec/pull/921",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "reschke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "",
       "createdAt": "2021-08-20T11:12:23Z",
-      "updatedAt": "2021-08-20T11:12:23Z",
+      "updatedAt": "2021-08-22T12:58:35Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "reschke/http2-spec",
       "headRefName": "patch-8",
       "headRefOid": "a5381f9e73611601114aae3ae4adb91505c3d5ba",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-22T12:58:35Z",
+      "mergedAt": "2021-08-22T12:58:35Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "94922065ebe90d8aa517df4c6ddb4c7ffbb8a3d6"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NTc0NjQ4",
+          "commit": {
+            "abbreviatedOid": "a5381f9"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-22T12:58:24Z",
+          "updatedAt": "2021-08-22T12:58:24Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 922,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjY4MDA2",
       "title": "fix punctuation",
       "url": "https://github.com/httpwg/http2-spec/pull/922",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "reschke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "",
       "createdAt": "2021-08-20T11:38:53Z",
-      "updatedAt": "2021-08-20T11:38:53Z",
+      "updatedAt": "2021-08-22T12:57:51Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "reschke/http2-spec",
       "headRefName": "patch-9",
       "headRefOid": "93962257f883915028ca49f87ec987ea3cb33169",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-22T12:57:51Z",
+      "mergedAt": "2021-08-22T12:57:51Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "7d433af155879928fe27159df3bf5e7cbeb8702c"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NTc0NTU5",
+          "commit": {
+            "abbreviatedOid": "9396225"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-22T12:57:40Z",
+          "updatedAt": "2021-08-22T12:57:40Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 923,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjczNTk4",
       "title": "fix xref",
       "url": "https://github.com/httpwg/http2-spec/pull/923",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "reschke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "currently comes out as:\r\n\r\n >  For reference, an HTTP/1.1 Section 3.2 of request target [HTTP11] in ...",
       "createdAt": "2021-08-20T11:48:51Z",
-      "updatedAt": "2021-08-20T11:48:51Z",
+      "updatedAt": "2021-08-22T13:01:13Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "reschke/http2-spec",
       "headRefName": "patch-10",
       "headRefOid": "5928ae60b361922e7592c7d868f5ff29782c85b3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-22T13:01:13Z",
+      "mergedAt": "2021-08-22T13:01:13Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "9f7525f4d73932fdabd3caccd0f5032306df1f8b"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NTc0ODUx",
+          "commit": {
+            "abbreviatedOid": "5928ae6"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-22T13:00:59Z",
+          "updatedAt": "2021-08-22T13:00:59Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 924,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2NjgzNzgz",
       "title": "fix broken link",
       "url": "https://github.com/httpwg/http2-spec/pull/924",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "reschke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "",
       "createdAt": "2021-08-20T12:06:03Z",
-      "updatedAt": "2021-08-20T12:06:03Z",
+      "updatedAt": "2021-08-22T13:01:39Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "reschke/http2-spec",
       "headRefName": "patch-11",
       "headRefOid": "5de1feba66fb63dac06351a10dfb003b5c433253",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-22T13:01:39Z",
+      "mergedAt": "2021-08-22T13:01:39Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "b3d02e07ea945af64709e73728b6e235fec51af1"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NTc0ODk0",
+          "commit": {
+            "abbreviatedOid": "5de1feb"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-22T13:01:31Z",
+          "updatedAt": "2021-08-22T13:01:31Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 925,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2NzgzMDkw",
       "title": "Lowercase \"flag\" when not in frame artwork",
       "url": "https://github.com/httpwg/http2-spec/pull/925",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "I believe the rule in #918 is supposed to be that the layout diagrams use \"FOO Flag\", while the prose uses \"the FOO flag.\"  If so, this lowercases some other instances.",
       "createdAt": "2021-08-20T14:30:18Z",
-      "updatedAt": "2021-08-20T14:30:18Z",
+      "updatedAt": "2021-08-23T01:27:57Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "MikeBishop/http2v2",
       "headRefName": "fun_with_flags",
       "headRefOid": "caf877ec2c32b0bfe41160ac224128909efe0fe8",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-23T01:27:57Z",
+      "mergedAt": "2021-08-23T01:27:57Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "516cf2659f718653011ce3e24ca287b88f409029"
+      },
       "comments": [],
       "reviews": []
     },
@@ -37926,76 +38112,124 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2Nzg2NzM4",
       "title": "Contains is not set",
       "url": "https://github.com/httpwg/http2-spec/pull/926",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "Fixes #916.",
       "createdAt": "2021-08-20T14:35:21Z",
-      "updatedAt": "2021-08-20T18:44:35Z",
+      "updatedAt": "2021-08-23T01:28:11Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "MikeBishop/http2v2",
       "headRefName": "contains",
       "headRefOid": "26a5431d4a48dddec9382887f0ebcb2b93d52525",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "closedAt": "2021-08-23T01:28:11Z",
+      "mergedAt": "2021-08-23T01:28:11Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "0faf48c2c3dd59d86a7ff94c6e1217f52d3c9a95"
+      },
+      "comments": [
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Going to let @martinthomson have a look at this as well.",
+          "createdAt": "2021-08-22T13:03:21Z",
+          "updatedAt": "2021-08-22T13:03:21Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NTc1MDE2",
+          "commit": {
+            "abbreviatedOid": "26a5431"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-22T13:03:04Z",
+          "updatedAt": "2021-08-22T13:03:04Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 928,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2OTM3MTIx",
       "title": "Padding text on HEADERS",
       "url": "https://github.com/httpwg/http2-spec/pull/928",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "Fixes #927 by copying the text from DATA",
       "createdAt": "2021-08-20T18:57:57Z",
-      "updatedAt": "2021-08-20T18:59:01Z",
+      "updatedAt": "2021-08-23T01:24:32Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "MikeBishop/http2v2",
       "headRefName": "headers_padding",
       "headRefOid": "469ea7b2b9b620417454998701a92f46263c2e58",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-23T01:24:32Z",
+      "mergedAt": "2021-08-23T01:24:31Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "a6ee220ffcc64de19ca6235e1a03e77989fc51f4"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NTc1MTcw",
+          "commit": {
+            "abbreviatedOid": "469ea7b"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM, will let @martinthomson take a read as well.",
+          "createdAt": "2021-08-22T13:04:58Z",
+          "updatedAt": "2021-08-22T13:04:58Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 930,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE3MDA0MTE5",
       "title": "Nits through S7",
       "url": "https://github.com/httpwg/http2-spec/pull/930",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "Nits through Section 7; more to follow.",
       "createdAt": "2021-08-20T21:19:04Z",
-      "updatedAt": "2021-08-20T21:21:15Z",
+      "updatedAt": "2021-08-23T01:27:28Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "5e0cca4f4bff4cd88393726e54b3647647aee584",
       "headRepository": "MikeBishop/http2v2",
       "headRefName": "nits",
-      "headRefOid": "7f887c93c134e25cf43520980076870300c75efa",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "9d6eb96811f9f0f5ae223f49d466ab24e068ebe7",
+      "closedAt": "2021-08-23T01:27:28Z",
+      "mergedAt": "2021-08-23T01:27:28Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "12d1af871e15aaca84b9196bfbe27ce78bd5af7c"
+      },
       "comments": [],
       "reviews": [
         {
@@ -38017,8 +38251,460 @@
               "updatedAt": "2021-08-20T21:21:15Z"
             }
           ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NTc1NDI0",
+          "commit": {
+            "abbreviatedOid": "7f887c9"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-22T13:07:31Z",
+          "updatedAt": "2021-08-22T13:08:17Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "Why not replace \u2018become \u201cclosed\u201d\u2019 with \u2018caused the stream to enter the \u201cclosed\u201d state\u2019 directly? It\u2019s more verbose but it has the advantage of being unambiguous about what \u2018become \u201cclosed\u201d\u2019 means.",
+              "createdAt": "2021-08-22T13:07:31Z",
+              "updatedAt": "2021-08-22T13:08:17Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1NjQ2NjEz",
+          "commit": {
+            "abbreviatedOid": "7f887c9"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I'll make that one change.",
+          "createdAt": "2021-08-23T01:26:41Z",
+          "updatedAt": "2021-08-23T01:27:16Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\n              the frames that caused the stream to enter the \"closed\" state and treat receipt of any frame other\r\n```",
+              "createdAt": "2021-08-23T01:26:41Z",
+              "updatedAt": "2021-08-23T01:27:16Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 931,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3NDIxOTI3",
+      "title": "Address some WGLC comments from @reschke",
+      "url": "https://github.com/httpwg/http2-spec/pull/931",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "",
+      "createdAt": "2021-08-23T01:18:44Z",
+      "updatedAt": "2021-08-23T11:54:41Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "b3d02e07ea945af64709e73728b6e235fec51af1",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "julian-wglc",
+      "headRefOid": "284b78843bfc9949fd11ffde297673417dce88c3",
+      "closedAt": "2021-08-23T11:54:40Z",
+      "mergedAt": "2021-08-23T11:54:40Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2MDMwMzE1",
+          "commit": {
+            "abbreviatedOid": "284b788"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-23T11:54:31Z",
+          "updatedAt": "2021-08-23T11:54:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 932,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3NDI4NDc4",
+      "title": "h2c really isn't covered by security promises",
+      "url": "https://github.com/httpwg/http2-spec/pull/932",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "... or the analysis in the security considerations.\r\n\r\nWe had to walk a more careful path when RFC 7540 was published, so we were careful to legitimize h2c.  In the years since, things have changed and we can be more direct.  This isn't a \"don't use h2c\", but more of a disclaimer as far as security goes.",
+      "createdAt": "2021-08-23T01:40:34Z",
+      "updatedAt": "2021-08-23T11:53:37Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "6d400b48c087afae1a839c72d3a760bc1158c855",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "h2c-super-awkward",
+      "headRefOid": "500c4edf6edcdef691ba75564a15fc43473a7a66",
+      "closedAt": "2021-08-23T11:53:37Z",
+      "mergedAt": "2021-08-23T11:53:37Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "aa41636786e2823a094a0e792c6542ae0ef6fb97"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2MDI5NTcw",
+          "commit": {
+            "abbreviatedOid": "500c4ed"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-23T11:53:32Z",
+          "updatedAt": "2021-08-23T11:53:32Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 933,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3NDc2ODk1",
+      "title": "Avoid mention of Alt-Svc for h2c",
+      "url": "https://github.com/httpwg/http2-spec/pull/933",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As stated in #903, it's misleading and contradictory.  Better to\r\nconcentrate on configuration for this, as that is the common usage.\r\n\r\nCloses #903.",
+      "createdAt": "2021-08-23T04:08:01Z",
+      "updatedAt": "2021-08-23T11:52:32Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "0b330a9c145e2e91d6a2c30cda24747612562926",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "avoid-alt-svc-h2c",
+      "headRefOid": "bdf7eecac3d69d9e89b1802434f434eb6c212176",
+      "closedAt": "2021-08-23T11:52:32Z",
+      "mergedAt": "2021-08-23T11:52:32Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "a83a2bfa37c6948d0f1941eb04c4beb057780124"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2MDI4NzI3",
+          "commit": {
+            "abbreviatedOid": "bdf7eec"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-23T11:52:27Z",
+          "updatedAt": "2021-08-23T11:52:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 934,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3NDc4NDk5",
+      "title": "Ciphers were listed in 2015.",
+      "url": "https://github.com/httpwg/http2-spec/pull/934",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #897.",
+      "createdAt": "2021-08-23T04:10:51Z",
+      "updatedAt": "2021-08-23T11:51:44Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "0b330a9c145e2e91d6a2c30cda24747612562926",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "cipher-list",
+      "headRefOid": "50e1e3608cf3d7c2567021cc43befa7f4e183abf",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2MDI3NzA5",
+          "commit": {
+            "abbreviatedOid": "50e1e36"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-23T11:51:10Z",
+          "updatedAt": "2021-08-23T11:51:44Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Presumably this was meant to be `excludes`, not `includes`, and we just missed it?",
+              "createdAt": "2021-08-23T11:51:10Z",
+              "updatedAt": "2021-08-23T11:51:44Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "And should this say \u201cTLS null stream or block\u201d?",
+              "createdAt": "2021-08-23T11:51:40Z",
+              "updatedAt": "2021-08-23T11:51:44Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 935,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3NDg1Njcw",
+      "title": "Drop redundancy in :authority translation",
+      "url": "https://github.com/httpwg/http2-spec/pull/935",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "Closes #912.",
+      "createdAt": "2021-08-23T04:25:56Z",
+      "updatedAt": "2021-08-23T11:49:11Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "0b330a9c145e2e91d6a2c30cda24747612562926",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "redundant-authority",
+      "headRefOid": "57cdbbada1d2d95130683a527d321d35c29816e3",
+      "closedAt": "2021-08-23T11:49:11Z",
+      "mergedAt": "2021-08-23T11:49:11Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "8ac78b15ccfec8176eb877c62bce601f4d38c9a2"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2MDI2MDYz",
+          "commit": {
+            "abbreviatedOid": "57cdbba"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-23T11:49:05Z",
+          "updatedAt": "2021-08-23T11:49:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 936,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3NDk5ODQw",
+      "title": "Move field validation text around",
+      "url": "https://github.com/httpwg/http2-spec/pull/936",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This just moves the reference to the canonical definition of what is\r\nvalid up to the top of the section.  That's the canonical text.\r\n\r\nThis emphasizes the point that HTTP/2 is placing *additional*\r\nrequirements on endpoints with respect to validation.\r\n\r\nThis does not really fix #902 in the sense that it leaves validation of\r\nDQUOTE and friends to the core semantics implementations.\r\n\r\nNote that any \"MAY\" requirement for rejecting a messaging can have the\r\ndesired effect on those generating those messages: if an endpoint puts\r\nDQUOTE in a field name, that message will have little hope of being\r\nsuccessfully handled.\r\n\r\nCloses #902.",
+      "createdAt": "2021-08-23T05:01:48Z",
+      "updatedAt": "2021-08-23T11:47:40Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "2e0e8750f1f60f447980141c0dd0ae07b58abf17",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "field-validation-mkIII",
+      "headRefOid": "2305e05d3d0581ca3a188435f121768f9edfa18c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "reschke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "My 2 cents: it seems that there's disagreement about whether the validity requirements from the core specs need to be repeated.\r\n\r\nOf course, DRY. Semantics currently says:\r\n\r\n> A sender MUST NOT generate protocol elements that do not match the grammar defined by the corresponding ABNF rules. Within a given message, a sender MUST NOT generate protocol elements or syntax alternatives that are only allowed to be generated by participants in other roles (i.e., a role that the sender does not have for that message).\r\n\r\nThe issue here is that H/2 actually *extends* that ABNF (without doing that as ABNF), which makes the link somewhat weak.\r\n\r\nMaybe formally (==ABNF) defining \"h2-fieldname\" as \"lowercase-http-fieldname / h2-pseudofield\" would be helpful.\r\n\r\n",
+          "createdAt": "2021-08-23T08:35:48Z",
+          "updatedAt": "2021-08-23T08:38:15Z"
+        },
+        {
+          "author": "reschke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "So the proposal would be:\r\n\r\n~~~\r\n  h2-fieldname   = 1*fchar / \":\" 1*fchar\r\n\r\n  fchar          = \"!\" / \"#\" / \"$\" / \"%\" / \"&\" / \"'\" / \"*\"\r\n                 / \"+\" / \"-\" / \".\" / \"^\" / \"_\" / \"`\" / \"|\" / \"~\"\r\n                 / DIGIT / %x61-7A\r\n                 ; like \"token\" in [HTTP], expect for uppercase ALPHA\r\n~~~",
+          "createdAt": "2021-08-23T08:51:21Z",
+          "updatedAt": "2021-08-23T08:51:21Z"
+        },
+        {
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Julian,\n\nYES PLEASE for ABNF (yeah I know that is editorial, but it makes it so much\nmore concise and exact).\n\nI think everybody agrees that a h2 impl MUST NOT generate invalid HTTP\nfields.   The differences appear on the receiving side as the current\ndocument allows that h2 impls MAY accept some invalid HTTP fields.  I've\nnever understood the use-case for this?\n\ncheers\n\n\nOn Mon, 23 Aug 2021 at 18:51, Julian Reschke ***@***.***>\nwrote:\n\n> So the proposal would be:\n>\n>   h2-fieldname   = 1*fchar / \":\" 1*fchar\n>\n>   fchar          = \"!\" / \"#\" / \"$\" / \"%\" / \"&\" / \"'\" / \"*\"\n>                  / \"+\" / \"-\" / \".\" / \"^\" / \"_\" / \"`\" / \"|\" / \"~\"\n>                  / DIGIT / %x61-7A\n>                  ; like \"token\" in [HTTP], expect for uppercase ALPHA\n>\n> \u2014\n> You are receiving this because you commented.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/httpwg/http2-spec/pull/936#issuecomment-903569906>,\n> or unsubscribe\n> <https://github.com/notifications/unsubscribe-auth/AAARJLIYEPII5ZHALGRDC3DT6IDZHANCNFSM5CTYYUKA>\n> .\n> Triage notifications on the go with GitHub Mobile for iOS\n> <https://apps.apple.com/app/apple-store/id1477376905?ct=notification-email&mt=8&pt=524675>\n> or Android\n> <https://play.google.com/store/apps/details?id=com.github.android&utm_campaign=notification-email>\n> .\n>\n\n\n-- \nGreg Wilkins ***@***.***> CTO http://webtide.com\n",
+          "createdAt": "2021-08-23T08:56:42Z",
+          "updatedAt": "2021-08-23T08:56:42Z"
+        },
+        {
+          "author": "reschke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Well, AFAIU, we do not have a hard requirement on recipients in the base spec (and HTTP/1 either):\r\n\r\n> Unless noted otherwise, a recipient MAY attempt to recover a usable protocol element from an invalid construct. \r\n\r\nSo this seems consistent with what the base spec says.",
+          "createdAt": "2021-08-23T09:04:45Z",
+          "updatedAt": "2021-08-23T09:04:45Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I have no objection to adding ABNF to define H2\u2019s fields. I would say that we should keep the prose, as the prose does a good job of expressing the why of our choices: for example, explaining the expectations around lowercase field names.\r\n\r\nHowever, I agree with @reschke and my past self that we do not need add a \u201cMUST validate\u201d section.",
+          "createdAt": "2021-08-23T11:47:40Z",
+          "updatedAt": "2021-08-23T11:47:40Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM1ODQ0NzQ2",
+          "commit": {
+            "abbreviatedOid": "2305e05"
+          },
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-23T08:20:18Z",
+          "updatedAt": "2021-08-23T08:24:06Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "I don't think that `MAY` does enough to satisfy #902.\r\nI think this paragraph should be the first requirement in the list below and say that in H2 a field MUST be treated as malformed if it is invalid in HTTP - unless it is a pseudo header.  Specifically we should say:\r\n\r\nHPACK can carry non valid fileds.\r\nAll H2 impls MUST validate as follows:\r\n + must be a valid HTTP field or a psuedo field\r\n + names must be lower case\r\n + must not contain zero value etc.\r\n + must not start or end with whitespace",
+              "createdAt": "2021-08-23T08:20:19Z",
+              "updatedAt": "2021-08-23T08:24:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 937,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE3OTQwODA5",
+      "title": "Connections, not implemenations",
+      "url": "https://github.com/httpwg/http2-spec/pull/937",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This text wasn't actually changed in #933, but I noticed it while reviewing.  This says that implementations which support TLS MUST use ALPN, but that's not really tied to what the implementation supports -- it's tied to what the current connection is doing.  If you support TLS but are using cleartext TCP for the current connection (regardless of why), you're not required to use ALPN.",
+      "createdAt": "2021-08-23T15:28:44Z",
+      "updatedAt": "2021-08-23T15:28:44Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "connection_not_implementations",
+      "headRefOid": "14a49b5f342e36b3dcd3fe8ecfb38a13c186e593",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 939,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE4MDM1MDA5",
+      "title": "Lower-case hex",
+      "url": "https://github.com/httpwg/http2-spec/pull/939",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "More instances of using a-f than using A-F, so I normalized the outliers to lower-case.",
+      "createdAt": "2021-08-23T17:42:05Z",
+      "updatedAt": "2021-08-23T17:46:15Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "hex_lower",
+      "headRefOid": "50e29bb26340331c0a77ca45ed75b04f8295671d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 940,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE4MDM5NTk4",
+      "title": "Remove presupposition",
+      "url": "https://github.com/httpwg/http2-spec/pull/940",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The existing language presupposes that the server will reset the stream upon detecting a malformed request, when in fact it only MAY do so.  The simplest fix for this text is to remove any reference to resetting the stream and restrict the advice to using an HTTP status code.",
+      "createdAt": "2021-08-23T17:50:03Z",
+      "updatedAt": "2021-08-23T17:50:03Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "presupposed",
+      "headRefOid": "10351c2443b023117e950b787b3792c93c8ae862",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 943,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE4MDU2NTAz",
+      "title": "No path for CONNECT",
+      "url": "https://github.com/httpwg/http2-spec/pull/943",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #942.",
+      "createdAt": "2021-08-23T18:15:21Z",
+      "updatedAt": "2021-08-23T18:15:21Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "connect_path",
+      "headRefOid": "c238478e497e4a8ae94bf8bb0db1bd1f4450f7d6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
