@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 24 February 2022                                 23 August 2021
+Expires: 25 February 2022                                 24 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 February 2022.
+   This Internet-Draft will expire on 25 February 2022.
 
 Copyright Notice
 
@@ -2354,7 +2354,7 @@ Table of Contents
 
    HTTP/2 uses DATA frames to carry message content.  The "chunked"
    transfer encoding defined in Section 7.1 of [HTTP11] cannot be used
-   in HTTP/2.
+   in HTTP/2; see Section 8.2.2.
 
    Trailer fields are carried in a field block that also terminates the
    stream.  That is, trailer fields comprise a sequence starting with a
@@ -2491,8 +2491,12 @@ Table of Contents
    [HTTP]) to indicate connection-specific header fields; in this
    protocol, connection-specific metadata is conveyed by other means.
    An endpoint MUST NOT generate an HTTP/2 message containing
-   connection-specific header fields; any message containing connection-
-   specific header fields MUST be treated as malformed (Section 8.1.1).
+   connection-specific header fields.  This includes the "Connection"
+   header field and those listed as having connection-specific semantics
+   in Section 7.6.1 of [HTTP] (that is, "Proxy-Connection", "Keep-
+   Alive", "Transfer-Encoding", and "Upgrade").  Any message containing
+   connection-specific header fields MUST be treated as malformed
+   (Section 8.1.1).
 
    The only exception to this is the TE header field, which MAY be
    present in an HTTP/2 request; when it is, it MUST NOT contain any
@@ -4232,6 +4236,9 @@ Appendix B.  Changes from RFC 7540
 
    *  The ranges of codepoints for settings and frame types that were
       reserved for "Experimental Use" are now available for general use.
+
+   *  Connection-specific header fields - which are prohibited - are
+      more precisely and comprehensively identified.
 
 Contributors
 
