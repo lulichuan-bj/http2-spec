@@ -403,9 +403,8 @@ Table of Contents
    connection and send the connection preface (Section 3.4) followed by
    HTTP/2 frames.  Servers can identify these connections by the
    presence of the connection preface.  This only affects the
-   establishment of HTTP/2 connections over cleartext TCP;
-   implementations that support HTTP/2 over TLS MUST use protocol
-   negotiation in TLS [TLS-ALPN].
+   establishment of HTTP/2 connections over cleartext TCP; HTTP/2
+   connections over TLS MUST use protocol negotiation in TLS [TLS-ALPN].
 
    Likewise, the server MUST send a connection preface (Section 3.4).
 
