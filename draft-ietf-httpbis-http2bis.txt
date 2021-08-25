@@ -6,7 +6,7 @@ HTTPbis                                                  M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Obsoletes: 7540, 8740 (if approved)                     C. Benfield, Ed.
 Intended status: Standards Track                              Apple Inc.
-Expires: 25 February 2022                                 24 August 2021
+Expires: 26 February 2022                                 25 August 2021
 
 
              Hypertext Transfer Protocol Version 2 (HTTP/2)
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 February 2022.
+   This Internet-Draft will expire on 26 February 2022.
 
 Copyright Notice
 
@@ -2336,12 +2336,11 @@ Table of Contents
 
    For a response only, a server MAY send any number of interim
    responses before the HEADERS frame containing a final response.  An
-   interim response consists of a HEADERS frames (which might be
-   followed by zero or more CONTINUATION frames) containing the control
-   data and header section of an interim (1xx) HTTP response (see
-   Section 15 of [HTTP]).  A HEADERS frame with the END_STREAM flag set
-   that carries an informational status code is malformed
-   (Section 8.1.1).
+   interim response consists of a HEADERS frame (which might be followed
+   by zero or more CONTINUATION frames) containing the control data and
+   header section of an interim (1xx) HTTP response (see Section 15 of
+   [HTTP]).  A HEADERS frame with the END_STREAM flag set that carries
+   an informational status code is malformed (Section 8.1.1).
 
    The last frame in the sequence bears an END_STREAM flag, noting that
    a HEADERS frame with the END_STREAM flag set can be followed by
@@ -2369,12 +2368,12 @@ Table of Contents
    corresponding request or response as malformed (Section 8.1.1).
 
    An HTTP request/response exchange fully consumes a single stream.  A
-   request starts with the HEADERS frame that puts the stream into an
+   request starts with the HEADERS frame that puts the stream into the
    "open" state.  The request ends with a frame with the END_STREAM flag
    set, which causes the stream to become "half-closed (local)" for the
    client and "half-closed (remote)" for the server.  A response stream
-   starts with zero or more interim responses in HEADERS frames or a
-   HEADERS frame containing a final status code.
+   starts with zero or more interim responses in HEADERS frames,
+   followed by a HEADERS frame containing a final status code.
 
    An HTTP response is complete after the server sends -- or the client
    receives -- a frame with the END_STREAM flag set (including any
@@ -2641,7 +2640,7 @@ Table of Contents
    mandatory pseudo-header fields is malformed (Section 8.1.1).
 
    Individual HTTP/2 requests do not carry an explicit indicator of
-   protocol version.  All HTTP/2 messages implicitly have a protocol
+   protocol version.  All HTTP/2 requests implicitly have a protocol
    version of "2.0" (see Section 6.2 of [HTTP]).
 
 8.3.2.  Response Pseudo-Header Fields
@@ -2756,18 +2755,18 @@ Table of Contents
    PUSH_PROMISE frames before the DATA frames that contain the image
    links ensures that the client is able to see that a resource will be
    pushed before discovering embedded links.  Similarly, if the server
-   pushes responses referenced by the field block (for instance, in Link
+   pushes resources referenced by the field block (for instance, in Link
    header fields), sending a PUSH_PROMISE before sending the header
    ensures that clients do not request those resources.
 
    PUSH_PROMISE frames MUST NOT be sent by the client.
 
-   PUSH_PROMISE frames can be sent by the server in response to any
-   client-initiated stream, but the stream MUST be in either the "open"
-   or "half-closed (remote)" state with respect to the server.
-   PUSH_PROMISE frames are interspersed with the frames that comprise a
-   response, though they cannot be interspersed with HEADERS and
-   CONTINUATION frames that comprise a single field block.
+   PUSH_PROMISE frames can be sent by the server on any client-initiated
+   stream, but the stream MUST be in either the "open" or "half-closed
+   (remote)" state with respect to the server.  PUSH_PROMISE frames are
+   interspersed with the frames that comprise a response, though they
+   cannot be interspersed with HEADERS and CONTINUATION frames that
+   comprise a single field block.
 
    Sending a PUSH_PROMISE frame creates a new stream and puts the stream
    into the "reserved (local)" state for the server and the "reserved
@@ -3410,12 +3409,12 @@ Table of Contents
    An endpoint can use the SETTINGS_MAX_HEADER_LIST_SIZE to advise peers
    of limits that might apply on the size of uncompressed field blocks.
    This setting is only advisory, so endpoints MAY choose to send field
-   blocks that exceed this limit and risk having the request or response
-   being treated as malformed.  This setting is specific to a
-   connection, so any request or response could encounter a hop with a
-   lower, unknown limit.  An intermediary can attempt to avoid this
-   problem by passing on values presented by different peers, but they
-   are not obliged to do so.
+   blocks that exceed this limit and risk the request or response being
+   treated as malformed.  This setting is specific to a connection, so
+   any request or response could encounter a hop with a lower, unknown
+   limit.  An intermediary can attempt to avoid this problem by passing
+   on values presented by different peers, but they are not obliged to
+   do so.
 
    A server that receives a larger field block than it is willing to
    handle can send an HTTP 431 (Request Header Fields Too Large) status
@@ -3667,7 +3666,7 @@ Table of Contents
 
    Code:  The 32-bit error code value.
 
-   Description:  A brief description of the error code semantics, longer
+   Description:  A brief description of the error code semantics; longer
       if no detailed specification is provided.
 
    Specification:  An optional reference for a specification that
@@ -4222,7 +4221,7 @@ Appendix B.  Changes from RFC 7540
       Definitions for the format of the PRIORITY frame and the priority
       fields in the HEADERS frame have been retained, plus the rules
       governing when PRIORITY frames can be sent and received, but the
-      semantics of these fields is only described in RFC 7540.  The
+      semantics of these fields are only described in RFC 7540.  The
       priority signaling scheme from RFC 7540 was not successful.  Using
       the simpler successor signaling [I-D.ietf-httpbis-priority] is
       recommended.
