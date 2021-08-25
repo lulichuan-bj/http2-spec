@@ -2593,25 +2593,25 @@ Table of Contents
       ":authority" pseudo-header field instead of the "Host" header
       field.
 
-      An intermediary that translates a request to HTTP/2 from another
-      HTTP version MUST translate any authority information from the
-      request into an ":authority" pseudo-header field.  If control data
-      does not contain authority, an intermediary MUST NOT add an
-      ":authority" pseudo-header field.  For reference, an HTTP/1.1
-      request target (Section 3.2 of [HTTP11]) in authority-form always
-      includes authority, a request target in absolute-form includes
-      authority if the target URI includes authority, and request
-      targets in origin- or asterisk-form do not include authority.
+      An intermediary that forwards a request to HTTP/2 MUST construct
+      an ":authority" pseudo-header field using the authority
+      information from the control data in the original request.  If
+      control data does not contain authority, an intermediary MUST NOT
+      add an ":authority" pseudo-header field.  Note that while the
+      "Host" header field can determine a request target, it is not
+      control data for this purpose; see Section 7.2 of [HTTP].
 
-      An intermediary that translates a request to another HTTP version
-      from HTTP/2 can construct a "Host" header field by copying the
-      value of the ":authority" pseudo-header field if that version
-      requires that "Host" be included in a request, as HTTP/1.1 does
-      for some forms of request target (see Section 3.2 of [HTTP11]).
+      Request targets for CONNECT or asterisk-form OPTIONS requests do
+      not include authority.
 
-      An intermediary that translates a request to HTTP/2 from another
-      HTTP version MUST retain any "Host" header field, even if an
-      authority is part of control data.
+      An intermediary that forwards from HTTP/2 can construct a "Host"
+      header field by copying the value of the ":authority" pseudo-
+      header field.  This might be necessary if that version requires
+      that "Host" be included in a request, as HTTP/1.1 does for some
+      forms of request target (see Section 3.2 of [HTTP11]).
+
+      An intermediary that forwards a request to HTTP/2 MUST retain any
+      "Host" header field, even if an authority is part of control data.
 
       The value of the "Host" header field MUST be ignored if control
       data contains authority (that is, the ":authority" pseudo-header
