@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-24T00:55:44.202846+00:00",
+  "timestamp": "2021-08-26T00:54:27.275016+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -19995,15 +19995,15 @@
       "id": "MDU6SXNzdWU5Njk5OTA0MTU=",
       "title": "Was the cipher suite list re-assembled?",
       "url": "https://github.com/httpwg/http2-spec/issues/897",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "There's a note that says \r\n\r\n> Note: This list was assembled from the set of registered TLS cipher suites at the time of writing.\r\n\r\nWould be be more accurate to say this was assembled for RFC 7540, or is it fresh?",
       "createdAt": "2021-08-13T02:58:10Z",
-      "updatedAt": "2021-08-13T04:01:26Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-24T11:17:59Z",
+      "closedAt": "2021-08-24T11:17:59Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -20162,7 +20162,7 @@
       "id": "MDU6SXNzdWU5NzQ2NjQ5NjE=",
       "title": "\"from another HTTP version\"",
       "url": "https://github.com/httpwg/http2-spec/issues/913",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -20171,8 +20171,8 @@
       ],
       "body": "@wtarreau points to some stuff from RFC 7540 that might be cleaned up in terms of \"control data\" and so forth.\r\n\r\nIn addition in this paragraph at several places it's mentioned \"from\r\nanother HTTP version\", but as soon as you have to deal with multiple\r\nversions on each side of an intermediary, you don't deal with versions,\r\nin fact you're using an \"HTTP\" internal representation which relies on\r\nsemantics and in this case it becomes strange to make an exception for\r\nthe case where the other side is using exactly the same version. Given\r\nthat we're now having a version-agnostic spec for the semantics, I\r\nwould suggest that we avoid speaking about versions in the H2 spec and\r\ninstead strictly rely on semantics. This is even more important when\r\nthe text mentions what to do to convert towards other versions, as this\r\njob usually is in fact to be done on the other side (from the semantic\r\nlayer to the other version), and is highly likely to be missed.\r\n\r\nFor example, it's mentioned:\r\n\r\n> For reference, an HTTP/1.1 Section 3.2 of request target [HTTP11] in\r\n> authority-form always includes authority, a request target in absolute-form\r\n> includes authority if the target URI includes authority, and request\r\n> targets in origin- or asterisk-form do not include authority.\r\n\r\nJust having this starts to preclude rules on how to parse an HTTP/1\r\nrequest that dangerously overlap with [messaging].",
       "createdAt": "2021-08-19T13:28:33Z",
-      "updatedAt": "2021-08-23T04:35:27Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-25T12:18:58Z",
+      "closedAt": "2021-08-25T12:18:58Z",
       "comments": [
         {
           "author": "martinthomson",
@@ -20325,31 +20325,53 @@
       "id": "MDU6SXNzdWU5NzcyNDgyNDE=",
       "title": "Are transfer codings allowed for HTTP/2?",
       "url": "https://github.com/httpwg/http2-spec/issues/938",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "HTTP/2 prohibits `chunked` Transfer-Encoding, but doesn't actually prohibit other values:\r\n\r\n> The chunked transfer encoding defined in Section 7.1 of [HTTP11] cannot be used in HTTP/2.\r\n\r\nHTTP/3 broadened this language to cover all transfer codings:\r\n\r\n> Transfer codings (see Section 6.1 of [HTTP11]) are not defined for HTTP/3; the Transfer-Encoding header field MUST NOT be used.\r\n\r\nShould H2bis follow suit?",
       "createdAt": "2021-08-23T17:14:39Z",
-      "updatedAt": "2021-08-23T17:14:39Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2021-08-24T11:03:41Z",
+      "closedAt": "2021-08-24T11:03:41Z",
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Can you take this to the list Mike?  It seems like the only sensible answer, but I'd like to double-check.",
+          "createdAt": "2021-08-24T01:44:07Z",
+          "updatedAt": "2021-08-24T01:44:07Z"
+        },
+        {
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "body": "In my mind, I was relying on Section 8.2.2:\r\n\r\n> An endpoint MUST NOT generate an HTTP/2 message containing connection-specific header fields; any message containing connection-specific header fields MUST be treated as malformed\r\n\r\nHowever, that probably isn't linked well enough to the [current text in core](https://httpwg.org/http-core/draft-ietf-httpbis-semantics-latest.html#field.connection). Unfortunately, there isn't a term we can just lift out; perhaps something like this:\r\n\r\n> An endpoint MUST NOT generate an HTTP/2 message containing hop-by-hop header fields, including those listed in Section 7.6.1 of [HTTP]; a received message containing such fields MUST be treated as malformed\r\n\r\n",
+          "createdAt": "2021-08-24T02:17:49Z",
+          "updatedAt": "2021-08-24T02:17:49Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "On review with full context, the text that Mike cites is fine.  It's an informational note.  Mark's note here about the linkage to -semantics is good though.  I will float this on the list to see if I messed up (again).",
+          "createdAt": "2021-08-24T03:44:42Z",
+          "updatedAt": "2021-08-24T03:50:01Z"
+        }
+      ]
     },
     {
       "number": 941,
       "id": "MDU6SXNzdWU5NzcyNzgzNTY=",
       "title": "Reference to Extended CONNECT?",
       "url": "https://github.com/httpwg/http2-spec/issues/941",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "In the aside about HTTP/2 deliberately not supporting Upgrade, it feels worth mentioning that we later partially reversed ourselves and brought back a moral equivalent of Upgrade with a less obvious name.  Reference to RFC8441 appropriate here?",
       "createdAt": "2021-08-23T17:54:14Z",
-      "updatedAt": "2021-08-23T17:54:14Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-25T12:15:58Z",
+      "closedAt": "2021-08-25T12:15:58Z",
       "comments": []
     },
     {
@@ -20357,15 +20379,15 @@
       "id": "MDU6SXNzdWU5NzcyOTQzNjI=",
       "title": "No :path for CONNECT",
       "url": "https://github.com/httpwg/http2-spec/issues/942",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Section 8.5 says:\r\n\r\n> The :scheme and :path pseudo-header fields MUST be omitted.\r\n\r\nSection 8.3.1 says of :scheme:\r\n\r\n> Scheme is omitted for CONNECT requests (Section 8.5).\r\n\r\nHowever, it doesn't mention anything about CONNECT in the discussion of :path.",
       "createdAt": "2021-08-23T18:14:01Z",
-      "updatedAt": "2021-08-23T18:14:01Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-24T11:21:38Z",
+      "closedAt": "2021-08-24T11:21:37Z",
       "comments": []
     },
     {
@@ -20373,14 +20395,46 @@
       "id": "MDU6SXNzdWU5Nzc0MDY4OTU=",
       "title": "Example 5 mismatch",
       "url": "https://github.com/httpwg/http2-spec/issues/944",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Both the HTTP/1.1 and HTTP/2 versions of Example 5 are valid in their respective versions, but including a Content-Length header in the HTTP/2 version where the HTTP/1.1 version is chunked isn't necessarily comparable.  I would suggest dropping the C-L header from the HTTP/2 example to reflect that Content-Length can be omitted when translating a chunked message.",
       "createdAt": "2021-08-23T20:27:11Z",
-      "updatedAt": "2021-08-23T20:27:11Z",
+      "updatedAt": "2021-08-24T11:21:04Z",
+      "closedAt": "2021-08-24T11:21:04Z",
+      "comments": []
+    },
+    {
+      "number": 948,
+      "id": "MDU6SXNzdWU5NzgzNTc3NDA=",
+      "title": "Rendering of links in IANA",
+      "url": "https://github.com/httpwg/http2-spec/issues/948",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The code for the IANA policies in Section 11.1 looks like this:\r\n\r\n        <t>\r\n          This document establishes a registry for HTTP/2 frame type codes.  The \"HTTP/2 Frame Type\"\r\n          registry manages an 8-bit space.  The \"HTTP/2 Frame Type\" registry operates under either\r\n          of the <xref target=\"RFC8126\" section=\"4.8\">\"IETF Review\"</xref> or <xref target=\"RFC8126\" section=\"4.10\">\"IESG Approval\"</xref> policies.\r\n        </t>\r\n\r\nThat would be fine if that rendered as I would expect, as:\r\n\r\n> This document establishes a registry for HTTP/2 frame type codes.  The \"HTTP/2 Frame Type\" registry manages an 8-bit space.  The \"HTTP/2 Frame Type\" registry operates under either of the \"IETF Review\" (Section 4.8 of [RFC8126]) or \"IESG Approval\" (Section 4.10 of [RFC8126]) policies.\r\n\r\nInstead, it renders this way:\r\n\r\n> This document establishes a registry for HTTP/2 frame type codes. The \"HTTP/2 Frame Type\" registry manages an 8-bit space. The \"HTTP/2 Frame Type\" registry operates under either of the Section 4.8 of \"IETF Review\" [RFC8126] or Section 4.10 of \"IESG Approval\" [RFC8126] policies.\r\n\r\nThat word ordering doesn't make sense.  I'm not sure exactly what XML magic would be needed to produce the expected sentence order.   Same thing occurs in Sections 11.2-4.",
+      "createdAt": "2021-08-24T18:10:53Z",
+      "updatedAt": "2021-08-24T18:11:24Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 949,
+      "id": "MDU6SXNzdWU5NzgzODQ3MDY=",
+      "title": "References for Obsolete IANA elements",
+      "url": "https://github.com/httpwg/http2-spec/issues/949",
+      "state": "OPEN",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The HTTP2-Settings header field and the h2c Upgrade token are both obsolete in the same way for the same reason, but it's rendered differently in their respective IANA sections.\r\n\r\n- HTTP2-Settings is marked as Obsolete in the registry, with a reference back to the IANA Considerations of this document\r\n- h2c gives no instructions to IANA, but includes explanatory text that the capability is removed and refers to Section 3.1.\r\n\r\nI would suggest that these should be aligned and combined, such that each one does two things:\r\n\r\n- Instructs IANA to mark the entry as Obsolete\r\n- Add a note that the element was used for Upgrade and reference Section 3.1 for more detail on Upgrade's removal",
+      "createdAt": "2021-08-24T18:47:15Z",
+      "updatedAt": "2021-08-24T18:47:15Z",
       "closedAt": null,
       "comments": []
     }
@@ -38427,24 +38481,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzE3NDc4NDk5",
       "title": "Ciphers were listed in 2015.",
       "url": "https://github.com/httpwg/http2-spec/pull/934",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Closes #897.",
       "createdAt": "2021-08-23T04:10:51Z",
-      "updatedAt": "2021-08-23T11:51:44Z",
+      "updatedAt": "2021-08-24T11:17:59Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "0b330a9c145e2e91d6a2c30cda24747612562926",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "cipher-list",
       "headRefOid": "50e1e3608cf3d7c2567021cc43befa7f4e183abf",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-24T11:17:59Z",
+      "mergedAt": "2021-08-24T11:17:59Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "56ab575099e34b80c7ae5d6dfb29cf2124f89e69"
+      },
       "comments": [],
       "reviews": [
         {
@@ -38472,6 +38528,99 @@
               "updatedAt": "2021-08-23T11:51:44Z"
             }
           ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2Nzg4NDU0",
+          "commit": {
+            "abbreviatedOid": "50e1e36"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-24T05:15:19Z",
+          "updatedAt": "2021-08-24T05:15:19Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Includes is correct.  The negation comes later.",
+              "createdAt": "2021-08-24T05:15:19Z",
+              "updatedAt": "2021-08-24T05:15:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2NzkxMzE0",
+          "commit": {
+            "abbreviatedOid": "50e1e36"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-24T05:17:28Z",
+          "updatedAt": "2021-08-24T05:17:28Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "\"null\" (that is, identity or `f : x -> x`) is a type of \"cipher\" that some suites offer. Scare quotes on \"cipher\" are necessary because it's exactly as bad as it sounds.\r\n\r\n\"stream\", and \"block\" are also types of cipher.  RC4 is an example of the former, AES CBC modes the latter.",
+              "createdAt": "2021-08-24T05:17:28Z",
+              "updatedAt": "2021-08-24T05:17:28Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTAxODgz",
+          "commit": {
+            "abbreviatedOid": "50e1e36"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-24T11:16:21Z",
+          "updatedAt": "2021-08-24T11:16:21Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Wow this text is unclear. What it\u2019s saying is that AEAD is a kind of cipher distinct from stream, block, and null? Ok I guess.",
+              "createdAt": "2021-08-24T11:16:21Z",
+              "updatedAt": "2021-08-24T11:16:21Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTAyOTk4",
+          "commit": {
+            "abbreviatedOid": "50e1e36"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-24T11:17:48Z",
+          "updatedAt": "2021-08-24T11:17:48Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "It comes earlier, as it turns out, but great.",
+              "createdAt": "2021-08-24T11:17:48Z",
+              "updatedAt": "2021-08-24T11:17:49Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTAzMDg5",
+          "commit": {
+            "abbreviatedOid": "50e1e36"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T11:17:54Z",
+          "updatedAt": "2021-08-24T11:17:54Z",
+          "comments": []
         }
       ]
     },
@@ -38489,7 +38638,7 @@
       ],
       "body": "Closes #912.",
       "createdAt": "2021-08-23T04:25:56Z",
-      "updatedAt": "2021-08-23T11:49:11Z",
+      "updatedAt": "2021-08-25T02:41:29Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "0b330a9c145e2e91d6a2c30cda24747612562926",
@@ -38531,13 +38680,13 @@
       "labels": [],
       "body": "This just moves the reference to the canonical definition of what is\r\nvalid up to the top of the section.  That's the canonical text.\r\n\r\nThis emphasizes the point that HTTP/2 is placing *additional*\r\nrequirements on endpoints with respect to validation.\r\n\r\nThis does not really fix #902 in the sense that it leaves validation of\r\nDQUOTE and friends to the core semantics implementations.\r\n\r\nNote that any \"MAY\" requirement for rejecting a messaging can have the\r\ndesired effect on those generating those messages: if an endpoint puts\r\nDQUOTE in a field name, that message will have little hope of being\r\nsuccessfully handled.\r\n\r\nCloses #902.",
       "createdAt": "2021-08-23T05:01:48Z",
-      "updatedAt": "2021-08-23T11:47:40Z",
+      "updatedAt": "2021-08-25T08:29:25Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "2e0e8750f1f60f447980141c0dd0ae07b58abf17",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "field-validation-mkIII",
-      "headRefOid": "2305e05d3d0581ca3a188435f121768f9edfa18c",
+      "headRefOid": "ba11cbf0c45e04d4634f9a3c1fdc28f2dbbd54b5",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -38577,6 +38726,111 @@
           "body": "I have no objection to adding ABNF to define H2\u2019s fields. I would say that we should keep the prose, as the prose does a good job of expressing the why of our choices: for example, explaining the expectations around lowercase field names.\r\n\r\nHowever, I agree with @reschke and my past self that we do not need add a \u201cMUST validate\u201d section.",
           "createdAt": "2021-08-23T11:47:40Z",
           "updatedAt": "2021-08-23T11:47:40Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "Thanks Martin. I'm having a bit of difficulty parsing this sentence: \"These checks are the minimum necessary to avoid accepting messages that might avoid security checks\". Maybe \"These checks are the minimum necessary to forward or process the message as an HTTP message\" ?\r\n\r\nAlso \"A recipient can treat a message ...\" why not \"s/can/SHOULD\" ? I think that should be enough to solve it.",
+          "createdAt": "2021-08-24T03:58:28Z",
+          "updatedAt": "2021-08-24T03:58:28Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "My objection to ABNF is the same as before: we risk that being mistaken as defining what is valid.  Something that meets that ABNF is not valid.  The point of this section is to define what the absolute minimum is with respect to any form of message handling.  Our attempt to require more complete validation roundly failed, so this is where we end up.\r\n\r\nWilly, I've tried again with the wording.  But I want to avoid normative statements regarding the core semantics documents.  Those already define what a receiver might do.  Those requirements aren't strict enough, at least in the \"acting as a tunnel\" case, for HTTP/2.  The point of this text is to point to HTTP and note that these checks won't guarantee you a valid message, but to allow those implementations that do apply those checks the option of using HTTP/2 signaling (reset streams) to indicate the error condition.  I don't think that needs a SHOULD, but I'm OK with adding it.",
+          "createdAt": "2021-08-24T04:54:37Z",
+          "updatedAt": "2021-08-24T04:54:37Z"
+        },
+        {
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> The point of this section is to define what the absolute minimum is with respect to any form of message handling.\r\n\r\n@martinthomson I think this is a flawed approach.  By only defining a subset of invalid fields we create a set of fields that are not valid HTTP but may be valid H2 fields (by merit of being not defined as  minimally invalid - just describing it is convoluted).  \r\n\r\nI have yet to see any use-case for a field to be valid in H2 but invalid in HTTP?  #902 has identified that the example we have frequently used for such a field (double quote in name) will be a concern if passed onto CGI scripting language.   So we have no known uses for such fields and security concerns about at least some of them.     So why not just define valid H2 fields as a proper subset of valid HTTP fields plus pseudo fields?\r\n\r\n\r\n>  we risk that being mistaken as defining what is valid\r\n\r\nWe can avoid defining what is valid by referencing other specifications (which do use ABNF).  As #902 suggests a field should be valid in H2  if and only if it is:\r\n```\r\n( valid-HTTP-field || pseudo-field ) && lower-case-name\r\n```\r\nI.e. the set of valid H2 fields is a proper subset of valid HTTP fields plus pseudo fields.\r\n\r\n\r\n\r\n",
+          "createdAt": "2021-08-24T05:23:04Z",
+          "updatedAt": "2021-08-24T05:23:04Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "That is what RFC 7540 did.  That failed.  We can revert all of these changes (aside from editorial tweaks) and go back to what the previous version said, but would that be any more successful?",
+          "createdAt": "2021-08-24T05:36:20Z",
+          "updatedAt": "2021-08-24T05:36:20Z"
+        },
+        {
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> That is what RFC 7540 did. That failed. We can revert all of these changes (aside from editorial tweaks) and go back to what the previous version said, but would that be any more successful?\r\n\r\nI take it that you consider RFC7540 failed because of https://github.com/httpwg/http2-spec/issues/815 which ultimately references https://github.com/httpwg/http-core/issues/683.  These indicate that there are cases of CTL characters in field values observed in the wild.           \r\n\r\nThe response has been to relax the validation on fields so much that now security problems have been created.    I think this is because the minimal validation approach is essentially trying to be secure with a black list (in this case a list of known bad characters).  It is far more secure to use a white list approach (i.e what  is the minimal character set required to carry the HTTP semantic ).\r\n\r\nI don't really understand why no attempt was made to enforce the previous specification - I really hope it was not because of who was violating.  But if enforcing the spec is seen as impossible, then rather than just leave the validity of fields somewhat undefined, surely a better approach would have been to make some explicit exclusions to allow just the needed control characters in field values.    Or perhaps field names must be valid HTTP field names (or psuedo and lowercase), but h2 is more relaxed on field values?  Deserting the field and not actually precisely defining what is valid just seams like an inviation to create more special cases and more unforseen security problems.\r\n\r\n\r\n",
+          "createdAt": "2021-08-24T06:18:32Z",
+          "updatedAt": "2021-08-24T06:18:32Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "The real reason for this situation is that we all know that what is extracted from H2 then HPACK will need further processing and that this processing may already be fooled by the contents extracted from there. In addition, H2 being a standard multiplexed protocol on top of TCP is abused by some not really interested in the HTTP aspect of it (e.g. https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) , putting intermediaries at risk of breakage and giving them even more motivation for dropping essential controls and becoming insecure.\r\n\r\nWhile I would prefer a wording directly referencing the HTTP spec, like Martin I'm convinced that some will simply not even read it.\r\n\r\nSo I think the proposed addition here can be welcome provided that it *does not* use the terms \"valid\" or anything else that might make implementations think \"OK that's sufficient\", and that presenting the root cause and the risk remains useful to convince those who are hesitating (or at least give them good arguments for *not* disabling the tests).\r\n\r\nLet's try again:\r\n```\r\n   HTTP/2 and HPACK being length-delimited, they present no restriction to the sets of characters they may convey, exposing\r\n   recipients to character sets that may result in incorrect parsing or mismatched translation to other HTTP versions.\r\n   At the very least, before attempting to parse these fields as HTTP header fields or forwarding them, any implementation\r\n   SHOULD perform the following safety checks, which are not sufficient to declare the fields as valid HTTP fields, but are\r\n   necessary to protect HTTP parsing. [HTTP 5.1/5.5] defines what is valid for HTTP.\r\n```\r\n\r\nIt's not far from what Martin wrote in the last update, it just tries to better present the context and mention that this has to be done *before* HTTP parsing.\r\n\r\nAnd I'd like to use `SHOULD` for treat as malformed.",
+          "createdAt": "2021-08-24T07:11:56Z",
+          "updatedAt": "2021-08-24T07:11:56Z"
+        },
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I don't really understand why no attempt was made to enforce the previous specification - I really hope it was not because of who was violating\r\n\r\nNo attempt was made to enforce the previous specification because the IETF and httpwg have no enforcement mechanism. What could have been done to enforce it?\r\n\r\nW.r.t. this patch, I agree with @martinthomson that it seems that the conversation has come full-circle to where we were with RFC 7540. In that circle I think the wording here is closest to what I\u2019d want: a clear list of specific rules with a note that these rules are a lower bound on processing, not an upper bound.",
+          "createdAt": "2021-08-24T11:15:17Z",
+          "updatedAt": "2021-08-24T11:15:17Z"
+        },
+        {
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "\r\n> So I think the proposed addition here can be welcome provided that it _does not_ use the terms \"valid\" or anything else that might make implementations think \"OK that's sufficient\", and that presenting the root cause and the risk remains useful to convince those who are hesitating (or at least give them good arguments for _not_ disabling the tests).\r\n\r\nI agree that misunderstanding the safety of the current spec is a real problem, but I don't think avoiding the word \"valid\" will help.    Many developers will naturally think that a HTTP/2 specification would only support valid HTTP fields.      You can't fix this in the text because that assumption has already been made in existing software and will be made again without reading the text.  Even those that do read the text might get lost in the fine distinctions we are trying to make here between a field that is valid and one that may not be invalid. \r\n\r\n>    At the very least, before attempting to parse these fields as HTTP header fields or forwarding them, any implementation\r\n>    SHOULD perform the following safety checks, which are not sufficient to declare the fields as valid HTTP fields, but are\r\n>    necessary to protect HTTP parsing. [HTTP 5.1/5.5] defines what is valid for HTTP.\r\n\r\nWhat is a safe field? If the safety checks are not sufficient for consuming HTTP semantics, what are H2 fields safe for?  What layers can consume them without extra validation?    Why are consumers protected against CR, LF and ':' attacks but they are not safe from DQUOTE ones?    Fields passing these safety checks cannot not be passed to any existing layers that are written with the assumption that they will only receive valid HTTP fields and new user will wrongly assume that H2 safety checks are at least as good as those in HTTP/1.\r\n\r\nRFC7540 said that an imple MUST be invalid HTTP fields as malformed, but some impls ignored that.   So how about we say that impls SHOULD treat invalid HTTP fields as malformed and then define the specific circumstances in which consenting peers can exchange invalid HTTP fields, perhaps indicating as much with a SETTING or new psuedo header that is needed to specifically allow h2 framing to be used for non-HTTP semantics?     Yeah I know some will say \"you can't force those users of invalid HTTP fields to do something special\".  So instead we make all users of valid HTTP fields need to do extra validation else risk being insecure?\r\n\r\nAnyway,  sorry for re-re-re-re-litigating.   My live-with criteria is that an implementation MAY treat invalid HTTP fields as malformed, so in that sense this PR is fine.... it just doesn't fix #902 (and Martin says as much), so this is really just an editorial PR unrelated to #902.\r\n\r\n",
+          "createdAt": "2021-08-24T14:46:26Z",
+          "updatedAt": "2021-08-24T14:46:26Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "Greg, I'm not suggesting that an H2 field is safe, but \"safe to be parsed as HTTP\". The main reason is that some basic HTTP components have been broken into pieces in H2 and need to be reassembled before being processed by HTTP. :scheme, :authority, :path are two such examples. In HTTP together they're called a URI. Cookie is another one. Some H2-specific issues may happen at the H2 layer that are impossible by definition in HTTP since HTTP/1. In my opinion this is the trouble that is being attempted to be addressed here. And yes it turns out that it diverges a bit from #902 though it can address it if it mentions that consumed fields are subject to these checks.\r\n\r\nFor sure, if we enforce strict validation of all H2 fields against HTTP ones it will address everything, except that we've already seen that implementors are not keen on switching between many specs at once and need some guidance. It's a delicate balance. Julian proposed to duplicate the ABNF there, I thought it was a good idea. And if we don't want to make it look normative we could write the minimum elements as a reminder.\r\n",
+          "createdAt": "2021-08-24T16:13:39Z",
+          "updatedAt": "2021-08-24T16:13:39Z"
+        },
+        {
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> I'm not suggesting that an H2 field is safe, but \"safe to be parsed as HTTP\".\r\n\r\nBut the spec currently as currently written and after this PR is not \"safe to be parsed as HTTP\".   If that parsing is done by a scripting language then DQUOTE and other control characters that are current permitted by the spec may well not be safe.  To take your example of a cookie header, how can you be sure that code which is currently safely the cookie header value (or set-cookie value) will be robust in the face of control characters within that value?\r\n\r\nIsn't the set of h2 fields that are \"safe to be parsed as HTTP\" a true subset of valid HTTP fields?  What extra characters can we allow into fields that are not valid HTTP that we are sure will be parsed safely as valid HTTP by all existing layers currently running on top of H2 implementations?\r\n\r\nThe intent of these changes have been to normalize the practise in the wild of h2 framing being used to carry control characters in fields for non-HTTP purposes.    But if we nomarlize that, we are putting in jeopardy all existing code written to HTTP semantics that may not even be aware of the version of HTTP carrying the fields that they are interpretting.   \r\n\r\nSurely there is some other way to allow h2 framing to be used to carry non-HTTP streams without putting all existing HTTP code at risk?  If we don't want developers abusing the current protocol, then give them a proper solution for their use-case rather than corrupt the existing primary use-case.\r\n",
+          "createdAt": "2021-08-25T00:33:04Z",
+          "updatedAt": "2021-08-25T00:33:04Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "> > I'm not suggesting that an H2 field is safe, but \"safe to be parsed as HTTP\".\r\n> \r\n> But the spec currently as currently written and after this PR is not \"safe to be parsed as HTTP\". If that parsing is done by a scripting language then DQUOTE and other control characters that are current permitted by the spec may well not be safe.\r\n\r\nThey should represent the exact same level of risk as having the same code parse HTTP/1.\r\nBut actually that might in fact be what we're all seeking without precisely realizing it, which is making sure an H2 message can be at least reconstructed as an H1 message that is safe to parse. The rules on CR/LF precisely have always been a concern to all of us for this.\r\n\r\n> To take your example of a cookie header, how can you be sure that code which is currently safely the cookie header value (or set-cookie value) will be robust in the face of control characters within that value?\r\n\r\nSame as above.\r\n\r\n> Isn't the set of h2 fields that are \"safe to be parsed as HTTP\" a true subset of valid HTTP fields? What extra characters can we allow into fields that are not valid HTTP that we are sure will be parsed safely as valid HTTP by all existing layers currently running on top of H2 implementations?\r\n\r\nThis is always difficult to say if we'd try to extend what HTTP permits. However we're certain that some will almost always be dangerous along a chain or cause parsing issues even inside implementations.\r\n\r\n> The intent of these changes have been to normalize the practise in the wild of h2 framing being used to carry control characters in fields for non-HTTP purposes. But if we nomarlize that, we are putting in jeopardy all existing code written to HTTP semantics that may not even be aware of the version of HTTP carrying the fields that they are interpretting.\r\n\r\nNot exactly. This is actually the current situation probably because some consider that the effort needed to comply with the rules in semantics is too high for little value the this level. This is something I can understand. For example in haproxy we have a semantics layer which performs a lot of controls, deduplicates content-length, checks Host against `:authority` etc. But at the lowest level it is difficult to enforce such checks when you're just converting header lists to internal messages. However we already have the NUL/CR/LF checks that allows the upper layer parser to proceed (the initial implementation used to build an H1 message but that's no longer the case).\r\n\r\nThus maybe we should replace all this with an approach centered around this tricky HTTP/1 translation, which also does not infer how implementations should work internally nor suggest to put anything non-HTTP inside HEADERS frames:\r\n```\r\nHTTP/2 and HPACK being length-delimited, they present no restriction to the sets of\r\ncharacters they may convey, exposing recipients to character sets that may result in\r\nincorrect parsing or mismatched translation to other HTTP versions. Implementations\r\nwhich reassemble elements as an HTTP/1-like message before processing semantics are\r\nparticularly at risk and MUST perform the following safety checks before proceeding:\r\n  - CTL, colon, upper case, 0x80-0xFF in header field names\r\n  - NUL, CR, LF, leading/trailing LWS in field values\r\n  - non-token chars in :method\r\n  - chars out of alnum/+/- in :scheme\r\n  - NUL,CR,LF,space in :authority\r\n  - :path not starting with '/' or '*'\r\nThese safety checks are the bare minimum that permits a reconstructed message to be\r\nsafely submitted to a compliant HTTP/1 parser but are not sufficient to declare the\r\nfields as valid HTTP fields, which is covered by [HTTP 5.1/5.5]. Implementations\r\nSHOULD reject messages carrying invalid HTTP fields as malformed.\r\n```\r\n\r\n> Surely there is some other way to allow h2 framing to be used to carry non-HTTP streams without putting all existing HTTP code at risk? If we don't want developers abusing the current protocol, then give them a proper solution for their use-case rather than corrupt the existing primary use-case.\r\n\r\nJust to be clear, I really *do not* want to see HEADERS frame being abused to carry non-HTTP because I know pretty well what it's like to be an intermediary developer whose product is pointed the finger at for breaking stuff when inserted in a working but non-compliant chain. This is also why I would like to see the SHOULD reject as malformed.\r\n",
+          "createdAt": "2021-08-25T03:00:36Z",
+          "updatedAt": "2021-08-25T03:04:13Z"
+        },
+        {
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> HTTP/2 and HPACK being length-delimited, they present no restriction to the sets of\r\n> characters they may convey, exposing recipients to character sets that may result in\r\n> incorrect parsing or mismatched translation to other HTTP versions. Implementations\r\n> which reassemble elements as an HTTP/1-like message before processing semantics are\r\n> particularly at risk and MUST perform the following safety checks before proceeding:\r\n\r\nI like this paragraph and I'm totally OK with a spec that has conditions like \"implementations which reassemble elements as an HTTP/1-like message before ....\"\r\n\r\nHowever, it is not just HTTP/1 as there are many HTTP semantic layers that are unaware of the protocol version, so it needs to be any impl that represents streams as HTTP messages must do specific validation whilst the h2 \"abusers\" are free use streams to the limites of HPACK capabilities, so long as they don't represent the results as HTTP messages - either on the wire or to layers above.\r\n\r\nFurthermore an impl that is representing HTTP messages cannot just do the minimal safety checks you listed. It MUST validate the fields against the general syntax of HTTP fields. For example, if I provide a h2 implementation of the Java [HttpExchange](https://docs.oracle.com/javase/8/docs/jre/api/net/httpserver/spec/com/sun/net/httpserver/HttpExchange.html) class, then my impl MUST validate the fields against HTTP syntax.    But if instead, I use my h2 impl to implement a gRPC API, then I'm under no such obligation as I'm not representing HTTP messages.\r\n\r\nMore over, it is only the protocol impl that can do this validation. Another example is that my server is used on PAAS platforms where the application was deployed decades ago and the source code is probably lost and the dev team all retired.  The app cannot be redeployed and it certainly cannot be reviewed for how it parses the Cookie header. It's not sufficient for me to switch them from HTTP/1 to H2 and in the process expose those applications to non-valid HTTP headers in HTTP messages I deliver to them.   If the h2 impl is not going to validate the fields are valid HTTP then who is?\r\n\r\nSo how about something like:\r\n```\r\nHTTP/2 and HPACK present few restrictions on the characters they may convey, exposing recipients to character sets that may \r\nresult in incorrect handling or mismatched translation to other HTTP versions.  Implementations which representing streams as HTTP \r\nmessages are particularly at risk and MUST validate the generic syntax of fields as defined in <xref target=\"HTTP\" section=\"5.5\"/>.\r\n```\r\n\r\n\r\n\r\n",
+          "createdAt": "2021-08-25T05:56:49Z",
+          "updatedAt": "2021-08-25T05:56:49Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "The thing is, stacks that support multiple versions will certainly not implement the full header syntax in each version because that is exactly what ought to be done at the semantics layer and why the HTTP spec was split like this as well. We really have messaging (H1,H2,H3) and semantics. The transport explains how to extract elements from a byte stream and how to encode them into a byte stream. The semantics details their syntax and consistency.\r\n\r\nNUL/CR/LF purely come from the H1 world but H1 was HTTP before H2 existed, so it could be argued that they are legacy limitations that probably affects most stacks. The cookie header splitting is purely H2, and once recombined it must parse correctly according to the semantics definition. But whether your cookie header field comes from H1/H2/H3, it will have to pass through the exact same validity checks.\r\n\r\nWhat is certain is that these HTTP syntax checks must be performed somewhere. But the messaging layer is not always exactly the best place for this. Typically an H1 implementation will not have code to check for embedded LF characters because it's a delimiter, while H2 needs to have explicit check against this.  The rules on the resulting cookie header field format apply after Cookie header reassembly, not before. And this reassembly is specific to the messaging layer which defines how to serialize fields. Last, the generic rules are not sufficient to safely reassemble the pseudo-header fields.\r\n\r\nMaybe in the end we could combine our two parts, starting with yours to indicate what every HTTP implementation must do, and putting the focus on the extreme care that is required when translating to HTTP/1-like since we know that it's one of the most natural approaches (and even used in the examples in the spec).\r\n\r\nThis could give roughly:\r\n\r\n```\r\nHTTP/2 and HPACK present no restriction on the characters they may convey, exposing recipients\r\nto character sets that may result in incorrect handling or mismatched translation to other HTTP\r\nversions.  Implementations which represent HTTP messages as byte streams or series of lines are\r\nparticularly at risk and MUST validate the generic syntax of fields as defined in\r\n<xref target=\"HTTP\" section=\"5.1\"/> and <xref target=\"HTTP\" section=\"5.5\"/>. Implementations that\r\nsupport multiple HTTP versions are specifically warned against the risk of possibly insufficient\r\nfiltering of the CR and LF characters in control code originally developed for HTTP/1.x.\r\n\r\nIn addition, special care is required when attempting to rebuild a start line from the\r\nfollowing pseudo-header fields values, that may also be abused to affect the final message\r\nrepresentation:\r\n  - presence of NUL/CR/LF characters in any pseudo-header field value\r\n  - presence of characters not matching token production in :method\r\n  - presence of chars outside of ALPHA/DIGIT/+/-/. in :scheme\r\n  - presence of LWS characters in :authority\r\n  - :path not starting with '/' or '*'\r\n  - presence of characters outside of DIGIT in :status\r\n```\r\nWith this I think it that the intent is clear, the guidance as well, it is exhaustive and doesn't leave any doubt on what needs to be done.\r\n",
+          "createdAt": "2021-08-25T06:48:46Z",
+          "updatedAt": "2021-08-25T06:48:46Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "Oh, and of course:\r\n```\r\nImplementations SHOULD reject messages carrying invalid HTTP fields as malformed.\r\n```\r\n:-)",
+          "createdAt": "2021-08-25T06:52:43Z",
+          "updatedAt": "2021-08-25T06:52:43Z"
+        },
+        {
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think extreme care is need anytime a HTTP message is represented, not just when represented as a HTTP/1.    If a H2 layer is delivering messages to a semantic layer that was developed against h1, then it will not be assuming HTTP valid charset in no matter if the message is passed as byte streams or lines or XML or JSON or Strings in classes.   It seams wrong for one particular messaging layer (h2) to require changes in transport impartial HTTP semantic layers so the messaging layer can be \"abused\" for non HTTP purposes?\r\n\r\nAs you say, the actual syntax validations needed to be done are dependent on the messaging layer.   So they are best done in the messaging layer as it knows what it is and can sometimes do things efficiently like checking charsets during parsing.       If the syntax is not validated by the messaging layer, then the semantic layer will have to do full validation, which will result in wasting CPU duplicating any checks that are done by the messaging layer (or are intrinsic to the transport).\r\n\r\n\r\n",
+          "createdAt": "2021-08-25T08:29:25Z",
+          "updatedAt": "2021-08-25T08:29:25Z"
         }
       ],
       "reviews": [
@@ -38607,26 +38861,57 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzE3OTQwODA5",
       "title": "Connections, not implemenations",
       "url": "https://github.com/httpwg/http2-spec/pull/937",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "This text wasn't actually changed in #933, but I noticed it while reviewing.  This says that implementations which support TLS MUST use ALPN, but that's not really tied to what the implementation supports -- it's tied to what the current connection is doing.  If you support TLS but are using cleartext TCP for the current connection (regardless of why), you're not required to use ALPN.",
       "createdAt": "2021-08-23T15:28:44Z",
-      "updatedAt": "2021-08-23T15:28:44Z",
+      "updatedAt": "2021-08-24T11:20:24Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
       "headRepository": "MikeBishop/http2v2",
       "headRefName": "connection_not_implementations",
       "headRefOid": "14a49b5f342e36b3dcd3fe8ecfb38a13c186e593",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-08-24T11:20:24Z",
+      "mergedAt": "2021-08-24T11:20:24Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "91259c8e84a3a6e8da9d4e12dba2a80e1075d147"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2Njk3NjE5",
+          "commit": {
+            "abbreviatedOid": "14a49b5"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T01:33:18Z",
+          "updatedAt": "2021-08-24T01:33:18Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTA0OTcy",
+          "commit": {
+            "abbreviatedOid": "14a49b5"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T11:20:14Z",
+          "updatedAt": "2021-08-24T11:20:14Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 939,
@@ -38637,10 +38922,12 @@
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "More instances of using a-f than using A-F, so I normalized the outliers to lower-case.",
       "createdAt": "2021-08-23T17:42:05Z",
-      "updatedAt": "2021-08-23T17:46:15Z",
+      "updatedAt": "2021-08-24T11:19:51Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
@@ -38652,7 +38939,34 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2NzAxOTYz",
+          "commit": {
+            "abbreviatedOid": "50e29bb"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Holding this one until that text settles though.",
+          "createdAt": "2021-08-24T01:44:55Z",
+          "updatedAt": "2021-08-24T01:44:55Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTA0NTM5",
+          "commit": {
+            "abbreviatedOid": "50e29bb"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T11:19:44Z",
+          "updatedAt": "2021-08-24T11:19:44Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 940,
@@ -38666,7 +38980,7 @@
       "labels": [],
       "body": "The existing language presupposes that the server will reset the stream upon detecting a malformed request, when in fact it only MAY do so.  The simplest fix for this text is to remove any reference to resetting the stream and restrict the advice to using an HTTP status code.",
       "createdAt": "2021-08-23T17:50:03Z",
-      "updatedAt": "2021-08-23T17:50:03Z",
+      "updatedAt": "2021-08-24T11:19:25Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
@@ -38677,34 +38991,386 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yeah, I think that I agree, but that text is actively under discussion and might change.  I'd rather not create a conflict yet.  Holding this.",
+          "createdAt": "2021-08-24T01:46:03Z",
+          "updatedAt": "2021-08-24T01:46:03Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTA0MzEw",
+          "commit": {
+            "abbreviatedOid": "10351c2"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T11:19:25Z",
+          "updatedAt": "2021-08-24T11:19:25Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 943,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE4MDU2NTAz",
       "title": "No path for CONNECT",
       "url": "https://github.com/httpwg/http2-spec/pull/943",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "Fixes #942.",
       "createdAt": "2021-08-23T18:15:21Z",
-      "updatedAt": "2021-08-23T18:15:21Z",
+      "updatedAt": "2021-08-24T11:21:38Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
       "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
       "headRepository": "MikeBishop/http2v2",
       "headRefName": "connect_path",
       "headRefOid": "c238478e497e4a8ae94bf8bb0db1bd1f4450f7d6",
-      "closedAt": null,
+      "closedAt": "2021-08-24T11:21:38Z",
+      "mergedAt": "2021-08-24T11:21:37Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "52b8efca430cc842d450e0afd2f14ca086c5f628"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM2Njk1NTE4",
+          "commit": {
+            "abbreviatedOid": "c238478"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T01:27:31Z",
+          "updatedAt": "2021-08-24T01:27:31Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTA1OTUw",
+          "commit": {
+            "abbreviatedOid": "c238478"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T11:21:28Z",
+          "updatedAt": "2021-08-24T11:21:28Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 945,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE4MzMzMzY5",
+      "title": "Remove content-length from the chunked example",
+      "url": "https://github.com/httpwg/http2-spec/pull/945",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "Closes #944.",
+      "createdAt": "2021-08-24T01:27:42Z",
+      "updatedAt": "2021-08-24T11:21:04Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "cl-ex5",
+      "headRefOid": "7beba4a292630a980a32e9d7ba1f8350cbfd8f30",
+      "closedAt": "2021-08-24T11:21:04Z",
+      "mergedAt": "2021-08-24T11:21:04Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "ad5536fbbe765501882465892a81d09814431ca6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MTA1NTI4",
+          "commit": {
+            "abbreviatedOid": "7beba4a"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T11:20:57Z",
+          "updatedAt": "2021-08-24T11:20:57Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 946,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE4MzgyODU4",
+      "title": "More on connection-specific headers",
+      "url": "https://github.com/httpwg/http2-spec/pull/946",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The original issue here was concerned with Transfer-Encoding, but this\r\nwas not a normative statement, it was a note.  With a forward reference,\r\nthis is better.\r\n\r\nThe section on connection-specific headers probably could have been more\r\nspecific.  Now that the -semantics draft has a specific list of things\r\n(plus whatever `Connection` lists), we can lean on that more directly.\r\n\r\nCloses #938.",
+      "createdAt": "2021-08-24T03:47:29Z",
+      "updatedAt": "2021-08-24T11:03:41Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "f3d27e7fbb7cb3f4a973cfa4da47d4169b812fd6",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "transfer-codings",
+      "headRefOid": "231285f7e502f94418b91ba17d7903010bda70f5",
+      "closedAt": "2021-08-24T11:03:41Z",
+      "mergedAt": "2021-08-24T11:03:41Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "e8a11abfc1e99829e4bb82491c4c6e1ec27e2393"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3MDkxNDE0",
+          "commit": {
+            "abbreviatedOid": "231285f"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T11:03:32Z",
+          "updatedAt": "2021-08-24T11:03:32Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 947,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE4NjY3Mjkx",
+      "title": "Refer to Extended Connect",
+      "url": "https://github.com/httpwg/http2-spec/pull/947",
+      "state": "CLOSED",
+      "author": "Lukasa",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #941",
+      "createdAt": "2021-08-24T11:42:35Z",
+      "updatedAt": "2021-08-25T12:16:18Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "52b8efca430cc842d450e0afd2f14ca086c5f628",
+      "headRepository": "Lukasa/http2-spec",
+      "headRefName": "cb-upgrade-update",
+      "headRefOid": "98e8207dba25754532331b4bbeebf3f5ace6dc49",
+      "closedAt": "2021-08-25T12:16:17Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [
+        {
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing for #951 instead.",
+          "createdAt": "2021-08-25T12:16:17Z",
+          "updatedAt": "2021-08-25T12:16:17Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3NTgwODUx",
+          "commit": {
+            "abbreviatedOid": "98e8207"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-24T18:56:44Z",
+          "updatedAt": "2021-08-24T18:56:44Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 950,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE4OTg0OTYy",
+      "title": "Last round of review nits",
+      "url": "https://github.com/httpwg/http2-spec/pull/950",
+      "state": "MERGED",
+      "author": "MikeBishop",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "",
+      "createdAt": "2021-08-24T18:54:12Z",
+      "updatedAt": "2021-08-25T12:14:38Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "52b8efca430cc842d450e0afd2f14ca086c5f628",
+      "headRepository": "MikeBishop/http2v2",
+      "headRefName": "nits",
+      "headRefOid": "9d473bb3a2b537d07cd129d29113de420d350d7e",
+      "closedAt": "2021-08-25T12:14:38Z",
+      "mergedAt": "2021-08-25T12:14:38Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "d858458e126b793a8c4f6fdda710c428023fa19e"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3NTc5MzMw",
+          "commit": {
+            "abbreviatedOid": "9d473bb"
+          },
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-24T18:55:13Z",
+          "updatedAt": "2021-08-24T18:55:13Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "Line 2979 says the same thing about responses; I was originally going to remove one or the other as a duplicate, but this section is about requests, so the smaller change is to make them complementary statements.",
+              "createdAt": "2021-08-24T18:55:13Z",
+              "updatedAt": "2021-08-24T18:55:13Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM3ODQ2NTU5",
+          "commit": {
+            "abbreviatedOid": "9d473bb"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-25T02:45:13Z",
+          "updatedAt": "2021-08-25T02:45:13Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM4MjcyMjE1",
+          "commit": {
+            "abbreviatedOid": "9d473bb"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-25T12:14:28Z",
+          "updatedAt": "2021-08-25T12:14:28Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 951,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE5MjA1MDIz",
+      "title": "reference extended connect",
+      "url": "https://github.com/httpwg/http2-spec/pull/951",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "I know that Cory beat me to it with #947, but I had written text.  I only forgot to make the PR.  Cory can decide which he likes better :)\r\n\r\nCloses #941.",
+      "createdAt": "2021-08-25T02:48:18Z",
+      "updatedAt": "2021-08-25T12:15:58Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "52b8efca430cc842d450e0afd2f14ca086c5f628",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "not-upgrade-connect",
+      "headRefOid": "e4db7cf8e6f1b33ffa2a1517a99571d76a39d3e1",
+      "closedAt": "2021-08-25T12:15:58Z",
+      "mergedAt": "2021-08-25T12:15:57Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "8b814f3925c3424aca6ddb984393e6b97de63d94"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM4MjczNDYy",
+          "commit": {
+            "abbreviatedOid": "e4db7cf"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "You put more things in your citation block, so it\u2019s clearly better.",
+          "createdAt": "2021-08-25T12:15:48Z",
+          "updatedAt": "2021-08-25T12:15:48Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 952,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzE5MjA1NDEw",
+      "title": "Tighten forward language",
+      "url": "https://github.com/httpwg/http2-spec/pull/952",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "This removes the \"from another HTTP version\" and just uses \"forwards\"\r\nwith \"to\" or \"from\".  Not sure if that helps.\r\n\r\nThe rest is an attempt to tighten things up.\r\n\r\nCloses #913.\r\nCloses #935 (as this supersedes it).\r\nCloses #912.",
+      "createdAt": "2021-08-25T02:49:27Z",
+      "updatedAt": "2021-08-25T12:18:58Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "52b8efca430cc842d450e0afd2f14ca086c5f628",
+      "headRepository": "martinthomson/http2v2",
+      "headRefName": "intermediary-stuff",
+      "headRefOid": "e9a8e8dbdec941ce5844f8d29a860f10196003a9",
+      "closedAt": "2021-08-25T12:18:58Z",
+      "mergedAt": "2021-08-25T12:18:58Z",
+      "mergedBy": "Lukasa",
+      "mergeCommit": {
+        "oid": "f8c762c594480bb6856065cca5c0daacd430133d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM4Mjc1NjM1",
+          "commit": {
+            "abbreviatedOid": "e9a8e8d"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-25T12:18:07Z",
+          "updatedAt": "2021-08-25T12:18:07Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
