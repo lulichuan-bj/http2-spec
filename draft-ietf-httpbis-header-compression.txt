@@ -5,8 +5,8 @@
 HTTPbis                                                          R. Peon
 Internet-Draft                                               Google, Inc
 Intended status: Standards Track                              H. Ruellan
-Expires: 26 February 2022                                      Canon CRF
-                                                          25 August 2021
+Expires: 27 February 2022                                      Canon CRF
+                                                          26 August 2021
 
 
                   HPACK: Header Compression for HTTP/2
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 February 2022.
+   This Internet-Draft will expire on 27 February 2022.
 
 Copyright Notice
 
