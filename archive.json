@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-26T00:54:27.275016+00:00",
+  "timestamp": "2021-08-29T00:59:22.205850+00:00",
   "repo": "httpwg/http2-spec",
   "labels": [
     {
@@ -20411,16 +20411,24 @@
       "id": "MDU6SXNzdWU5NzgzNTc3NDA=",
       "title": "Rendering of links in IANA",
       "url": "https://github.com/httpwg/http2-spec/issues/948",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MikeBishop",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The code for the IANA policies in Section 11.1 looks like this:\r\n\r\n        <t>\r\n          This document establishes a registry for HTTP/2 frame type codes.  The \"HTTP/2 Frame Type\"\r\n          registry manages an 8-bit space.  The \"HTTP/2 Frame Type\" registry operates under either\r\n          of the <xref target=\"RFC8126\" section=\"4.8\">\"IETF Review\"</xref> or <xref target=\"RFC8126\" section=\"4.10\">\"IESG Approval\"</xref> policies.\r\n        </t>\r\n\r\nThat would be fine if that rendered as I would expect, as:\r\n\r\n> This document establishes a registry for HTTP/2 frame type codes.  The \"HTTP/2 Frame Type\" registry manages an 8-bit space.  The \"HTTP/2 Frame Type\" registry operates under either of the \"IETF Review\" (Section 4.8 of [RFC8126]) or \"IESG Approval\" (Section 4.10 of [RFC8126]) policies.\r\n\r\nInstead, it renders this way:\r\n\r\n> This document establishes a registry for HTTP/2 frame type codes. The \"HTTP/2 Frame Type\" registry manages an 8-bit space. The \"HTTP/2 Frame Type\" registry operates under either of the Section 4.8 of \"IETF Review\" [RFC8126] or Section 4.10 of \"IESG Approval\" [RFC8126] policies.\r\n\r\nThat word ordering doesn't make sense.  I'm not sure exactly what XML magic would be needed to produce the expected sentence order.   Same thing occurs in Sections 11.2-4.",
       "createdAt": "2021-08-24T18:10:53Z",
-      "updatedAt": "2021-08-24T18:11:24Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2021-08-28T02:53:51Z",
+      "closedAt": "2021-08-27T12:23:57Z",
+      "comments": [
+        {
+          "author": "MikeBishop",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> Same thing occurs in Sections 11.2-4.\r\n\r\n#953 appears to fix only Section 11.1.",
+          "createdAt": "2021-08-28T02:53:51Z",
+          "updatedAt": "2021-08-28T02:53:51Z"
+        }
+      ]
     },
     {
       "number": 949,
@@ -38680,13 +38688,13 @@
       "labels": [],
       "body": "This just moves the reference to the canonical definition of what is\r\nvalid up to the top of the section.  That's the canonical text.\r\n\r\nThis emphasizes the point that HTTP/2 is placing *additional*\r\nrequirements on endpoints with respect to validation.\r\n\r\nThis does not really fix #902 in the sense that it leaves validation of\r\nDQUOTE and friends to the core semantics implementations.\r\n\r\nNote that any \"MAY\" requirement for rejecting a messaging can have the\r\ndesired effect on those generating those messages: if an endpoint puts\r\nDQUOTE in a field name, that message will have little hope of being\r\nsuccessfully handled.\r\n\r\nCloses #902.",
       "createdAt": "2021-08-23T05:01:48Z",
-      "updatedAt": "2021-08-25T08:29:25Z",
+      "updatedAt": "2021-08-27T01:25:30Z",
       "baseRepository": "httpwg/http2-spec",
       "baseRefName": "main",
-      "baseRefOid": "2e0e8750f1f60f447980141c0dd0ae07b58abf17",
+      "baseRefOid": "5d009dfde16a17e5b6f132f8c4860c042294dd23",
       "headRepository": "martinthomson/http2v2",
       "headRefName": "field-validation-mkIII",
-      "headRefOid": "ba11cbf0c45e04d4634f9a3c1fdc28f2dbbd54b5",
+      "headRefOid": "b06de4e0cb18946866bc4e199f429d579cab434e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -38831,6 +38839,27 @@
           "body": "I think extreme care is need anytime a HTTP message is represented, not just when represented as a HTTP/1.    If a H2 layer is delivering messages to a semantic layer that was developed against h1, then it will not be assuming HTTP valid charset in no matter if the message is passed as byte streams or lines or XML or JSON or Strings in classes.   It seams wrong for one particular messaging layer (h2) to require changes in transport impartial HTTP semantic layers so the messaging layer can be \"abused\" for non HTTP purposes?\r\n\r\nAs you say, the actual syntax validations needed to be done are dependent on the messaging layer.   So they are best done in the messaging layer as it knows what it is and can sometimes do things efficiently like checking charsets during parsing.       If the syntax is not validated by the messaging layer, then the semantic layer will have to do full validation, which will result in wasting CPU duplicating any checks that are done by the messaging layer (or are intrinsic to the transport).\r\n\r\n\r\n",
           "createdAt": "2021-08-25T08:29:25Z",
           "updatedAt": "2021-08-25T08:29:25Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "I think I'm OK with this. There's just one minor thing:\r\n```\r\nwhere characters such as CR and COLON\r\n```\r\nIt's actually \"LF and COLON\", but to be exhaustive I'd write \"CR, LF, and COLON\" since we've always kept extreme care on CR due to older H1 implementations.\r\n\r\nI think we **really** want to say something about the pseudo headers. They do not exist in HTTP/1 and the recent portswigger report clearly shows that many of us were relying on the tests performed on the reassembled start line, but that was too late (in my case everything was already NUL/CR/LF clean but LWS were not imagined there). I think it would be appropriate to place the small enumeration I mentioned above somewhere (probably after the \"minimal validation\" part). But it's possible that it doesn't have its place in the headers section and that it would be better discussed in the security considerations. And maybe then the whole \"minimal validation\" part can be moved there with it, since after all, it's what all this is about, covering risks that are known for having already been abused.\r\n\r\nIf you're interested I can propose a whole paragraph about all this, as being an implementer makes it easy enough for me to describe the traps. I'm just still having difficulties with all the toolchain and the XML docs which is why I don't send PRs.\r\n",
+          "createdAt": "2021-08-26T06:25:57Z",
+          "updatedAt": "2021-08-26T06:25:57Z"
+        },
+        {
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "body": "(I'll add LF)\r\n\r\nAs for pseudo-headers, welcome back scope creep.   Would a simple prohibition on SP (and maybe HTAB) for pseudo-headers work?  I'm fairly confident that the `%20` substitution is performed as needed, so there are no valid uses for the character.  Given that that is the real problem, would that do?  I don't feel like a full enumeration is going to be effective, but just one more simple bullet might not hurt.",
+          "createdAt": "2021-08-26T06:34:32Z",
+          "updatedAt": "2021-08-26T06:34:32Z"
+        },
+        {
+          "author": "wtarreau",
+          "authorAssociation": "NONE",
+          "body": "I've initially thought about it when fixing my bugs (\"if I had filtered LWS as well...\"). But that's not enough for :scheme nor :path. If :path starts with any character that is valid in a domain name, or a colon, you can change the authority when concatenating values. E.g.\r\n```\r\n:authority: example.org\r\n:path: .example.com/index.html\r\n```\r\nor\r\n```\r\n:authority: example.org\r\n:path: :4443/index.html\r\n```\r\nWould result in `https://example.org.example.com/index.html\" or \"https://example.org:4443/index.html\". Similarly if \":scheme\" contains a colon, we're lost.\r\n\r\nIn haproxy we've seriously hardened this part so that we don't have to deal with a variant of it any time soon. But I think that the absolute bare minimum is:\r\n- no NUL/CR/LF/LWS in *any* of the currently known pseudo header fields\r\n- no colon in :scheme\r\n- nothing but \"/\" or \"*\" as the first char of :path\r\n\r\nI don't see how to fool a start line parser when reassembling something based on such minimum controls, but I do see how to fool them by relaxing any single one of the rules above.\r\n",
+          "createdAt": "2021-08-26T06:45:41Z",
+          "updatedAt": "2021-08-26T06:45:41Z"
         }
       ],
       "reviews": [
@@ -38853,6 +38882,85 @@
               "updatedAt": "2021-08-23T08:24:06Z"
             }
           ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM5MTAwNjEx",
+          "commit": {
+            "abbreviatedOid": "40cbfb7"
+          },
+          "author": "gregw",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "This is really good other than a couple of niggles \r\n\r\nExpressing it this way makes it really clear the difference between recommended full HTTP validation and the minimal validation that must be imposed if full validation is not done. \r\n",
+          "createdAt": "2021-08-26T06:55:53Z",
+          "updatedAt": "2021-08-26T07:09:10Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Probably need to exclude psuedo headers from the SHOULD.\r\n```suggestion\r\n            The definitions of field names and values in HTTP prohibits some characters that HPACK\r\n            might be able to convey.  HTTP/2 implementations SHOULD validate the names and values \r\n            of non <xref target=\"PseudoHeaderFields\">pseudo-header fields</xref>\r\n            according to their definitions in Sections <xref target=\"HTTP\" section=\"5.1\"\r\n            format=\"counter\"/> and <xref target=\"HTTP\" section=\"5.5\"/> respectively and treat\r\n            messages that contain prohibited characters as <xref\r\n            target=\"malformed\">malformed</xref>.\r\n```",
+              "createdAt": "2021-08-26T06:55:53Z",
+              "updatedAt": "2021-08-26T07:09:10Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "Should DQUOTE and single quote also be listed here to protect scripting languages?",
+              "createdAt": "2021-08-26T07:07:16Z",
+              "updatedAt": "2021-08-26T07:09:10Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM5MTEyOTQ4",
+          "commit": {
+            "abbreviatedOid": "40cbfb7"
+          },
+          "author": "mnot",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-26T07:11:19Z",
+          "updatedAt": "2021-08-26T07:11:19Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "-1\r\n\r\n'non pseudo header fields' is not a thing.",
+              "createdAt": "2021-08-26T07:11:19Z",
+              "updatedAt": "2021-08-26T07:11:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM5MTE1NjE1",
+          "commit": {
+            "abbreviatedOid": "40cbfb7"
+          },
+          "author": "martinthomson",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-26T07:14:30Z",
+          "updatedAt": "2021-08-26T07:14:30Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Pseudo-header values need to comply with the same rules anyway and the names are sufficiently well proscribed otherwise.",
+              "createdAt": "2021-08-26T07:14:30Z",
+              "updatedAt": "2021-08-26T07:14:30Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzM5ODI0ODMz",
+          "commit": {
+            "abbreviatedOid": "40cbfb7"
+          },
+          "author": "Lukasa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-26T18:47:20Z",
+          "updatedAt": "2021-08-26T18:47:20Z",
+          "comments": []
         }
       ]
     },
@@ -39371,6 +39479,36 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 953,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzIxMjgxNTc1",
+      "title": "Clean up IANA link rendering",
+      "url": "https://github.com/httpwg/http2-spec/pull/953",
+      "state": "MERGED",
+      "author": "Lukasa",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "Fixes #948",
+      "createdAt": "2021-08-27T12:09:00Z",
+      "updatedAt": "2021-08-27T12:23:57Z",
+      "baseRepository": "httpwg/http2-spec",
+      "baseRefName": "main",
+      "baseRefOid": "5d009dfde16a17e5b6f132f8c4860c042294dd23",
+      "headRepository": "Lukasa/http2-spec",
+      "headRefName": "cb-clean-up-iana-links",
+      "headRefOid": "d1817b328051bf926b4ce92cf8f12a2f71c89d5a",
+      "closedAt": "2021-08-27T12:23:57Z",
+      "mergedAt": "2021-08-27T12:23:57Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "0d42361643adeb6980e7083d7baab2afe9dd5d60"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
